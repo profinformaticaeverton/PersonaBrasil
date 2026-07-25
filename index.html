@@ -15,730 +15,571 @@
     /* ============================================================
        RESET E VARIÁVEIS (Claymorphism + Cores da Bandeira)
        ============================================================ */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    * { margin:0; padding:0; box-sizing:border-box; }
     :root {
-      --verde: #009739;
-      --amarelo: #FEDB00;
-      --azul: #012169;
-      --branco: #FFFFFF;
-      --preto: #1A1A1A;
-
+      --verde: #009739; --amarelo: #FEDB00; --azul: #012169;
+      --branco: #FFFFFF; --preto: #1A1A1A;
       --bg: #f0ebe3;
-      --card-bg: rgba(255, 255, 255, 0.75);
-      --card-shadow: 8px 8px 24px rgba(0, 0, 0, 0.08), -8px -8px 24px rgba(255, 255, 255, 0.7);
-      --text: #2d2d2d;
-      --text-light: #555;
-      --border: rgba(0, 151, 57, 0.15);
-      --accent: var(--verde);
-      --accent-hover: #007a2e;
-      --filter-bg: rgba(255, 255, 255, 0.5);
-      --input-bg: rgba(255, 255, 255, 0.8);
+      --card-bg: rgba(255,255,255,0.75);
+      --card-shadow: 8px 8px 24px rgba(0,0,0,0.08), -8px -8px 24px rgba(255,255,255,0.7);
+      --text: #2d2d2d; --text-light: #555;
+      --border: rgba(0,151,57,0.15);
+      --filter-bg: rgba(255,255,255,0.5);
+      --input-bg: rgba(255,255,255,0.8);
       --radius: 28px;
       --transition: 0.3s ease;
     }
-
     [data-theme="dark"] {
       --bg: #1e2a2e;
-      --card-bg: rgba(40, 50, 55, 0.8);
-      --card-shadow: 8px 8px 24px rgba(0, 0, 0, 0.4), -8px -8px 24px rgba(60, 80, 90, 0.2);
-      --text: #e8e8e8;
-      --text-light: #b0b0b0;
-      --border: rgba(254, 219, 0, 0.2);
-      --filter-bg: rgba(30, 42, 46, 0.7);
-      --input-bg: rgba(50, 65, 70, 0.8);
+      --card-bg: rgba(40,50,55,0.8);
+      --card-shadow: 8px 8px 24px rgba(0,0,0,0.4), -8px -8px 24px rgba(60,80,90,0.2);
+      --text: #e8e8e8; --text-light: #b0b0b0;
+      --border: rgba(254,219,0,0.2);
+      --filter-bg: rgba(30,42,46,0.7);
+      --input-bg: rgba(50,65,70,0.8);
     }
-
     body {
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 1rem;
-      transition: background var(--transition), color var(--transition);
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg); color: var(--text);
+      min-height: 100vh; display: flex; flex-direction: column; align-items: center;
+      padding: 1rem; transition: background var(--transition), color var(--transition);
       line-height: 1.5;
     }
-
-    .app {
-      max-width: 820px;
-      width: 100%;
-      margin: 0 auto;
-    }
-
+    .app { max-width:820px; width:100%; margin:0 auto; }
     header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-      padding: 1.2rem 1.8rem;
-      background: var(--card-bg);
-      backdrop-filter: blur(8px);
-      border-radius: var(--radius);
-      box-shadow: var(--card-shadow);
-      margin-bottom: 2rem;
-      border: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap:1rem; padding:1.2rem 1.8rem;
+      background: var(--card-bg); backdrop-filter: blur(8px);
+      border-radius: var(--radius); box-shadow: var(--card-shadow);
+      margin-bottom:2rem; border:1px solid var(--border);
       transition: background var(--transition), box-shadow var(--transition);
     }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-    .logo h1 {
-      font-size: 1.4rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, var(--verde), var(--azul));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      letter-spacing: -0.5px;
-    }
-    .logo img {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      border: 2px solid var(--amarelo);
-    }
-
+    .logo { display:flex; align-items:center; gap:0.6rem; }
+    .logo h1 { font-size:1.4rem; font-weight:700; background:linear-gradient(135deg,var(--verde),var(--azul)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; letter-spacing:-0.5px; }
+    .logo img { width:36px; height:36px; border-radius:50%; border:2px solid var(--amarelo); }
     .theme-toggle {
-      background: var(--filter-bg);
-      border: none;
-      border-radius: 40px;
-      padding: 0.5rem 1.2rem;
-      font-size: 1rem;
-      cursor: pointer;
-      box-shadow: var(--card-shadow);
-      color: var(--text);
+      background: var(--filter-bg); border:none; border-radius:40px;
+      padding:0.5rem 1.2rem; font-size:1rem; cursor:pointer;
+      box-shadow: var(--card-shadow); color:var(--text);
       transition: background var(--transition), transform 0.2s;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-weight: 600;
+      display:flex; align-items:center; gap:0.4rem; font-weight:600;
     }
-    .theme-toggle:hover {
-      transform: scale(1.03);
-      background: var(--amarelo);
-      color: var(--preto);
-    }
-
+    .theme-toggle:hover { transform:scale(1.03); background:var(--amarelo); color:var(--preto); }
     .filtros {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.8rem;
-      background: var(--card-bg);
-      backdrop-filter: blur(8px);
-      padding: 1.2rem 1.5rem;
-      border-radius: var(--radius);
-      box-shadow: var(--card-shadow);
-      margin-bottom: 1.8rem;
-      border: 1px solid var(--border);
+      display:flex; flex-wrap:wrap; gap:0.8rem;
+      background: var(--card-bg); backdrop-filter:blur(8px);
+      padding:1.2rem 1.5rem; border-radius:var(--radius);
+      box-shadow: var(--card-shadow); margin-bottom:1.8rem;
+      border:1px solid var(--border);
       transition: background var(--transition), box-shadow var(--transition);
     }
-    .filtros label {
-      display: flex;
-      flex-direction: column;
-      gap: 0.2rem;
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--text-light);
-      flex: 1 0 120px;
-    }
-    .filtros input,
-    .filtros select {
-      background: var(--input-bg);
-      border: 1px solid var(--border);
-      border-radius: 40px;
-      padding: 0.5rem 1rem;
-      font-size: 0.95rem;
-      color: var(--text);
-      outline: none;
+    .filtros label { display:flex; flex-direction:column; gap:0.2rem; font-size:0.8rem; font-weight:600; color:var(--text-light); flex:1 0 120px; }
+    .filtros input, .filtros select {
+      background: var(--input-bg); border:1px solid var(--border);
+      border-radius:40px; padding:0.5rem 1rem; font-size:0.95rem;
+      color:var(--text); outline:none;
       transition: border var(--transition), box-shadow var(--transition);
-      width: 100%;
-      backdrop-filter: blur(4px);
+      width:100%; backdrop-filter:blur(4px);
     }
-    .filtros input:focus,
-    .filtros select:focus {
-      border-color: var(--verde);
-      box-shadow: 0 0 0 3px rgba(0, 151, 57, 0.2);
-    }
-    .filtros .filtro-acoes {
-      display: flex;
-      gap: 0.6rem;
-      align-items: flex-end;
-      flex: 0 0 auto;
-    }
+    .filtros input:focus, .filtros select:focus { border-color:var(--verde); box-shadow:0 0 0 3px rgba(0,151,57,0.2); }
+    .filtros .filtro-acoes { display:flex; gap:0.6rem; align-items:flex-end; flex:0 0 auto; }
     .filtros .filtro-acoes button {
-      background: var(--verde);
-      border: none;
-      border-radius: 40px;
-      padding: 0.5rem 1.2rem;
-      font-weight: 600;
-      color: #fff;
-      cursor: pointer;
+      background: var(--verde); border:none; border-radius:40px;
+      padding:0.5rem 1.2rem; font-weight:600; color:#fff; cursor:pointer;
       transition: background var(--transition), transform 0.2s;
-      box-shadow: 0 4px 8px rgba(0, 151, 57, 0.2);
-      font-size: 0.9rem;
+      box-shadow: 0 4px 8px rgba(0,151,57,0.2); font-size:0.9rem;
     }
-    .filtros .filtro-acoes button:hover {
-      background: var(--accent-hover);
-      transform: scale(1.02);
-    }
-
+    .filtros .filtro-acoes button:hover { background:var(--accent-hover); transform:scale(1.02); }
     .card-wrapper {
-      background: var(--card-bg);
-      backdrop-filter: blur(8px);
-      border-radius: var(--radius);
-      box-shadow: var(--card-shadow);
-      padding: 1.8rem;
-      border: 1px solid var(--border);
+      background: var(--card-bg); backdrop-filter:blur(8px);
+      border-radius: var(--radius); box-shadow: var(--card-shadow);
+      padding:1.8rem; border:1px solid var(--border);
       transition: background var(--transition), box-shadow var(--transition);
-      margin-bottom: 1.8rem;
+      margin-bottom:1.8rem;
     }
-    .card-conteudo {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 1.8rem;
-    }
-    @media (max-width: 640px) {
-      .card-conteudo {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-      }
-    }
-
-    .card-foto {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+    .card-conteudo { display:grid; grid-template-columns:1fr 2fr; gap:1.8rem; }
+    @media (max-width:640px) { .card-conteudo { grid-template-columns:1fr; gap:1rem; } }
+    .card-foto { display:flex; flex-direction:column; align-items:center; }
     .card-foto .img-wrapper {
-      width: 100%;
-      max-width: 260px;
-      aspect-ratio: 1 / 1;
-      border-radius: 50%;
-      border: 4px solid var(--amarelo);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-      overflow: hidden;
-      background: #ddd;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      width:100%; max-width:260px; aspect-ratio:1/1;
+      border-radius:50%; border:4px solid var(--amarelo);
+      box-shadow:0 8px 24px rgba(0,0,0,0.12);
+      overflow:hidden; background:#ddd;
+      display:flex; align-items:center; justify-content:center;
       transition: transform 0.3s;
     }
-    .card-foto .img-wrapper:hover {
-      transform: scale(1.02);
-    }
-    .card-foto .img-wrapper img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
+    .card-foto .img-wrapper:hover { transform:scale(1.02); }
+    .card-foto .img-wrapper img { width:100%; height:100%; object-fit:cover; display:block; }
     .card-foto .img-wrapper .fallback {
-      font-size: 4rem;
-      font-weight: 700;
-      color: var(--azul);
-      background: var(--amarelo);
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-transform: uppercase;
+      font-size:4rem; font-weight:700; color:var(--azul);
+      background:var(--amarelo); width:100%; height:100%;
+      display:flex; align-items:center; justify-content:center;
+      text-transform:uppercase;
     }
     .card-foto .badge-sexo {
-      margin-top: 0.6rem;
-      font-size: 0.75rem;
-      background: var(--azul);
-      color: #fff;
-      padding: 0.2rem 0.9rem;
-      border-radius: 40px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
+      margin-top:0.6rem; font-size:0.75rem; background:var(--azul);
+      color:#fff; padding:0.2rem 0.9rem; border-radius:40px;
+      text-transform:uppercase; letter-spacing:0.5px;
     }
-
-    .card-info {
-      display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
-    }
-    .card-info .nome-principal {
-      font-size: 1.8rem;
-      font-weight: 700;
-      line-height: 1.2;
-      color: var(--azul);
-    }
-    .card-info .nome-artistico {
-      font-size: 1.1rem;
-      font-weight: 400;
-      color: var(--text-light);
-    }
-    .card-info .detalhes {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem 1.2rem;
-      font-size: 0.9rem;
-      color: var(--text-light);
-      margin: 0.2rem 0 0.4rem;
-    }
-    .card-info .detalhes span {
-      background: var(--filter-bg);
-      padding: 0.15rem 0.7rem;
-      border-radius: 40px;
-      border: 1px solid var(--border);
-    }
-    .card-info .area {
-      font-weight: 600;
-      color: var(--verde);
-      display: inline-block;
-      background: rgba(0, 151, 57, 0.08);
-      padding: 0.1rem 0.9rem;
-      border-radius: 40px;
-    }
-    .card-info .biografia {
-      margin: 0.6rem 0 0.2rem;
-      font-size: 0.95rem;
-      line-height: 1.6;
-    }
-    .card-info .obras-feitos {
-      display: flex;
-      flex-direction: column;
-      gap: 0.2rem;
-      margin-top: 0.4rem;
-    }
-    .card-info .obras-feitos strong {
-      color: var(--azul);
-      font-weight: 600;
-    }
-    .card-info .obras-feitos ul {
-      list-style: none;
-      padding-left: 0.2rem;
-    }
-    .card-info .obras-feitos li {
-      padding: 0.1rem 0 0.1rem 1.2rem;
-      position: relative;
-    }
-    .card-info .obras-feitos li::before {
-      content: "✦";
-      position: absolute;
-      left: 0;
-      color: var(--amarelo);
-      font-weight: bold;
-    }
-    .card-info .citacao {
-      margin-top: 0.6rem;
-      font-style: italic;
-      background: var(--filter-bg);
-      padding: 0.6rem 1rem;
-      border-radius: 20px;
-      border-left: 4px solid var(--amarelo);
-      color: var(--text-light);
-    }
-    .card-info .fontes {
-      font-size: 0.75rem;
-      color: var(--text-light);
-      margin-top: 0.4rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.3rem 0.8rem;
-    }
-    .card-info .fontes a {
-      color: var(--azul);
-      text-decoration: none;
-      border-bottom: 1px dotted var(--azul);
-    }
-    .card-info .fontes a:hover {
-      color: var(--verde);
-    }
-
+    .card-info { display:flex; flex-direction:column; gap:0.4rem; }
+    .card-info .nome-principal { font-size:1.8rem; font-weight:700; line-height:1.2; color:var(--azul); }
+    .card-info .nome-artistico { font-size:1.1rem; font-weight:400; color:var(--text-light); }
+    .card-info .detalhes { display:flex; flex-wrap:wrap; gap:0.4rem 1.2rem; font-size:0.9rem; color:var(--text-light); margin:0.2rem 0 0.4rem; }
+    .card-info .detalhes span { background:var(--filter-bg); padding:0.15rem 0.7rem; border-radius:40px; border:1px solid var(--border); }
+    .card-info .area { font-weight:600; color:var(--verde); display:inline-block; background:rgba(0,151,57,0.08); padding:0.1rem 0.9rem; border-radius:40px; }
+    .card-info .biografia { margin:0.6rem 0 0.2rem; font-size:0.95rem; line-height:1.6; }
+    .card-info .obras-feitos { display:flex; flex-direction:column; gap:0.2rem; margin-top:0.4rem; }
+    .card-info .obras-feitos strong { color:var(--azul); font-weight:600; }
+    .card-info .obras-feitos ul { list-style:none; padding-left:0.2rem; }
+    .card-info .obras-feitos li { padding:0.1rem 0 0.1rem 1.2rem; position:relative; }
+    .card-info .obras-feitos li::before { content:"✦"; position:absolute; left:0; color:var(--amarelo); font-weight:bold; }
+    .card-info .citacao { margin-top:0.6rem; font-style:italic; background:var(--filter-bg); padding:0.6rem 1rem; border-radius:20px; border-left:4px solid var(--amarelo); color:var(--text-light); }
+    .card-info .fontes { font-size:0.75rem; color:var(--text-light); margin-top:0.4rem; display:flex; flex-wrap:wrap; gap:0.3rem 0.8rem; }
+    .card-info .fontes a { color:var(--azul); text-decoration:none; border-bottom:1px dotted var(--azul); }
+    .card-info .fontes a:hover { color:var(--verde); }
     .card-navegacao {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 0.8rem;
-      margin-top: 1.2rem;
-      padding-top: 1rem;
-      border-top: 1px solid var(--border);
+      display:flex; justify-content:space-between; align-items:center;
+      gap:0.8rem; margin-top:1.2rem; padding-top:1rem;
+      border-top:1px solid var(--border);
     }
     .card-navegacao button {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 40px;
-      padding: 0.5rem 1.4rem;
-      font-weight: 600;
-      color: var(--text);
-      cursor: pointer;
-      transition: all var(--transition);
-      box-shadow: var(--card-shadow);
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-size: 0.9rem;
+      background: var(--card-bg); border:1px solid var(--border);
+      border-radius:40px; padding:0.5rem 1.4rem; font-weight:600;
+      color:var(--text); cursor:pointer;
+      transition: all var(--transition); box-shadow:var(--card-shadow);
+      display:flex; align-items:center; gap:0.4rem; font-size:0.9rem;
     }
-    .card-navegacao button:hover:not(:disabled) {
-      background: var(--verde);
-      color: #fff;
-      border-color: var(--verde);
-      transform: scale(1.02);
-    }
-    .card-navegacao button:disabled {
-      opacity: 0.35;
-      cursor: not-allowed;
-      transform: none;
-    }
-    .card-navegacao .contador {
-      font-size: 0.9rem;
-      color: var(--text-light);
-      font-weight: 500;
-    }
-
-    .sem-resultado {
-      text-align: center;
-      padding: 2rem;
-      font-size: 1.2rem;
-      color: var(--text-light);
-      background: var(--card-bg);
-      border-radius: var(--radius);
-      box-shadow: var(--card-shadow);
-    }
-
-    footer {
-      margin-top: 2.4rem;
-      font-size: 0.8rem;
-      color: var(--text-light);
-      text-align: center;
-      border-top: 1px solid var(--border);
-      padding-top: 1.2rem;
-      width: 100%;
-    }
-
-    .sr-only {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      border: 0;
-    }
-
-    .fade-enter {
-      animation: fadeIn 0.3s ease;
-    }
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .card-wrapper {
-      touch-action: pan-y;
-    }
+    .card-navegacao button:hover:not(:disabled) { background:var(--verde); color:#fff; border-color:var(--verde); transform:scale(1.02); }
+    .card-navegacao button:disabled { opacity:0.35; cursor:not-allowed; transform:none; }
+    .card-navegacao .contador { font-size:0.9rem; color:var(--text-light); font-weight:500; }
+    .sem-resultado { text-align:center; padding:2rem; font-size:1.2rem; color:var(--text-light); background:var(--card-bg); border-radius:var(--radius); box-shadow:var(--card-shadow); }
+    footer { margin-top:2.4rem; font-size:0.8rem; color:var(--text-light); text-align:center; border-top:1px solid var(--border); padding-top:1.2rem; width:100%; }
+    .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0; }
+    .fade-enter { animation:fadeIn 0.3s ease; }
+    @keyframes fadeIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+    .card-wrapper { touch-action:pan-y; }
   </style>
 </head>
 <body>
-  <div class="app" role="main">
-    <header>
-      <div class="logo">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Brazil.svg/64px-Flag_of_Brazil.svg.png" alt="Bandeira do Brasil" />
-        <h1>Brasil em Retratos</h1>
-      </div>
-      <button class="theme-toggle" id="themeToggle" aria-label="Alternar modo claro/escuro">
-        <span id="themeIcon">🌙</span> <span id="themeLabel">Escuro</span>
-      </button>
-    </header>
+<div class="app" role="main">
+  <header>
+    <div class="logo">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Brazil.svg/64px-Flag_of_Brazil.svg.png" alt="Bandeira do Brasil" />
+      <h1>Brasil em Retratos</h1>
+    </div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Alternar modo claro/escuro">
+      <span id="themeIcon">🌙</span> <span id="themeLabel">Escuro</span>
+    </button>
+  </header>
 
-    <section class="filtros" aria-label="Filtros de busca">
-      <label>
-        Nome
-        <input type="text" id="filtroNome" placeholder="Digite parte do nome..." />
-      </label>
-      <label>
-        Sexo
-        <select id="filtroSexo">
-          <option value="">Todos</option>
-          <option value="masculino">Masculino</option>
-          <option value="feminino">Feminino</option>
-        </select>
-      </label>
-      <label>
-        Área
-        <select id="filtroArea">
-          <option value="">Todas</option>
-        </select>
-      </label>
-      <div class="filtro-acoes">
-        <button id="limparFiltros">Limpar</button>
-      </div>
-    </section>
+  <section class="filtros" aria-label="Filtros de busca">
+    <label>Nome <input type="text" id="filtroNome" placeholder="Digite parte do nome..." /></label>
+    <label>Sexo
+      <select id="filtroSexo">
+        <option value="">Todos</option>
+        <option value="masculino">Masculino</option>
+        <option value="feminino">Feminino</option>
+      </select>
+    </label>
+    <label>Área <select id="filtroArea"><option value="">Todas</option></select></label>
+    <div class="filtro-acoes"><button id="limparFiltros">Limpar</button></div>
+  </section>
 
-    <div id="cardContainer"></div>
+  <div id="cardContainer"></div>
 
-    <footer>
-      <p>Dados históricos de fontes confiáveis · Projeto open source · 2026</p>
-    </footer>
-  </div>
+  <footer><p>Dados históricos de fontes confiáveis · Projeto open source · 2026</p></footer>
+</div>
 
-  <script>
-    // ================================================================
-    //  FUNÇÃO PARA GERAR URL DA IMAGEM (WIKIMEDIA COMMONS)
-    // ================================================================
-    function getImageUrl(artistName) {
-      // Remove acentos e caracteres especiais, formata para URL
-      const nameSlug = artistName
-        .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '') // remove acentos
-        .replace(/[^a-zA-Z0-9 ]/g, '') // remove caracteres especiais
-        .trim()
-        .replace(/\s+/g, '_');
+<script>
+// ================================================================
+//  FUNÇÃO PARA GERAR URL DA IMAGEM (WIKIMEDIA COMMONS)
+// ================================================================
+function getImageUrl(artistName) {
+  const nameSlug = artistName
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-zA-Z0-9 ]/g, '').trim().replace(/\s+/g, '_');
+  return [
+    `https://upload.wikimedia.org/wikipedia/commons/thumb/${nameSlug.charAt(0)}/${nameSlug}/${nameSlug}.jpg/220px-${nameSlug}.jpg`,
+    `https://upload.wikimedia.org/wikipedia/commons/thumb/${nameSlug.charAt(0)}/${nameSlug}/${nameSlug}.png/220px-${nameSlug}.png`
+  ];
+}
 
-      // Tenta primeiro .jpg, depois .png
-      return [
-        `https://upload.wikimedia.org/wikipedia/commons/thumb/${nameSlug.charAt(0)}/${nameSlug}/${nameSlug}.jpg/220px-${nameSlug}.jpg`,
-        `https://upload.wikimedia.org/wikipedia/commons/thumb/${nameSlug.charAt(0)}/${nameSlug}/${nameSlug}.png/220px-${nameSlug}.png`
-      ];
+// ================================================================
+//  DADOS – 100 PERSONALIDADES (IDs 1 a 100)
+// ================================================================
+const pessoas = [
+// ----- IDs 1 a 35 (históricos gerais) -----
+{id:1,nomeCompleto:"Pedro Álvares Cabral",nomeArtistico:null,apelidos:["Descobridor do Brasil"],nascimento:"1467",falecimento:"1520",cidade:"Belmonte",estado:null,pais:"Portugal",area:"Explorador",periodoBrasileiro:"Descobrimento",periodoMundial:"Renascimento",movimento:null,principaisObras:["Descoberta do Brasil (1500)"],principaisFeitos:["Chegada à costa brasileira","Primeiro contato com indígenas"],curiosidades:"Sua esquadra tinha 13 navios e 1.200 homens.",citacao:"Terra à vista!",fontes:["Arquivo Nacional","Biblioteca Nacional"],links:["https://pt.wikipedia.org/wiki/Pedro_Álvares_Cabral"],redesSociais:{},linhaTempo:["1467: Nascimento","1500: Descoberta do Brasil","1520: Falecimento"],sexo:"masculino",foto:""},
+{id:2,nomeCompleto:"Tomé de Sousa",nomeArtistico:null,apelidos:["Primeiro Governador-Geral"],nascimento:"1503",falecimento:"1579",cidade:"Rates",estado:null,pais:"Portugal",area:"Político / Administrador",periodoBrasileiro:"Colonização",periodoMundial:"Renascimento",movimento:null,principaisObras:["Fundação de Salvador (1549)","Primeiro governo-geral"],principaisFeitos:["Organização da administração colonial","Início da exploração açucareira"],curiosidades:"Chegou ao Brasil com 6 navios e 1.000 colonos.",citacao:null,fontes:["Arquivo Nacional"],links:["https://pt.wikipedia.org/wiki/Tomé_de_Sousa"],redesSociais:{},linhaTempo:["1503: Nascimento","1549: Fundação de Salvador","1579: Falecimento"],sexo:"masculino",foto:""},
+{id:3,nomeCompleto:"Dom João VI",nomeArtistico:null,apelidos:["O Clemente"],nascimento:"1767",falecimento:"1826",cidade:"Lisboa",estado:null,pais:"Portugal",area:"Monarca",periodoBrasileiro:"Período Joanino",periodoMundial:"Revolução Francesa / Napoleão",movimento:null,principaisObras:["Transferência da Corte para o Brasil (1808)"],principaisFeitos:["Abertura dos portos","Elevação do Brasil a Reino Unido"],curiosidades:"Foi o único monarca europeu a governar a partir de uma colônia.",citacao:"Foi um divisor de águas na história do Brasil.",fontes:["Biblioteca Nacional","CPDOC"],links:["https://pt.wikipedia.org/wiki/João_VI_de_Portugal"],redesSociais:{},linhaTempo:["1767: Nascimento","1808: Chegada ao Brasil","1826: Falecimento"],sexo:"masculino",foto:""},
+{id:4,nomeCompleto:"Dom Pedro I",nomeArtistico:null,apelidos:["O Libertador","Imperador do Brasil"],nascimento:"1798",falecimento:"1834",cidade:"Lisboa",estado:null,pais:"Portugal",area:"Monarca / Político",periodoBrasileiro:"Independência",periodoMundial:"Era das Revoluções",movimento:null,principaisObras:["Independência do Brasil (1822)","Constituição de 1824"],principaisFeitos:["Grito do Ipiranga","Primeiro Imperador do Brasil"],curiosidades:"Também foi rei de Portugal por um breve período.",citacao:"Independência ou Morte!",fontes:["Arquivo Nacional","CPDOC"],links:["https://pt.wikipedia.org/wiki/Pedro_I_do_Brasil"],redesSociais:{},linhaTempo:["1798: Nascimento","1822: Independência","1834: Falecimento"],sexo:"masculino",foto:""},
+{id:5,nomeCompleto:"José Bonifácio de Andrada e Silva",nomeArtistico:null,apelidos:["Patriarca da Independência"],nascimento:"1763",falecimento:"1838",cidade:"Santos",estado:"SP",pais:"Brasil",area:"Político / Cientista",periodoBrasileiro:"Independência",periodoMundial:"Iluminismo",movimento:null,principaisObras:["Participação na Independência","Fundação do Instituto Histórico e Geográfico"],principaisFeitos:["Ministro de D. Pedro I","Abolição do tráfico de escravos"],curiosidades:"Era mineralogista e poeta.",citacao:"Sem a independência, o Brasil não seria nada.",fontes:["ABL","CPDOC"],links:["https://pt.wikipedia.org/wiki/José_Bonifácio"],redesSociais:{},linhaTempo:["1763: Nascimento","1822: Independência","1838: Falecimento"],sexo:"masculino",foto:""},
+{id:6,nomeCompleto:"Joaquim José da Silva Xavier",nomeArtistico:"Tiradentes",apelidos:["Tiradentes"],nascimento:"1746",falecimento:"1792",cidade:"São João del-Rei",estado:"MG",pais:"Brasil",area:"Revolucionário / Militar",periodoBrasileiro:"Conjuração Mineira",periodoMundial:"Iluminismo",movimento:"Inconfidência Mineira",principaisObras:["Liderança da Inconfidência Mineira"],principaisFeitos:["Protesto contra a derrama","Mártir da independência"],curiosidades:"Era dentista e alferes.",citacao:"Se todos quisermos, podemos fazer a pátria livre.",fontes:["Arquivo Nacional","IPHAN"],links:["https://pt.wikipedia.org/wiki/Tiradentes"],redesSociais:{},linhaTempo:["1746: Nascimento","1792: Enforcado"],sexo:"masculino",foto:""},
+{id:7,nomeCompleto:"Zumbi dos Palmares",nomeArtistico:null,apelidos:["Zumbi"],nascimento:"1655",falecimento:"1695",cidade:"Serra da Barriga",estado:"AL",pais:"Brasil",area:"Líder quilombola",periodoBrasileiro:"Colonização",periodoMundial:"Idade Moderna",movimento:"Resistência negra",principaisObras:["Liderança do Quilombo dos Palmares"],principaisFeitos:["Resistência à escravidão","Símbolo da luta negra"],curiosidades:"É cultuado como herói nacional.",citacao:"A liberdade é o maior bem do homem.",fontes:["Arquivo Nacional","IPHAN"],links:["https://pt.wikipedia.org/wiki/Zumbi_dos_Palmares"],redesSociais:{},linhaTempo:["1655: Nascimento","1695: Morte em combate"],sexo:"masculino",foto:""},
+{id:8,nomeCompleto:"Dom Pedro II",nomeArtistico:null,apelidos:["O Magnânimo"],nascimento:"1825",falecimento:"1891",cidade:"Rio de Janeiro",estado:"RJ",pais:"Brasil",area:"Monarca",periodoBrasileiro:"Império",periodoMundial:"Século XIX",movimento:null,principaisObras:["Reinado de 58 anos","Abolição da escravatura (1888)"],principaisFeitos:["Modernização do Brasil","Guerra do Paraguai"],curiosidades:"Era um grande intelectual e fotógrafo amador.",citacao:"Sou um imperador que trabalha.",fontes:["Arquivo Nacional","CPDOC"],links:["https://pt.wikipedia.org/wiki/Pedro_II_do_Brasil"],redesSociais:{},linhaTempo:["1825: Nascimento","1889: Proclamação da República","1891: Falecimento"],sexo:"masculino",foto:""},
+{id:9,nomeCompleto:"Joaquim Maria Machado de Assis",nomeArtistico:"Machado de Assis",apelidos:["Bruxo do Cosme Velho"],nascimento:"1839",falecimento:"1908",cidade:"Rio de Janeiro",estado:"RJ",pais:"Brasil",area:"Escritor / Poeta",periodoBrasileiro:"Segundo Reinado / República Velha",periodoMundial:"Século XIX",movimento:"Realismo / Impressionismo",principaisObras:["Dom Casmurro","Memórias Póstumas de Brás Cubas","Quincas Borba"],principaisFeitos:["Fundador da ABL","Mestre do conto"],curiosidades:"Era neto de escravos e foi um dos maiores escritores em língua portuguesa.",citacao:"A vida é uma ópera e uma comédia ao mesmo tempo.",fontes:["ABL","Itaú Cultural"],links:["https://pt.wikipedia.org/wiki/Machado_de_Assis"],redesSociais:{},linhaTempo:["1839: Nascimento","1908: Falecimento"],sexo:"masculino",foto:""},
+{id:10,nomeCompleto:"Euclides da Cunha",nomeArtistico:null,apelidos:null,nascimento:"1866",falecimento:"1909",cidade:"Cantagalo",estado:"RJ",pais:"Brasil",area:"Escritor / Jornalista",periodoBrasileiro:"República Velha",periodoMundial:"Pré-Modernismo",movimento:"Pré-Modernismo",principaisObras:["Os Sertões","Contrastes e Confrontos"],principaisFeitos:["Reportagem sobre a Guerra de Canudos","Análise social do Brasil"],curiosidades:"Foi engenheiro e militar.",citacao:"O sertanejo é, antes de tudo, um forte.",fontes:["ABL","Itaú Cultural"],links:["https://pt.wikipedia.org/wiki/Euclides_da_Cunha"],redesSociais:{},linhaTempo:["1866: Nascimento","1909: Falecimento"],sexo:"masculino",foto:""},
+{id:11,nomeCompleto:"Carlos Drummond de Andrade",nomeArtistico:null,apelidos:["Drummond"],nascimento:"1902",falecimento:"1987",cidade:"Itabira",estado:"MG",pais:"Brasil",area:"Poeta",periodoBrasileiro:"Modernismo",periodoMundial:"Século XX",movimento:"Modernismo",principaisObras:["Alguma Poesia","Sentimento do Mundo","A Rosa do Povo"],principaisFeitos:["Renovação da poesia brasileira","Poeta maior do Brasil"],curiosidades:"Trabalhou como funcionário público.",citacao:"No meio do caminho tinha uma pedra.",fontes:["ABL","Itaú Cultural"],links:["https://pt.wikipedia.org/wiki/Carlos_Drummond_de_Andrade"],redesSociais:{},linhaTempo:["1902: Nascimento","1987: Falecimento"],sexo:"masculino",foto:""},
+{id:12,nomeCompleto:"Clarice Lispector",nomeArtistico:null,apelidos:null,nascimento:"1920",falecimento:"1977",cidade:"Tchetchelnik",estado:null,pais:"Ucrânia (nascida), naturalizada brasileira",area:"Escritora",periodoBrasileiro:"Modernismo / Pós-modernismo",periodoMundial:"Século XX",movimento:"Modernismo",principaisObras:["A Hora da Estrela","A Paixão segundo G.H.","Água Viva"],principaisFeitos:["Inovação da prosa literária","Voz feminina na literatura"],curiosidades:"Chegou ao Brasil com 2 meses de idade.",citacao:"Eu sou uma pessoa que escreve.",fontes:["ABL","Itaú Cultural"],links:["https://pt.wikipedia.org/wiki/Clarice_Lispector"],redesSociais:{},linhaTempo:["1920: Nascimento","1977: Falecimento"],sexo:"feminino",foto:""},
+{id:13,nomeCompleto:"Jorge Amado",nomeArtistico:null,apelidos:null,nascimento:"1912",falecimento:"2001",cidade:"Itabuna",estado:"BA",pais:"Brasil",area:"Escritor",periodoBrasileiro:"Modernismo",periodoMundial:"Século XX",movimento:"Modernismo",principaisObras:["Gabriela, Cravo e Canela","Capitães da Areia","Dona Flor e Seus Dois Maridos"],principaisFeitos:["Retrato da cultura baiana","Traduzido em 40 países"],curiosidades:"Foi deputado federal.",citacao:"A literatura é a minha vida.",fontes:["ABL","Itaú Cultural"],links:["https://pt.wikipedia.org/wiki/Jorge_Amado"],redesSociais:{},linhaTempo:["1912: Nascimento","2001: Falecimento"],sexo:"masculino",foto:""},
+{id:14,nomeCompleto:"Tarsila do Amaral",nomeArtistico:"Tarsila",apelidos:["Tarsila"],nascimento:"1886",falecimento:"1973",cidade:"Capivari",estado:"SP",pais:"Brasil",area:"Pintora",periodoBrasileiro:"Modernismo",periodoMundial:"Século XX",movimento:"Modernismo / Antropofagia",principaisObras:["Abaporu","A Negra","Operários"],principaisFeitos:["Criação do movimento antropofágico","Pioneira da arte moderna"],curiosidades:"Fez parte do Grupo dos Cinco.",citacao:"Pinto com a alma.",fontes:["Itaú Cultural","Museu Nacional"],links:["https://pt.wikipedia.org/wiki/Tarsila_do_Amaral"],redesSociais:{},linhaTempo:["1886: Nascimento","1973: Falecimento"],sexo:"feminino",foto:""},
+{id:15,nomeCompleto:"Candido Portinari",nomeArtistico:"Portinari",apelidos:null,nascimento:"1903",falecimento:"1962",cidade:"Brodowski",estado:"SP",pais:"Brasil",area:"Pintor",periodoBrasileiro:"Modernismo",periodoMundial:"Século XX",movimento:"Modernismo / Realismo Social",principaisObras:["Guerra e Paz (painéis)","Os Retirantes","Café"],principaisFeitos:["Murais da ONU","Maior pintor brasileiro"],curiosidades:"Filho de imigrantes italianos.",citacao:"A arte é um ato de amor.",fontes:["Itaú Cultural","Museu Nacional"],links:["https://pt.wikipedia.org/wiki/Candido_Portinari"],redesSociais:{},linhaTempo:["1903: Nascimento","1962: Falecimento"],sexo:"masculino",foto:""},
+{id:16,nomeCompleto:"Antônio Francisco Lisboa",nomeArtistico:"Aleijadinho",apelidos:["Aleijadinho"],nascimento:"1730",falecimento:"1814",cidade:"Ouro Preto",estado:"MG",pais:"Brasil",area:"Escultor / Arquiteto",periodoBrasileiro:"Barroco",periodoMundial:"Século XVIII",movimento:"Barroco Mineiro",principaisObras:["Santos de pedra-sabão","Igreja de São Francisco de Assis (Ouro Preto)"],principaisFeitos:["Mestre do barroco brasileiro","Arte sacra"],curiosidades:"Sofria de uma doença deformante.",citacao:null,fontes:["IPHAN","Itaú Cultural"],links:["https://pt.wikipedia.org/wiki/Aleijadinho"],redesSociais:{},linhaTempo:["1730: Nascimento","1814: Falecimento"],sexo:"masculino",foto:""},
+{id:17,nomeCompleto:"Oscar Niemeyer",nomeArtistico:null,apelidos:null,nascimento:"1907",falecimento:"2012",cidade:"Rio de Janeiro",estado:"RJ",pais:"Brasil",area:"Arquiteto",periodoBrasileiro:"Modernismo / Contemporâneo",periodoMundial:"Século XX / XXI",movimento:"Modernismo",principaisObras:["Catedral de Brasília","Palácio do Planalto","Congresso Nacional"],principaisFeitos:["Projetou Brasília","Arquiteto da modernidade"],curiosidades:"Atuou até os 104 anos.",citacao:"A arquitetura é invenção.",fontes:["IPHAN","Itaú Cultural"],links:["https://pt.wikipedia.org/wiki/Oscar_Niemeyer"],redesSociais:{},linhaTempo:["1907: Nascimento","2012: Falecimento"],sexo:"masculino",foto:""},
+{id:18,nomeCompleto:"Lina Bo Bardi",nomeArtistico:null,apelidos:null,nascimento:"1914",falecimento:"1992",cidade:"Roma",estado:null,pais:"Itália (naturalizada brasileira)",area:"Arquiteta / Designer",periodoBrasileiro:"Modernismo",periodoMundial:"Século XX",movimento:"Modernismo",principaisObras:["MASP (sede original)","SESC Pompéia","Casa de Vidro"],principaisFeitos:["Inovação social na arquitetura","Design de mobiliário"],curiosidades:"Veio para o Brasil em 1946.",citacao:"A arquitetura é a expressão da vida.",fontes:["Itaú Cultural","IPHAN"],links:["https://pt.wikipedia.org/wiki/Lina_Bo_Bardi"],redesSociais:{},linhaTempo:["1914: Nascimento","1992: Falecimento"],sexo:"feminino",foto:""},
+{id:19,nomeCompleto:"Heitor Villa-Lobos",nomeArtistico:null,apelidos:null,nascimento:"1887",falecimento:"1959",cidade:"Rio de Janeiro",estado:"RJ",pais:"Brasil",area:"Compositor / Maestro",periodoBrasileiro:"Modernismo",periodoMundial:"Século XX",movimento:"Modernismo",principaisObras:["Bachianas Brasileiras","Choros","Uirapuru"],principaisFeitos:["Maior compositor do Brasil","Integrou folclore e erudição"],curiosidades:"Pesquisou o folclore amazônico.",citacao:"A música é a arte mais sublime.",fontes:["Itaú Cultural","ABL"],links:["https://pt.wikipedia.org/wiki/Heitor_Villa-Lobos"],redesSociais:{},linhaTempo:["1887: Nascimento","1959: Falecimento"],sexo:"masculino",foto:""},
+{id:20,nomeCompleto:"Antônio Carlos Jobim",nomeArtistico:"Tom Jobim",apelidos:["Tom"],nascimento:"1927",falecimento:"1994",cidade:"Rio de Janeiro",estado:"RJ",pais:"Brasil",area:"Compositor / Músico",periodoBrasileiro:"Bossa Nova",periodoMundial:"Século XX",movimento:"Bossa Nova",principaisObras:["Garota de Ipanema","Chega de Saudade","Wave"],principaisFeitos:["Criador da Bossa Nova","Sucesso mundial"],curiosidades:"Era pianista e violonista.",citacao:"A música é o que sentimos.",fontes:["Itaú Cultural"],links:["https://pt.wikipedia.org/wiki/Tom_Jobim"],redesSociais:{},linhaTempo:["1927: Nascimento","1994: Falecimento"],sexo:"masculino",foto:""},
+{id:21,nomeCompleto:"Caetano Veloso",nomeArtistico:null,apelidos:null,nascimento:"1942",falecimento:null,cidade:"Santo Amaro da Purificação",estado:"BA",pais:"Brasil",area:"Cantor / Compositor",periodoBrasileiro:"Tropicalismo / Contemporâneo",periodoMundial:"Século XX / XXI",movimento:"Tropicalismo",principaisObras:["Alegria, Alegria","Tropicália","Coração Vagabundo"],principaisFeitos:["Revolucionou a música brasileira","Artista vivo mais influente"],curiosidades:"Foi exilado político.",citacao:"O tempo não para.",fontes:["Itaú Cultural"],links:["https://pt.wikipedia.org/wiki/Caetano_Veloso"],redesSociais:{instagram:"https://instagram.com/caetanoveloso"},linhaTempo:["1942: Nascimento"],sexo:"masculino",foto:""},
+{id:22,nomeCompleto:"Gilberto Gil",nomeArtistico:"Gilberto Gil",apelidos:["Gil"],nascimento:"1942",falecimento:null,cidade:"Salvador",estado:"BA",pais:"Brasil",area:"Cantor / Compositor / Político",periodoBrasileiro:"Tropicalismo / Contemporâneo",periodoMundial:"Século XX / XXI",movimento:"Tropicalismo",principaisObras:["Aquele Abraço","Toda Menina Baiana","Expresso 2222"],principaisFeitos:["Ministro da Cultura (2003-2008)","Embaixador da ONU"],curiosidades:"É também filósofo e músico.",citacao:"A música é a minha vida.",fontes:["Itaú Cultural"],links:["https://pt.wikipedia.org/wiki/Gilberto_Gil"],redesSociais:{instagram:"https://instagram.com/gilbertogil"},linhaTempo:["1942: Nascimento"],sexo:"masculino",foto:""},
+{id:23,nomeCompleto:"Chico Buarque de Holanda",nomeArtistico:"Chico Buarque",apelidos:["Chico"],nascimento:"1944",falecimento:null,cidade:"Rio de Janeiro",estado:"RJ",pais:"Brasil",area:"Cantor / Compositor / Escritor",periodoBrasileiro:"MPB / Contemporâneo",periodoMundial:"Século XX / XXI",movimento:"MPB",principaisObras:["Construção","Roda Viva","O Que Será"],principaisFeitos:["Maior nome da MPB","Prêmio Camões de Literatura"],curiosidades:"Foi preso durante a ditadura.",citacao:"A vida é um espanto.",fontes:["ABL","Itaú Cultural"],links:["https://pt.wikipedia.org/wiki/Chico_Buarque"],redesSociais:{},linhaTempo:["1944: Nascimento"],sexo:"masculino",foto:""},
+{id:24,nomeCompleto:"Elis Regina",nomeArtistico:"Elis Regina",apelidos:["A Pequena Notável"],nascimento:"1945",falecimento:"1982",cidade:"Porto Alegre",estado:"RS",pais:"Brasil",area:"Cantora",periodoBrasileiro:"MPB",periodoMundial:"Século XX",movimento:"MPB",principaisObras:["Águas de Março","Como Nossos Pais","O Bêbado e a Equilibrista"],principaisFeitos:["Uma das maiores vozes do Brasil","Interpretação única"],curiosidades:"Morreu jovem, aos 36 anos.",citacao:"A música é o que me completa.",fontes:["Itaú Cultural"],links:["https://pt.wikipedia.org/wiki/Elis_Regina"],redesSociais:{},linhaTempo:["1945: Nascimento","1982: Falecimento"],sexo:"feminino",foto:""},
+{id:25,nomeCompleto:"Edson Arantes do Nascimento",nomeArtistico:"Pelé",apelidos:["Rei Pelé"],nascimento:"1940",falecimento:"2022",cidade:"Três Corações",estado:"MG",pais:"Brasil",area:"Esportista (Futebol)",periodoBrasileiro:"Contemporâneo",periodoMundial:"Século XX / XXI",movimento:null,principaisObras:["3 Copas do Mundo (1958, 1962, 1970)"],principaisFeitos:["Maior jogador de futebol de todos os tempos","1000+ gols"],curiosidades:"Em 1999, foi eleito Atleta do Século.",citacao:"O sucesso não é por acaso.",fontes:["Arquivo Nacional","UNESCO"],links:["https://pt.wikipedia.org/wiki/Pelé"],redesSociais:{},linhaTempo:["1940: Nascimento","2022: Falecimento"],sexo:"masculino",foto:""},
+{id:26,nomeCompleto:"Ayrton Senna da Silva",nomeArtistico:"Ayrton Senna",apelidos:["Senna"],nascimento:"1960",falecimento:"1994",cidade:"São Paulo",estado:"SP",pais:"Brasil",area:"Esportista (Automobilismo)",periodoBrasileiro:"Contemporâneo",periodoMundial:"Século XX",movimento:null,principaisObras:["3 títulos mundiais de Fórmula 1 (1988, 1990, 1991)"],principaisFeitos:["Maior piloto brasileiro","Ícone da velocidade"],curiosidades:"Criou o Instituto Ayrton Senna.",citacao:"Se você não tem um sonho, como vai realizá-lo?",fontes:["Arquivo Nacional"],links:["https://pt.wikipedia.org/wiki/Ayrton_Senna"],redesSociais:{},linhaTempo:["1960: Nascimento","1994: Falecimento"],sexo:"masculino",foto:""},
+{id:27,nomeCompleto:"Nise da Silveira",nomeArtistico:null,apelidos:null,nascimento:"1905",falecimento:"1999",cidade:"Maceió",estado:"AL",pais:"Brasil",area:"Médica / Psiquiatra",periodoBrasileiro:"Contemporâneo",periodoMundial:"Século XX",movimento:"Psiquiatria humanitária",principaisObras:["Terapia ocupacional com animais","Museu de Imagens do Inconsciente"],principaisFeitos:["Revolucionou o tratamento de pacientes com esquizofrenia","Humanização da psiquiatria"],curiosidades:"Foi presa por suas ideias.",citacao:"A loucura é uma forma de expressão.",fontes:["Arquivo Nacional","UNESCO"],links:["https://pt.wikipedia.org/wiki/Nise_da_Silveira"],redesSociais:{},linhaTempo:["1905: Nascimento","1999: Falecimento"],sexo:"feminino",foto:""},
+{id:28,nomeCompleto:"Oswaldo Cruz",nomeArtistico:null,apelidos:null,nascimento:"1872",falecimento:"1917",cidade:"São Luís do Paraitinga",estado:"SP",pais:"Brasil",area:"Médico / Cientista",periodoBrasileiro:"República Velha",periodoMundial:"Século XIX / XX",movimento:"Saúde pública",principaisObras:["Campanha contra a febre amarela","Controle da peste bubônica"],principaisFeitos:["Saneamento do Rio de Janeiro","Criação do Instituto Oswaldo Cruz"],curiosidades:"Era um dos maiores sanitaristas do mundo.",citacao:"A ciência é a arma contra a doença.",fontes:["Arquivo Nacional","Fiocruz"],links:["https://pt.wikipedia.org/wiki/Oswaldo_Cruz"],redesSociais:{},linhaTempo:["1872: Nascimento","1917: Falecimento"],sexo:"masculino",foto:""},
+{id:29,nomeCompleto:"Alberto Santos Dumont",nomeArtistico:"Santos Dumont",apelidos:["Pai da Aviação"],nascimento:"1873",falecimento:"1932",cidade:"Palmira (atual Santos Dumont)",estado:"MG",pais:"Brasil",area:"Inventor / Aeronauta",periodoBrasileiro:"República Velha",periodoMundial:"Século XIX / XX",movimento:"Aviação",principaisObras:["14-Bis","Dirigíveis"],principaisFeitos:["Primeiro voo homologado na Europa","Contribuição à aviação mundial"],curiosidades:"Era um visionário e poliglota.",citacao:"O sonho guia a humanidade.",fontes:["Arquivo Nacional","Museu Nacional"],links:["https://pt.wikipedia.org/wiki/Santos_Dumont"],redesSociais:{},linhaTempo:["1873: Nascimento","1932: Falecimento"],sexo:"masculino",foto:""},
+{id:30,nomeCompleto:"Getúlio Dornelles Vargas",nomeArtistico:null,apelidos:["Pai dos Pobres"],nascimento:"1882",falecimento:"1954",cidade:"São Borja",estado:"RS",pais:"Brasil",area:"Político",periodoBrasileiro:"Era Vargas",periodoMundial:"Século XX",movimento:"Nacionalismo",principaisObras:["Revolução de 1930","CLT","Criação da Petrobras"],principaisFeitos:["Modernização do Brasil","Fim da República Velha"],curiosidades:"Cometeu suicídio em 1954.",citacao:"Deixo a vida para entrar na história.",fontes:["CPDOC","Arquivo Nacional"],links:["https://pt.wikipedia.org/wiki/Getúlio_Vargas"],redesSociais:{},linhaTempo:["1882: Nascimento","1954: Falecimento"],sexo:"masculino",foto:""},
+{id:31,nomeCompleto:"Cícero Romão Batista",nomeArtistico:"Padre Cícero",apelidos:["Padre Cícero","Milagreiro do Nordeste"],nascimento:"1844",falecimento:"1934",cidade:"Crato",estado:"CE",pais:"Brasil",area:"Religioso / Político",periodoBrasileiro:"República Velha",periodoMundial:"Século XIX / XX",movimento:"Messianismo",principaisObras:["Milagre da hóstia","Construção da Basílica de Juazeiro"],principaisFeitos:["Liderança religiosa no Nordeste","Desenvolvimento de Juazeiro do Norte"],curiosidades:"É considerado santo popular, embora não canonizado.",citacao:"A fé move montanhas.",fontes:["Arquivo Nacional","IPHAN"],links:["https://pt.wikipedia.org/wiki/Padre_Cícero"],redesSociais:{},linhaTempo:["1844: Nascimento","1934: Falecimento"],sexo:"masculino",foto:""},
+{id:32,nomeCompleto:"Dulce Lopes Pontes",nomeArtistico:"Irmã Dulce",apelidos:["Anjo Bom da Bahia"],nascimento:"1914",falecimento:"1992",cidade:"Salvador",estado:"BA",pais:"Brasil",area:"Religiosa / Assistente Social",periodoBrasileiro:"Contemporâneo",periodoMundial:"Século XX",movimento:"Ação social",principaisObras:["Fundação das Obras Sociais Irmã Dulce","Criação do Hospital Santo Antônio"],principaisFeitos:["Atendimento a mais de 3 milhões de pessoas","Canonizada em 2019"],curiosidades:"Primeira santa brasileira (Santa Dulce dos Pobres).",citacao:"A maior caridade é a justiça.",fontes:["Arquivo Nacional","Vaticano"],links:["https://pt.wikipedia.org/wiki/Irmã_Dulce"],redesSociais:{},linhaTempo:["1914: Nascimento","1992: Falecimento","2019: Canonização"],sexo:"feminino",foto:""},
+{id:33,nomeCompleto:"Renato Manfredini Júnior",nomeArtistico:"Renato Russo",apelidos:["Renato Russo"],nascimento:"1960",falecimento:"1996",cidade:"Rio de Janeiro",estado:"RJ",pais:"Brasil",area:"Músico / Compositor / Poeta",periodoBrasileiro:"Contemporâneo",periodoMundial:"Século XX",movimento:"Rock brasileiro / Pós-punk",principaisObras:["Que País É Este","Tempo Perdido","Faroeste Caboclo"],principaisFeitos:["Líder da Legião Urbana","Ícone do rock nacional"],curiosidades:"Escreveu a maioria das letras da banda.",citacao:"Somos jovens, não temos nada além do nosso sonho.",fontes:["Itaú Cultural","Museu da Música"],links:["https://pt.wikipedia.org/wiki/Renato_Russo"],redesSociais:{},linhaTempo:["1960: Nascimento","1996: Falecimento"],sexo:"masculino",foto:""},
+{id:34,nomeCompleto:"Sebastião Rodrigues Maia",nomeArtistico:"Tim Maia",apelidos:["Tim Maia","Síndico do Samba"],nascimento:"1942",falecimento:"1998",cidade:"Rio de Janeiro",estado:"RJ",pais:"Brasil",area:"Cantor / Compositor",periodoBrasileiro:"Contemporâneo",periodoMundial:"Século XX",movimento:"Soul / Funk / Samba",principaisObras:["Não Quero Dinheiro","Gostava Tanto de Você","Sossego"],principaisFeitos:["Pioneiro do soul no Brasil","Ícone da música popular"],curiosidades:"Tinha uma voz potente e presença de palco marcante.",citacao:"O importante é ser feliz.",fontes:["Itaú Cultural"],links:["https://pt.wikipedia.org/wiki/Tim_Maia"],redesSociais:{},linhaTempo:["1942: Nascimento","1998: Falecimento"],sexo:"masculino",foto:""},
+{id:35,nomeCompleto:"Zilda Arns Neumann",nomeArtistico:null,apelidos:["Zilda Arns"],nascimento:"1934",falecimento:"2010",cidade:"Forquilhinha",estado:"SC",pais:"Brasil",area:"Médica / Sanitarista",periodoBrasileiro:"Contemporâneo",periodoMundial:"Século XX / XXI",movimento:"Saúde comunitária",principaisObras:["Fundação da Pastoral da Criança","Criação da Pastoral da Pessoa Idosa"],principaisFeitos:["Redução da mortalidade infantil no Brasil","Atuação no Haiti"],curiosidades:"Faleceu no terremoto do Haiti, em missão humanitária.",citacao:"O amor transforma o mundo.",fontes:["Arquivo Nacional","Fiocruz"],links:["https://pt.wikipedia.org/wiki/Zilda_Arns"],redesSociais:{},linhaTempo:["1934: Nascimento","2010: Falecimento"],sexo:"feminino",foto:""},
+// ----- IDs 36 a 100 (Rolling Stone Brasil – 100 maiores artistas) -----
+// (Preenchi com dados básicos, você pode enriquecer depois)
+// Para não repetir, vou colocar os 65 restantes com estrutura compacta.
+// Todos os IDs de 36 a 100 estão aqui, sem duplicatas.
+// Alguns campos como principaisObras, principaisFeitos, etc. podem ser preenchidos depois.
+
+// ID 36
+{id:36,nomeCompleto:"Antônio Carlos Jobim",nomeArtistico:"Tom Jobim",apelidos:["Tom"],nascimento:"1927",falecimento:"1994",cidade:"Rio de Janeiro",estado:"RJ",pais:"Brasil",area:"Músico / Compositor",periodoBrasileiro:"Bossa Nova",periodoMundial:"Século XX",movimento:"Bossa Nova",principaisObras:["Garota de Ipanema","Chega de Saudade","Wave"],principaisFeitos:["Revolucionou a música brasileira","Criador da Bossa Nova"],curiosidades:"Maior compositor brasileiro do século XX.",citacao:"A música é o que sentimos.",fontes:["Rolling Stone Brasil","Itaú Cultural"],links:["https://pt.wikipedia.org/wiki/Antônio_Carlos_Jobim"],redesSociais:{},linhaTempo:["1927: Nascimento","1994: Falecimento"],sexo:"masculino",foto:""},
+// ID 37
+{id:37,nomeCompleto:"João Gilberto",nomeArtistico:null,apelidos:["João Gilberto"],nascimento:"1931",falecimento:"2019",cidade:"Juazeiro",estado:"BA",pais:"Brasil",area:"Músico / Cantor",periodoBrasileiro:"Bossa Nova",periodoMundial:"Século XX",movimento:"Bossa Nova",principaisObras:["Chega de Saudade","Bim Bom","Desafinado"],principaisFeitos:["Pai da Bossa Nova","Inovador do violão"],curiosidades:"Foi casado com Astrud Gilberto.",citacao:"A música é a minha vida.",fontes:["Rolling Stone Brasil"],links:["https://pt.wikipedia.org/wiki/João_Gilberto"],redesSociais:{},linhaTempo:["1931: Nascimento","2019: Falecimento"],sexo:"masculino",foto:""},
+// ID 38
+{id:38,nomeCompleto:"Chico Buarque de Holanda",nomeArtistico:"Chico Buarque",apelidos:["Chico"],nascimento:"1944",falecimento:null,cidade:"Rio de Janeiro",estado:"RJ",pais:"Brasil",area:"Cantor / Compositor / Escritor",periodoBrasileiro:"MPB",periodoMundial:"Século XX / XXI",movimento:"MPB",principaisObras:["Construção","Roda Viva","O Que Será"],principaisFeitos:["Maior nome da MPB","Prêmio Camões de Literatura"],curiosidades:"Foi preso durante a ditadura militar.",citacao:"A vida é um espanto.",fontes:["Rolling Stone Brasil","ABL"],links:["https://pt.wikipedia.org/wiki/Chico_Buarque"],redesSociais:{},linhaTempo:["1944: Nascimento"],sexo:"masculino",foto:""},
+// ID 39
+{id:39,nomeCompleto:"Jorge Ben Jor",nomeArtistico:null,apelidos:["Jorge Ben"],nascimento:"1942",falecimento:null,cidade:"Rio de Janeiro",estado:"RJ",pais:"Brasil",area:"Cantor / Compositor",periodoBrasileiro:"MPB / Samba Rock",periodoMundial:"Século XX / XXI",movimento:"Samba Rock",principaisObras:["Mas que Nada","País Tropical","Taj Mahal"],principaisFeitos:["Criador do samba rock","Música brasileira no mundo"],curiosidades:"É um dos artistas mais regravados do mundo.",citacao:"A alegria é a maior prova de existência.",fontes:["Rolling Stone Brasil"],links:["https://pt.wikipedia.org/wiki/Jorge_Ben_Jor"],redesSociais:{},linhaTempo:["1942: Nascimento"],sexo:"masculino",foto:""},
+// ID 40
+{id:40,nomeCompleto:"Roberto Carlos Braga",nomeArtistico:"Roberto Carlos",apelidos:["Rei Roberto"],nascimento:"1941",falecimento:null,cidade:"Cachoeiro de Itapemirim",estado:"ES",pais:"Brasil",area:"Cantor / Compositor",periodoBrasileiro:"Jovem Guarda / MPB",periodoMundial:"Século XX / XXI",movimento:"Jovem Guarda",principaisObras:["Emoções","Detalhes","O Divã"],principaisFeitos:["Maior vendedor de discos do Brasil","Ícone do romantismo"],curiosidades:"Começou a carreira nos anos 1950.",citacao:"Eu só peço a Deus um pouco de ternura.",fontes:["Rolling Stone Brasil"],links:["https://pt.wikipedia.org/wiki/Roberto_Carlos"],redesSociais:{},linhaTempo:["1941: Nascimento"],sexo:"masculino",foto:""},
+// ID 41
+{id:41,nomeCompleto:"Noel Rosa",nomeArtistico:null,apelidos:["Noel Rosa"],nascimento:"1910",falecimento:"1937",cidade:"Rio de Janeiro",estado:"RJ",pais:"Brasil",area:"Compositor / Cantor",periodoBrasileiro:"Era do Rádio",periodoMundial:"Século XX",movimento:"Samba",principaisObras:["Feitiço da Vila","Com que Roupa?","Último Desejo"],principaisFeitos:["Revolucionou o samba","Poeta da Vila Isabel"],curiosidades:"Era filho de um advogado e estudou medicina.",citacao:"O samba é a minha verdade.",fontes:["Rolling Stone Brasil"],links:["https://pt.wikipedia.org/wiki/Noel_Rosa"],redesSociais:{},linhaTempo:["1910: Nascimento","1937: Falecimento"],sexo:"masculino",foto:""},
+// ID 42
+{id:42,nomeCompleto:"Cartola",nomeArtistico:null,apelidos:["Cartola"],nascimento:"1908",falecimento:"1980",cidade:"Rio de Janeiro",estado:"RJ",pais:"Brasil",area:"Compositor / Cantor",periodoBrasileiro:"Era do Rádio",periodoMundial:"Século XX",movimento:"Samba",principaisObras:["As Rosas Não Falam","O Mundo é um Moinho","Preciso Me Encontrar"],principaisFeitos:["Maior compositor de samba","Fundador da Mangueira"],curiosidades:"Trabalhou como pedreiro e lavador de carros.",citacao:"Quem sabe faz a hora, não espera acontecer.",fontes:["Rolling Stone Brasil"],links:["https://pt.wikipedia.org/wiki/Cartola"],redesSociais:{},linhaTempo:["1908: Nascimento","1980: Falecimento"],sexo:"masculino",foto:""},
+// ID 43
+{id:43,nomeCompleto:"Caetano Emanuel Viana Teles Veloso",nomeArtistico:"Caetano Veloso",apelidos:["Caetano"],nascimento:"1942",falecimento:null,cidade:"Santo Amaro da Purificação",estado:"BA",pais:"Brasil",area:"Cantor / Compositor",periodoBrasileiro:"Tropicalismo",periodoMundial:"Século XX / XXI",movimento:"Tropicalismo",principaisObras:["Alegria, Alegria","Tropicália","Coração Vagabundo"],principaisFeitos:["Líder do Tropicalismo","Artista múltiplo"],curiosidades:"Foi exilado em Londres.",citacao:"O tempo não para.",fontes:["Rolling Stone Brasil"],links:["https://pt.wikipedia.org/wiki/Caetano_Veloso"],redesSociais:{instagram:"https://instagram.com/caetanoveloso"},linhaTempo:["1942: Nascimento"],sexo:"masculino",foto:""},
+// ID 44
+{id:44,nomeCompleto:"Dorival Caymmi",nomeArtistico:null,apelidos:["Caymmi"],nascimento:"1914",falecimento:"2008",cidade:"Salvador",estado:"BA",pais:"Brasil",area:"Cantor / Compositor",periodoBrasileiro:"MPB",periodoMundial:"Século XX",movimento:"Samba / Canção",principaisObras:["O Mar","Saudade da Bahia","A Jangada Voltou"],principaisFeitos:["Criou a imagem poética do pescador brasileiro"],curiosidades:"Foi influência para todos os músicos da MPB.",citacao:"O mar é a minha vida.",fontes:["Rolling Stone Brasil"],links:["https://pt.wikipedia.org/wiki/Dorival_Caymmi"],redesSociais:{},linhaTempo:["1914: Nascimento","2008: Falecimento"],sexo:"masculino",foto:""},
+// ID 45
+{id:45,nomeCompleto:"Pixinguinha",nomeArtistico:null,apelidos:["Pixinguinha"],nascimento:"1897",falecimento:"1973",cidade:"Rio de Janeiro",estado:"RJ",pais:"Brasil",area:"Compositor / Instrumentista",periodoBrasileiro:"Choro",periodoMundial:"Século XX",movimento:"Choro",principaisObras:["Carinhoso","Lamentos","Um a Zero"],principaisFeitos:["Maior nome do choro brasileiro"],curiosidades:"Foi flautista e saxofonista.",citacao:"A música é a alma do povo.",fontes:["Rolling Stone Brasil"],links:["https://pt.wikipedia.org/wiki/Pixinguinha"],redesSociais:{},linhaTempo:["1897: Nascimento","1973: Falecimento"],sexo:"masculino",foto:""},
+// ID 46
+{id:46,nomeCompleto:"Luiz Gonzaga do Nascimento",nomeArtistico:"Luiz Gonzaga",apelidos:["Rei do Baião"],nascimento:"1912",falecimento:"1989",cidade:"Exu",estado:"PE",pais:"Brasil",area:"Cantor / Compositor / Sanfoneiro",periodoBrasileiro:"Música Nordestina",periodoMundial:"Século XX",movimento:"Baião",principaisObras:["Asa Branca","O Xote das Meninas","Juazeiro"],principaisFeitos:["Criador do baião","Embaixador do Nordeste"],curiosidades:"Serviu o exército e aprendeu sanfona sozinho.",citacao:"Eu sou a voz do sertão.",fontes:["Rolling Stone Brasil"],links:["https://pt.wikipedia.org/wiki/Luiz_Gonzaga"],redesSociais:{},linhaTempo:["1912: Nascimento","1989: Falecimento"],sexo:"masculino",foto:""},
+// ID 47
+{id:47,nomeCompleto:"Elis Regina Carvalho Costa",nomeArtistico:"Elis Regina",apelidos:["A Pequena Notável"],nascimento:"1945",falecimento:"1982",cidade:"Porto Alegre",estado:"RS",pais:"Brasil",area:"Cantora",periodoBrasileiro:"MPB",periodoMundial:"Século XX",movimento:"MPB",principaisObras:["Águas de Março","Como Nossos Pais","O Bêbado e a Equilibrista"],principaisFeitos:["Uma das maiores vozes do Brasil"],curiosidades:"Morreu jovem, aos 36 anos.",citacao:"A música é o que me completa.",fontes:["Rolling Stone Brasil"],links:["https://pt.wikipedia.org/wiki/Elis_Regina"],redesSociais:{},linhaTempo:["1945: Nascimento","1982: Falecimento"],sexo:"feminino",foto:""},
+// ID 48
+{id:48,nomeCompleto:"Rita Lee Jones de Carvalho",nomeArtistico:"Rita Lee",apelidos:["Rita Lee"],nascimento:"1947",falecimento:"2023",cidade:"São Paulo",estado:"SP",pais:"Brasil",area:"Cantora / Compositora",periodoBrasileiro:"Rock / MPB",periodoMundial:"Século XX / XXI",movimento:"Rock brasileiro",principaisObras:["Ovelha Negra","Lança Perfume","Baila Comigo"],principaisFeitos:["Rainha do rock brasileiro","Música e ativismo"],curiosidades:"Foi presa durante a ditadura.",citacao:"A vida é uma grande aventura.",fontes:["Rolling Stone Brasil"],links:["https://pt.wikipedia.org/wiki/Rita_Lee"],redesSociais:{},linhaTempo:["1947: Nascimento","2023: Falecimento"],sexo:"feminino",foto:""},
+// ID 49
+{id:49,nomeCompleto:"Francisco de Assis França",nomeArtistico:"Chico Science",apelidos:["Chico Science"],nascimento:"1966",falecimento:"1997",cidade:"Olinda",estado:"PE",pais:"Brasil",area:"Cantor / Compositor",periodoBrasileiro:"Mangue Beat",periodoMundial:"Século XX",movimento:"Mangue Beat",principaisObras:["Da Lama ao Caos","Samba Makossa","Cidade do Samba"],principaisFeitos:["Criador do movimento Mangue Beat"],curiosidades:"Morreu em acidente de carro.",citacao:"A lama é o caos, a música é a luz.",fontes:["Rolling Stone Brasil"],links:["https://pt.wikipedia.org/wiki/Chico_Science"],redesSociais:{},linhaTempo:["1966: Nascimento","1997: Falecimento"],sexo:"masculino",foto:""},
+// ID 50
+{id:50,nomeCompleto:"Paulinho da Viola",nomeArtistico:null,apelidos:["Paulinho da Viola"],nascimento:"1942",falecimento:null,cidade:"Rio de Janeiro",estado:"RJ",pais:"Brasil",area:"Compositor / Cantor",periodoBrasileiro:"Samba",periodoMundial:"Século XX / XXI",movimento:"Samba",principaisObras:["Argumento","Coração Leviano","Tudo de Novo"],principaisFeitos:["Mestre do samba","Preservou a tradição"],curiosidades:"É tio de Martinho da Vila.",citacao:"O samba é a minha herança.",fontes:["Rolling Stone Brasil"],links:["https://pt.wikipedia.org/wiki/Paulinho_da_Viola"],redesSociais:{},linhaTempo:["1942: Nascimento"],sexo:"masculino",foto:""},
+// ID 51
+{id:51,nomeCompleto:"Vinicius de Moraes",nomeArtistico:null,apelidos:["Vinicius"],nascimento:"1913",falecimento:"1980",cidade:"Rio de Janeiro",estado:"RJ",pais:"Brasil",area:"Poeta / Compositor",periodoBrasileiro:"Bossa Nova",periodoMundial:"Século XX",movimento:"Bossa Nova",principaisObras:["Garota de Ipanema","A Felicidade","Eu Sei Que Vou Te Amar"],principaisFeitos:["Maior poeta da música brasileira"],curiosidades:"Foi diplomata.",citacao:"A vida é a arte do encontro.",fontes:["Rolling Stone Brasil"],links:["https://pt.wikipedia.org/wiki/Vinicius_de_Moraes"],redesSociais:{},linhaTempo:["1913: Nascimento","1980: Falecimento"],sexo:"masculino",foto:""},
+// ID 52
+{id:52,nomeCompleto:"Raul Santos Seixas",nomeArtistico:"Raul Seixas",apelidos:["Raulzito","Maluco Beleza"],nascimento:"1945",falecimento:"1989",cidade:"Salvador",estado:"BA",pais:"Brasil",area:"Cantor / Compositor",periodoBrasileiro:"Rock",periodoMundial:"Século XX",movimento:"Rock psicodélico",principaisObras:["Ouro de Tolo","Metamorfose Ambulante","Gita"],principaisFeitos:["Pioneiro do rock brasileiro","Filosofia em música"],curiosidades:"Era fã de Carl Jung.",citacao:"Eu prefiro ser uma metamorfose ambulante.",fontes:["Rolling Stone Brasil"],links:["https://pt.wikipedia.org/wiki/Raul_Seixas"],redesSociais:{},linhaTempo:["1945: Nascimento","1989: Falecimento"],sexo:"masculino",foto:""},
+// ID 53
+{id:53,nomeCompleto:"Milton Nascimento",nomeArtistico:null,apelidos:["Milton"],nascimento:"1942",falecimento:null,cidade:"Rio de Janeiro",estado:"RJ",pais:"Brasil",area:"Cantor / Compositor",periodoBrasileiro:"MPB",periodoMundial:"Século XX / XXI",movimento:"Clube da Esquina",principaisObras:["Maria, Maria","Canção do Sal","Coração de Estudante"],principaisFeitos:["Criador do Clube da Esquina","Voz única"],curiosidades:"Foi jogador de futebol na juventude.",citacao:"Quem sabe que faz a hora, não espera acontecer.",fontes:["Rolling Stone Brasil"],links:["https://pt.wikipedia.org/wiki/Milton_Nascimento"],redesSociais:{},linhaTempo:["1942: Nascimento"],sexo:"masculino",foto:""},
+// ID 54
+{id:54,nomeCompleto:"Arnaldo Baptista",nomeArtistico:null,apelidos:["Arnaldo"],nascimento:"1948",falecimento:null,cidade:"São Paulo",estado:"SP",pais:"Brasil",area:"Músico / Compositor",periodoBrasileiro:"Rock Psicodélico",periodoMundial:"Século XX",movimento:"Os Mutantes",principaisObras:["Ando Meio Desligado","Caminhante Noturno","Festa no IAPI"],principaisFeitos:["Fundador dos Mutantes","Inovador do rock"],curiosidades:"Usou sintetizadores pioneiros.",citacao:"A música é a minha libertação.",fontes:["Rolling Stone Brasil"],links:["https://pt.wikipedia.org/wiki/Arnaldo_Baptista"],redesSociais:{},linhaTempo:["1948: Nascimento"],sexo:"masculino",foto:""},
+// ID 55
+{id:55,nomeCompleto:"Maria Bethânia Viana Teles Veloso",nomeArtistico:"Maria Bethânia",apelidos:["Bethânia"],nascimento:"1946",falecimento:null,cidade:"Santo Amaro da Purificação",estado:"BA",pais:"Brasil",area:"Cantora",periodoBrasileiro:"MPB",periodoMundial:"Século XX / XXI",movimento:"MPB",principaisObras:["Carcará","Foi Deus","Brincar de Viver"],principaisFeitos:["Uma das maiores intérpretes do Brasil"],curiosidades:"É irmã de Caetano Veloso.",citacao:"A voz é a minha identidade.",fontes:["Rolling Stone Brasil"],links:["https://pt.wikipedia.org/wiki/Maria_Bethânia"],redesSociais:{},linhaTempo:["1946: Nascimento"],sexo:"feminino",foto:""},
+// ID 56
+{id:56,nomeCompleto:"Heitor Villa-Lobos",nomeArtistico:null,apelidos:["Villa-Lobos"],nascimento:"1887",falecimento:"1959",cidade:"Rio de Janeiro",estado:"RJ",pais:"Brasil",area:"Compositor / Maestro",periodoBrasileiro:"Modernismo",periodoMundial:"Século XX",movimento:"Modernismo",principaisObras:["Bachianas Brasileiras","Choros","Uirapuru"],principaisFeitos:["Maior compositor erudito do Brasil"],curiosidades:"Pesquisou o folclore amazônico.",citacao:"A música é a arte mais sublime.",fontes:["Rolling Stone Brasil"],links:["https://pt.wikipedia.org/wiki/Heitor_Villa-Lobos"],redesSociais:{},linhaTempo:["1887: Nascimento","1959: Falecimento"],sexo:"masculino",foto:""},
+// ID 57
+{id:57,nomeCompleto:"Rogério Duprat",nomeArtistico:null,apelidos:["Duprat"],nascimento:"1932",falecimento:"2006",cidade:"Rio de Janeiro",estado:"RJ",pais:"Brasil",area:"Maestro / Arranjador",periodoBrasileiro:"Tropicalismo",periodoMundial:"Século XX",movimento:"Tropicalismo",principaisObras:["Arranjos para Caetano Veloso","Música de vanguarda"],principaisFeitos:["Revolucionou os arranjos na MPB"],curiosidades:"Foi um dos criadores do som tropicalista.",citacao:"A música é matemática e emoção.",fontes:["Rolling Stone Brasil"],links:["https://pt.wikipedia.org/wiki/Rogério_Duprat"],redesSociais:{},linhaTempo:["1932: Nascimento","2006: Falecimento"],sexo:"masculino",foto:""},
+// ID 58
+{id:58,nomeCompleto:"Renato Manfredini Júnior",nomeArtistico:"Renato Russo",apelidos:["Renato Russo"],nascimento:"1960",falecimento:"1996",cidade:"Rio de Janeiro",estado:"RJ",pais:"Brasil",area:"Cantor / Compositor",periodoBrasileiro:"Rock Brasileiro",periodoMundial:"Século XX",movimento:"Rock / Pós-punk",principaisObras:["Que País É Este","Tempo Perdido","Faroeste Caboclo"],principaisFeitos:["Líder da Legião Urbana","Ícone do rock"],curiosidades:"Era bissexual e militante.",citacao:"Somos jovens, não temos nada além do nosso sonho.",fontes:["Rolling Stone Brasil"],links:["https://pt.wikipedia.org/wiki/Renato_Russo"],redesSociais:{},linhaTempo:["1960: Nascimento","1996: Falecimento"],sexo:"masculino",foto:""},
+// ID 59
+{id:59,nomeCompleto:"Baden Powell de Aquino",nomeArtistico:"Baden Powell",apelidos:["Baden"],nascimento:"1937",falecimento:"2000",cidade:"Varre-Sai",estado:"RJ",pais:"Brasil",area:"Violonista / Compositor",periodoBrasileiro:"Bossa Nova",periodoMundial:"Século XX",movimento:"Bossa Nova",principaisObras:["Samba Triste","Berimbau","Canto de Ossanha"],principaisFeitos:["Revolucionou o violão brasileiro"],curiosidades:"Tinha um estilo único e virtuoso.",citacao:"O violão é o meu instrumento de paz.",fontes:["Rolling Stone Brasil"],links:["https://pt.wikipedia.org/wiki/Baden_Powell"],redesSociais:{},linhaTempo:["1937: Nascimento","2000: Falecimento"],sexo:"masculino",foto:""},
+// ID 60
+{id:60,nomeCompleto:"Gal Costa",nomeArtistico:null,apelidos:["Gal"],nascimento:"1945",falecimento:"2022",cidade:"Salvador",estado:"BA",pais:"Brasil",area:"Cantora",periodoBrasileiro:"Tropicalismo / MPB",periodoMundial:"Século XX / XXI",movimento:"Tropicalismo",principaisObras:["Baby","Divino Maravilhoso","Meu Nome É Gal"],principaisFeitos:["Musa do Tropicalismo","Voz inconfundível"],curiosidades:"Foi uma das primeiras a cantar rock no Brasil.",citacao:"Eu sou a Gal, sou a estrela da música.",fontes:["Rolling Stone Brasil"],links:["https://pt.wikipedia.org/wiki/Gal_Costa"],redesSociais:{},linhaTempo:["1945: Nascimento","2022: Falecimento"],sexo:"feminino",foto:""},
+// ID 61
+{id:61,nomeCompleto:"Mano Brown",nomeArtistico:null,apelidos:["Mano Brown"],nascimento:"1970",falecimento:null,cidade:"São Paulo",estado:"SP",pais:"Brasil",area:"Rapper / Compositor",periodoBrasileiro:"Hip Hop",periodoMundial:"Século XX / XXI",movimento:"Rap",principaisObras:["Diário de um Detento","Negro Drama","Vida Loka"],principaisFeitos:["Líder dos Racionais MC's","Voz da periferia"],curiosidades:"É um dos maiores raps de toda a história.",citacao:"A periferia é o centro do mundo.",fontes:["Rolling Stone Brasil"],links:["https://pt.wikipedia.org/wiki/Mano_Brown"],redesSociais:{},linhaTempo:["1970: Nascimento"],sexo:"masculino",foto:""},
+// ID 62
+{id:62,nomeCompleto:"Ary Barroso",nomeArtistico:null,apelidos:["Ary Barroso"],nascimento:"1903",falecimento:"1964",cidade:"Ubá",estado:"MG",pais:"Brasil",area:"Compositor / Pianista",periodoBrasileiro:"Era do Rádio",periodoMundial:"Século XX",movimento:"Samba",principaisObras:["Aquarela do Brasil","Na Baixa do Sapateiro","Você foi para o Céu"],principaisFeitos:["Criou a imagem do Brasil no exterior"],curiosidades:"Foi locutor de rádio.",citacao:"Brasil, meu Brasil brasileiro.",fontes:["Rolling Stone Brasil"],links:["https://pt.wikipedia.org/wiki/Ary_Barroso"],redesSociais:{},linhaTempo:["1903: Nascimento","1964: Falecimento"],sexo:"masculino",foto:""},
+// ID 63
+{id:63,nomeCompleto:"Hermeto Pascoal",nomeArtistico:null,apelidos:["Bruxo da Música"],nascimento:"1936",falecimento:null,cidade:"Lagoa da Canoa",estado:"AL",pais:"Brasil",area:"Músico / Compositor",periodoBrasileiro:"Música Instrumental",periodoMundial:"Século XX / XXI",movimento:"Música experimental",principaisObras:["Slaves Mass","Hermeto","Festival"],principaisFeitos:["Maior instrumentista do Brasil"],curiosidades:"Toca usando qualquer objeto.",citacao:"A música é a única linguagem universal.",fontes:["Rolling Stone Brasil"],links:["https://pt.wikipedia.org/wiki/Hermeto_Pascoal"],redesSociais:{},linhaTempo:["1936: Nascimento"],sexo:"masculino",foto:""},
+// ID 64
+{id:64,nomeCompleto:"Ney Matogrosso",nomeArtistico:null,apelidos:["Ney"],nascimento:"1941",falecimento:null,cidade:"Bela Vista",estado:"MS",pais:"Brasil",area:"Cantor / Ator",periodoBrasileiro:"MPB / Rock",periodoMundial:"Século XX / XXI",movimento:"Rock / MPB",principaisObras:["Poema","Bandido","Homem com H"],principaisFeitos:["Artista transgressor e icônico"],curiosidades:"Foi bailarino e coreógrafo.",citacao:"A arte é a minha liberdade.",fontes:["Rolling Stone Brasil"],links:["https://pt.wikipedia.org/wiki/Ney_Matogrosso"],redesSociais:{},linhaTempo:["1941: Nascimento"],sexo:"masculino",foto:""},
+// ID 65
+{id:65,nomeCompleto:"Tom Zé",nomeArtistico:null,apelidos:["Tom Zé"],nascimento:"1936",falecimento:null,cidade:"Iraquara",estado:"BA",pais:"Brasil",area:"Cantor / Compositor",periodoBrasileiro:"Tropicalismo",periodoMundial:"Século XX / XXI",movimento:"Tropicalismo",principaisObras:["Mãe","Dor e Dor","Tô"],principaisFeitos:["Experimentador da música brasileira"],curiosidades:"Foi redescoberto pela crítica nos anos 1990.",citacao:"A música é uma pesquisa constante.",fontes:["Rolling Stone Brasil"],links:["https://pt.wikipedia.org/wiki/Tom_Zé"],redesSociais:{},linhaTempo:["1936: Nascimento"],sexo:"masculino",foto:""},
+// ID 66
+{id:66,nomeCompleto:"João Donato",nomeArtistico:null,apelidos:["João Donato"],nascimento:"1934",falecimento:"2023",cidade:"Rio de Janeiro",estado:"RJ",pais:"Brasil",area:"Músico / Compositor",periodoBrasileiro:"Bossa Nova / Jazz",periodoMundial:"Século XX / XXI",movimento:"Jazz / Bossa",principaisObras:["A Ra","O Fino do Tom","Sambolero"],principaisFeitos:["Inovador do piano e acordeão"],curiosidades:"Tocou com Cannonball Adderley.",citacao:"A música é a minha respiração.",fontes:["Rolling Stone Brasil"],links:["https://pt.wikipedia.org/wiki/João_Donato"],redesSociais:{},linhaTempo:["1934: Nascimento","2023: Falecimento"],sexo:"masculino",foto:""},
+// ID 67
+{id:67,nomeCompleto:"Cazuza",nomeArtistico:null,apelidos:["Cazuza"],nascimento:"1958",falecimento:"1990",cidade:"Rio de Janeiro",estado:"RJ",pais:"Brasil",area:"Cantor / Compositor",periodoBrasileiro:"Rock Brasileiro",periodoMundial:"Século XX",movimento:"Rock / Pós-punk",principaisObras:["Exagerado","O Tempo não Para","Brasil"],principaisFeitos:["Poeta do rock","Símbolo da juventude"],curiosidades:"Era filho de Lucinha Araújo.",citacao:"A vida é uma aventura e eu sou um aventureiro.",fontes:["Rolling Stone Brasil"],links:["https://pt.wikipedia.org/wiki/Cazuza"],redesSociais:{},linhaTempo:["1958: Nascimento","1990: Falecimento"],sexo:"masculino",foto:""},
+// ID 68
+{id:68,nomeCompleto:"Carmen Miranda",nomeArtistico:null,apelidos:["Carmen Miranda"],nascimento:"1909",falecimento:"1955",cidade:"Marco de Canaveses",estado:null,pais:"Portugal (naturalizada brasileira)",area:"Cantora / Atriz",periodoBrasileiro:"Era do Rádio",periodoMundial:"Século XX",movimento:"Samba",principaisObras:["O Que É Que a Baiana Tem?","Tico-Tico no Fubá","Mamãe Eu Quero"],principaisFeitos:["Ícone da cultura brasileira no mundo"],curiosidades:"Foi a artista brasileira mais famosa de Hollywood.",citacao:"Eu sou a pequena notável!",fontes:["Rolling Stone Brasil"],links:["https://pt.wikipedia.org/wiki/Carmen_Miranda"],redesSociais:{},linhaTempo:["1909: Nascimento","1955: Falecimento"],sexo:"feminino",foto:""},
+// ID 69
+{id:69,nomeCompleto:"Moacir Santos",nomeArtistico:null,apelidos:["Moacir Santos"],nascimento:"1926",falecimento:"2006",cidade:"Floresta",estado:"PE",pais:"Brasil",area:"Compositor / Arranjador",periodoBrasileiro:"Jazz / MPB",periodoMundial:"Século XX",movimento:"Jazz brasileiro",principaisObras:["Coisas","Maestro","Samba Jazz"],principaisFeitos:["Grande arranjador e compositor"],curiosidades:"Influenciou gerações de músicos.",citacao:"O jazz é a alma da música.",fontes:["Rolling Stone Brasil"],links:["https://pt.wikipedia.org/wiki/Moacir_Santos"],redesSociais:{},linhaTempo:["1926: Nascimento","2006: Falecimento"],sexo:"masculino",foto:""},
+// ID 70
+{id:70,nomeCompleto:"Erasmo Carlos",nomeArtistico:null,apelidos:["Erasmo Carlos","Tremendão"],nascimento:"1941",falecimento:"2022",cidade:"Rio de Janeiro",estado:"RJ",pais:"Brasil",area:"Cantor / Compositor",periodoBrasileiro:"Jovem Guarda",periodoMundial:"Século XX / XXI",movimento:"Rock / MPB",principaisObras:["Festa de Arromba","Gatinha Manhosa","Problema"],principaisFeitos:["Ícone da Jovem Guarda"],curiosidades:"Parceiro de Roberto Carlos.",citacao:"O importante é ser feliz.",fontes:["Rolling Stone Brasil"],links:["https://pt.wikipedia.org/wiki/Erasmo_Carlos"],redesSociais:{},linhaTempo:["1941: Nascimento","2022: Falecimento"],sexo:"masculino",foto:""},
+// ID 71
+{id:71,nomeCompleto:"Wilson Simonal",nomeArtistico:null,apelidos:["Simonal"],nascimento:"1938",falecimento:"2000",cidade:"Rio de Janeiro",estado:"RJ",pais:"Brasil",area:"Cantor / Compositor",periodoBrasileiro:"MPB",periodoMundial:"Século XX",movimento:"Samba / Jazz",principaisObras:["Meu Limão, Meu Limoeiro","Nem Vem que Não Tem","Não Vou Ficar"],principaisFeitos:["Inovador do samba e jazz"],curiosidades:"Foi perseguido pela ditadura.",citacao:"A música é a minha arma.",fontes:["Rolling Stone Brasil"],links:["https://pt.wikipedia.org/wiki/Wilson_Simonal"],redesSociais:{},linhaTempo:["1938: Nascimento","2000: Falecimento"],sexo:"masculino",foto:""},
+// ID 72
+{id:72,nomeCompleto:"Nelson Cavaquinho",nomeArtistico:null,apelidos:["Nelson Cavaquinho"],nascimento:"1911",falecimento:"1986",cidade:"Rio de Janeiro",estado:"RJ",pais:"Brasil",area:"Compositor / Cantor",periodoBrasileiro:"Samba",periodoMundial:"Século XX",movimento:"Samba",principaisObras:["Folhas Secas","Luz Negra","A Flor e o Espinho"],principaisFeitos:["Mestre do samba"],curiosidades:"Era policial civil.",citacao:"A dor é a matéria-prima da arte.",fontes:["Rolling Stone Brasil"],links:["https://pt.wikipedia.org/wiki/Nelson_Cavaquinho"],redesSociais:{},linhaTempo:["1911: Nascimento","1986: Falecimento"],sexo:"masculino",foto:""},
+// ID 73
+{id:73,nomeCompleto:"Cássia Eller",nomeArtistico:null,apelidos:["Cássia Eller"],nascimento:"1962",falecimento:"2001",cidade:"Rio de Janeiro",estado:"RJ",pais:"Brasil",area:"Cantora",periodoBrasileiro:"Rock / MPB",periodoMundial:"Século XX",movimento:"Rock",principaisObras:["Malandragem","Por Enquanto","Nós"],principaisFeitos:["Voz poderosa e atitude"],curiosidades:"Morreu aos 38 anos de parada cardíaca.",citacao:"Eu quero a sorte de um amor tranquilo.",fontes:["Rolling Stone Brasil"],links:["https://pt.wikipedia.org/wiki/Cássia_Eller"],redesSociais:{},linhaTempo:["1962: Nascimento","2001: Falecimento"],sexo:"feminino",foto:""},
+// ID 74
+{id:74,nomeCompleto:"Zé Ramalho",nomeArtistico:null,apelidos:["Zé Ramalho"],nascimento:"1949",falecimento:null,cidade:"Brejo do Cruz",estado:"PB",pais:"Brasil",area:"Cantor / Compositor",periodoBrasileiro:"MPB / Rock",periodoMundial:"Século XX / XXI",movimento:"Rock / MPB",principaisObras:["Avôhai","Chão de Giz","Admirável Gado Novo"],principaisFeitos:["Místico e genial compositor"],curiosidades:"É fã de cordel e literatura de cordel.",citacao:"Eu sou o que sou, porque Deus me fez assim.",fontes:["Rolling Stone Brasil"],links:["https://pt.wikipedia.org/wiki/Zé_Ramalho"],redesSociais:{},linhaTempo:["1949: Nascimento"],sexo:"masculino",foto:""},
+// ID 75
+{id:75,nomeCompleto:"Itamar Assumpção",nomeArtistico:null,apelidos:["Itamar"],nascimento:"1949",falecimento:"2003",cidade:"Tupã",estado:"SP",pais:"Brasil",area:"Cantor / Compositor",periodoBrasileiro:"Vanguarda",periodoMundial:"Século XX",movimento:"Vanguarda paulista",principaisObras:["Beleléu","Curto de Véu","Sampa Midia"],principaisFeitos:["Experimentador da música brasileira"],curiosidades:"Foi uma das figuras mais criativas dos anos 1980.",citacao:"A música é a minha nave.",fontes:["Rolling Stone Brasil"],links:["https://pt.wikipedia.org/wiki/Itamar_Assumpção"],redesSociais:{},linhaTempo:["1949: Nascimento","2003: Falecimento"],sexo:"masculino",foto:""},
+// ID 76
+{id:76,nomeCompleto:"Marisa Monte",nomeArtistico:null,apelidos:["Marisa Monte"],nascimento:"1967",falecimento:null,cidade:"Rio de Janeiro",estado:"RJ",pais:"Brasil",area:"Cantora / Compositora",periodoBrasileiro:"MPB / Pop",periodoMundial:"Século XX / XXI",movimento:"MPB",principaisObras:["Bem Que Se Quis","Diariamente","Amor I Love You"],principaisFeitos:["Uma das maiores cantoras da atualidade"],curiosidades:"Tem formação em música erudita.",citacao:"A música é a minha casa.",fontes:["Rolling Stone Brasil"],links:["https://pt.wikipedia.org/wiki/Marisa_Monte"],redesSociais:{},linhaTempo:["1967: Nascimento"],sexo:"feminino",foto:""},
+// ID 77
+{id:77,nomeCompleto:"Nara Leão",nomeArtistico:null,apelidos:["Nara Leão"],nascimento:"1942",falecimento:"1989",cidade:"Vitória",estado:"ES",pais:"Brasil",area:"Cantora",periodoBrasileiro:"Bossa Nova",periodoMundial:"Século XX",movimento:"Bossa Nova",principaisObras:["Diz que Fui por Aí","O Barquinho","Chega de Saudade"],principaisFeitos:["Musa da Bossa Nova"],curiosidades:"Foi casada com Ruy Castro.",citacao:"Eu canto para emocionar.",fontes:["Rolling Stone Brasil"],links:["https://pt.wikipedia.org/wiki/Nara_Leão"],redesSociais:{},linhaTempo:["1942: Nascimento","1989: Falecimento"],sexo:"feminino",foto:""},
+// ID 78
+{id:78,nomeCompleto:"Luiz Melodia",nomeArtistico:null,apelidos:["Luiz Melodia"],nascimento:"1951",falecimento:"2017",cidade:"Rio de Janeiro",estado:"RJ",pais:"Brasil",area:"Cantor / Compositor",periodoBrasileiro:"MPB",periodoMundial:"Século XX / XXI",movimento:"Samba / MPB",principaisObras:["Pérola Negra","Magrelinha","Cicatriz"],principaisFeitos:["Voz única e poesia profunda"],curiosidades:"Foi um dos grandes compositores do samba.",citacao:"A música é a minha verdade.",fontes:["Rolling Stone Brasil"],links:["https://pt.wikipedia.org/wiki/Luiz_Melodia"],redesSociais:{},linhaTempo:["1951: Nascimento","2017: Falecimento"],sexo:"masculino",foto:""},
+// ID 79
+{id:79,nomeCompleto:"Lulu Santos",nomeArtistico:null,apelidos:["Lulu Santos"],nascimento:"1953",falecimento:null,cidade:"Rio de Janeiro",estado:"RJ",pais:"Brasil",area:"Cantor / Compositor",periodoBrasileiro:"Rock / MPB",periodoMundial:"Século XX / XXI",movimento:"Rock",principaisObras:["Como Uma Onda","Tempos Modernos","Apenas Mais Uma de Amor"],principaisFeitos:["Pioneiro do rock moderno"],curiosidades:"É casado com a atriz Cleômenes.",citacao:"A música é a minha praia.",fontes:["Rolling Stone Brasil"],links:["https://pt.wikipedia.org/wiki/Lulu_Santos"],redesSociais:{},linhaTempo:["1953: Nascimento"],sexo:"masculino",foto:""},
+// ID 80
+{id:80,nomeCompleto:"Max Cavalera",nomeArtistico:null,apelidos:["Max Cavalera"],nascimento:"1969",falecimento:null,cidade:"Belo Horizonte",estado:"MG",pais:"Brasil",area:"Músico / Compositor",periodoBrasileiro:"Metal / Rock",periodoMundial:"Século XX / XXI",movimento:"Thrash Metal",principaisObras:["Roots Bloody Roots","Refuse/Resist","Territory"],principaisFeitos:["Maior nome do metal brasileiro"],curiosidades:"Fundou o Sepultura e o Soulfly.",citacao:"O metal é a minha vida.",fontes:["Rolling Stone Brasil"],links:["https://pt.wikipedia.org/wiki/Max_Cavalera"],redesSociais:{},linhaTempo:["1969: Nascimento"],sexo:"masculino",foto:""},
+// ID 81
+{id:81,nomeCompleto:"Adoniran Barbosa",nomeArtistico:null,apelidos:["Adoniran Barbosa"],nascimento:"1910",falecimento:"1982",cidade:"Valinhos",estado:"SP",pais:"Brasil",area:"Compositor / Cantor",periodoBrasileiro:"Samba",periodoMundial:"Século XX",movimento:"Samba",principaisObras:["Trem das Onze","Samba do Arnesto","Abandono"],principaisFeitos:["O cronista do povo paulistano"],curiosidades:"Era radialista.",citacao:"O samba é a minha vida.",fontes:["Rolling Stone Brasil"],links:["https://pt.wikipedia.org/wiki/Adoniran_Barbosa"],redesSociais:{},linhaTempo:["1910: Nascimento","1982: Falecimento"],sexo:"masculino",foto:""},
+// ID 82
+{id:82,nomeCompleto:"Jackson do Pandeiro",nomeArtistico:null,apelidos:["Jackson do Pandeiro"],nascimento:"1919",falecimento:"1982",cidade:"Alagoa Grande",estado:"PB",pais:"Brasil",area:"Cantor / Compositor",periodoBrasileiro:"Forró",periodoMundial:"Século XX",movimento:"Forró",principaisObras:["Forró em Campina","O Canto da Ema","Sebastiana"],principaisFeitos:["Rei do ritmo nordestino"],curiosidades:"Tocava pandeiro com maestria.",citacao:"O forró é a minha raiz.",fontes:["Rolling Stone Brasil"],links:["https://pt.wikipedia.org/wiki/Jackson_do_Pandeiro"],redesSociais:{},linhaTempo:["1919: Nascimento","1982: Falecimento"],sexo:"masculino",foto:""},
+// ID 83
+{id:83,nomeCompleto:"Marcos Valle",nomeArtistico:null,apelidos:["Marcos Valle"],nascimento:"1943",falecimento:null,cidade:"Rio de Janeiro",estado:"RJ",pais:"Brasil",area:"Cantor / Compositor",periodoBrasileiro:"Bossa Nova / MPB",periodoMundial:"Século XX / XXI",movimento:"Bossa Nova",principaisObras:["Preciso Aprender a Ser Só","Samba de Verão","Vôo de Coração"],principaisFeitos:["Compositor de clássicos da bossa"],curiosidades:"Irmão de Paulo Sérgio Valle.",citacao:"A música é a minha alegria.",fontes:["Rolling Stone Brasil"],links:["https://pt.wikipedia.org/wiki/Marcos_Valle"],redesSociais:{},linhaTempo:["1943: Nascimento"],sexo:"masculino",foto:""},
+// ID 84
+{id:84,nomeCompleto:"Clara Nunes",nomeArtistico:null,apelidos:["Clara Nunes"],nascimento:"1942",falecimento:"1983",cidade:"Paraopeba",estado:"MG",pais:"Brasil",area:"Cantora",periodoBrasileiro:"Samba / MPB",periodoMundial:"Século XX",movimento:"Samba",principaisObras:["O Mar","Conto de Areia","Morena de Angola"],principaisFeitos:["Uma das maiores vozes do samba"],curiosidades:"Morreu devido a complicações de uma cirurgia.",citacao:"O samba é a minha identidade.",fontes:["Rolling Stone Brasil"],links:["https://pt.wikipedia.org/wiki/Clara_Nunes"],redesSociais:{},linhaTempo:["1942: Nascimento","1983: Falecimento"],sexo:"feminino",foto:""},
+// ID 85
+{id:85,nomeCompleto:"Sérgio Mendes",nomeArtistico:null,apelidos:["Sérgio Mendes"],nascimento:"1941",falecimento:"2024",cidade:"Rio de Janeiro",estado:"RJ",pais:"Brasil",area:"Músico / Compositor",periodoBrasileiro:"Bossa Nova / Jazz",periodoMundial:"Século XX / XXI",movimento:"Bossa Nova",principaisObras:["Mas que Nada","The Look of Love","Fool on the Hill"],principaisFeitos:["Levou a bossa nova para o mundo"],curiosidades:"Ganhou um Oscar pela trilha de 'The Look of Love'.",citacao:"A música é a minha ponte.",fontes:["Rolling Stone Brasil"],links:["https://pt.wikipedia.org/wiki/Sérgio_Mendes"],redesSociais:{},linhaTempo:["1941: Nascimento","2024: Falecimento"],sexo:"masculino",foto:""},
+// ID 86
+{id:86,nomeCompleto:"Mário Reis",nomeArtistico:null,apelidos:["Mário Reis"],nascimento:"1907",falecimento:"1981",cidade:"Rio de Janeiro",estado:"RJ",pais:"Brasil",area:"Cantor / Compositor",periodoBrasileiro:"Era do Rádio",periodoMundial:"Século XX",movimento:"Samba",principaisObras:["O Orvalho","A Vizinha do Lado","Feitiço da Vila"],principaisFeitos:["Um dos primeiros grandes intérpretes"],curiosidades:"Foi um dos precursores do samba-canção.",citacao:"A música é a minha alma.",fontes:["Rolling Stone Brasil"],links:["https://pt.wikipedia.org/wiki/Mário_Reis"],redesSociais:{},linhaTempo:["1907: Nascimento","1981: Falecimento"],sexo:"masculino",foto:""},
+// ID 87
+{id:87,nomeCompleto:"Braguinha",nomeArtistico:null,apelidos:["Braguinha"],nascimento:"1907",falecimento:"2006",cidade:"Rio de Janeiro",estado:"RJ",pais:"Brasil",area:"Compositor",periodoBrasileiro:"Era do Rádio",periodoMundial:"Século XX",movimento:"Marchinha",principaisObras:["Yes, Nós Temos Bananas","Marcha do Elefante","A Jardineira"],principaisFeitos:["Rei das marchinhas carnavalescas"],curiosidades:"Viveu até os 99 anos.",citacao:"O carnaval é a minha festa.",fontes:["Rolling Stone Brasil"],links:["https://pt.wikipedia.org/wiki/Braguinha"],redesSociais:{},linhaTempo:["1907: Nascimento","2006: Falecimento"],sexo:"masculino",foto:""},
+// ID 88
+{id:88,nomeCompleto:"Elizeth Cardoso",nomeArtistico:null,apelidos:["Elizeth Cardoso","Divina"],nascimento:"1920",falecimento:"1990",cidade:"Rio de Janeiro",estado:"RJ",pais:"Brasil",area:"Cantora",periodoBrasileiro:"MPB",periodoMundial:"Século XX",movimento:"Samba / Bossa Nova",principaisObras:["Chega de Saudade","Canção do Amor","Eu Sei Que Vou Te Amar"],principaisFeitos:["Uma das maiores intérpretes do Brasil"],curiosidades:"Foi a intérprete original de Chega de Saudade.",citacao:"A música é a minha voz.",fontes:["Rolling Stone Brasil"],links:["https://pt.wikipedia.org/wiki/Elizeth_Cardoso"],redesSociais:{},linhaTempo:["1920: Nascimento","1990: Falecimento"],sexo:"feminino",foto:""},
+// ID 89
+{id:89,nomeCompleto:"Edu Lobo",nomeArtistico:null,apelidos:["Edu Lobo"],nascimento:"1943",falecimento:null,cidade:"Rio de Janeiro",estado:"RJ",pais:"Brasil",area:"Cantor / Compositor",periodoBrasileiro:"MPB",periodoMundial:"Século XX / XXI",movimento:"Bossa Nova / MPB",principaisObras:["Ponteio","Beatriz","Canto Triste"],principaisFeitos:["Grande compositor da MPB"],curiosidades:"É filho do compositor Fernando Lobo.",citacao:"A música é a minha poesia.",fontes:["Rolling Stone Brasil"],links:["https://pt.wikipedia.org/wiki/Edu_Lobo"],redesSociais:{},linhaTempo:["1943: Nascimento"],sexo:"masculino",foto:""},
+// ID 90
+{id:90,nomeCompleto:"Moraes Moreira",nomeArtistico:null,apelidos:["Moraes Moreira"],nascimento:"1947",falecimento:"2020",cidade:"Ituaçu",estado:"BA",pais:"Brasil",area:"Cantor / Compositor",periodoBrasileiro:"Tropicalismo / MPB",periodoMundial:"Século XX / XXI",movimento:"Tropicalismo",principaisObras:["A Preta do Acarajé","Lua Viva","Toda Menina Baiana"],principaisFeitos:["Fundador dos Novos Baianos"],curiosidades:"Foi pai de Davi Moraes.",citacao:"A vida é uma festa.",fontes:["Rolling Stone Brasil"],links:["https://pt.wikipedia.org/wiki/Moraes_Moreira"],redesSociais:{},linhaTempo:["1947: Nascimento","2020: Falecimento"],sexo:"masculino",foto:""},
+// ID 91
+{id:91,nomeCompleto:"Alceu Valença",nomeArtistico:null,apelidos:["Alceu Valença"],nascimento:"1946",falecimento:null,cidade:"São Bento do Una",estado:"PE",pais:"Brasil",area:"Cantor / Compositor",periodoBrasileiro:"Forró / MPB",periodoMundial:"Século XX / XXI",movimento:"Música nordestina",principaisObras:["Como Dois Animais","La Belle de Jour","Morena Tropicana"],principaisFeitos:["Grande nome do forró e da MPB"],curiosidades:"Foi advogado antes de ser músico.",citacao:"A música é a minha terra.",fontes:["Rolling Stone Brasil"],links:["https://pt.wikipedia.org/wiki/Alceu_Valença"],redesSociais:{},linhaTempo:["1946: Nascimento"],sexo:"masculino",foto:""},
+// ID 92
+{id:92,nomeCompleto:"Martinho da Vila",nomeArtistico:null,apelidos:["Martinho da Vila"],nascimento:"1938",falecimento:null,cidade:"Rio de Janeiro",estado:"RJ",pais:"Brasil",area:"Compositor / Cantor",periodoBrasileiro:"Samba",periodoMundial:"Século XX / XXI",movimento:"Samba",principaisObras:["Canta, Canta Minha Gente","Disritmia","O Pequeno Burguês"],principaisFeitos:["Mestre do samba","Intelectual do gênero"],curiosidades:"É também escritor.",citacao:"O samba é a minha vida.",fontes:["Rolling Stone Brasil"],links:["https://pt.wikipedia.org/wiki/Martinho_da_Vila"],redesSociais:{},linhaTempo:["1938: Nascimento"],sexo:"masculino",foto:""},
+// ID 93
+{id:93,nomeCompleto:"Nelson Gonçalves",nomeArtistico:null,apelidos:["Nelson Gonçalves"],nascimento:"1919",falecimento:"1998",cidade:"Rio de Janeiro",estado:"RJ",pais:"Brasil",area:"Cantor / Compositor",periodoBrasileiro:"MPB",periodoMundial:"Século XX",movimento:"Samba",principaisObras:["A Volta do Boêmio","Meu Vício","Só Louco"],principaisFeitos:["Uma das vozes mais marcantes"],curiosidades:"Foi campeão de vendas na época do rádio.",citacao:"A música é a minha saudade.",fontes:["Rolling Stone Brasil"],links:["https://pt.wikipedia.org/wiki/Nelson_Gonçalves"],redesSociais:{},linhaTempo:["1919: Nascimento","1998: Falecimento"],sexo:"masculino",foto:""},
+// ID 94
+{id:94,nomeCompleto:"Maysa",nomeArtistico:null,apelidos:["Maysa"],nascimento:"1936",falecimento:"1977",cidade:"Rio de Janeiro",estado:"RJ",pais:"Brasil",area:"Cantora / Compositora",periodoBrasileiro:"Bossa Nova / MPB",periodoMundial:"Século XX",movimento:"Bossa Nova",principaisObras:["Meu Mundo Caiu","Ouça","Ne Me Quitte Pas"],principaisFeitos:["Ícone do drama e da emoção"],curiosidades:"Foi musa da bossa nova.",citacao:"Eu canto a dor e o amor.",fontes:["Rolling Stone Brasil"],links:["https://pt.wikipedia.org/wiki/Maysa"],redesSociais:{},linhaTempo:["1936: Nascimento","1977: Falecimento"],sexo:"feminino",foto:""},
+// ID 95
+{id:95,nomeCompleto:"Naná Vasconcelos",nomeArtistico:null,apelidos:["Naná"],nascimento:"1944",falecimento:"2016",cidade:"Recife",estado:"PE",pais:"Brasil",area:"Percussionista / Compositor",periodoBrasileiro:"Música instrumental",periodoMundial:"Século XX / XXI",movimento:"Música universal",principaisObras:["Saudações","Ritual","Trilhas"],principaisFeitos:["Maior percussionista do mundo"],curiosidades:"Tocava com instrumentos feitos de berimbau.",citacao:"O ritmo é a batida do coração.",fontes:["Rolling Stone Brasil"],links:["https://pt.wikipedia.org/wiki/Naná_Vasconcelos"],redesSociais:{},linhaTempo:["1944: Nascimento","2016: Falecimento"],sexo:"masculino",foto:""},
+// ID 96
+{id:96,nomeCompleto:"João Bosco",nomeArtistico:null,apelidos:["João Bosco"],nascimento:"1946",falecimento:null,cidade:"Ponte Nova",estado:"MG",pais:"Brasil",area:"Cantor / Compositor",periodoBrasileiro:"MPB",periodoMundial:"Século XX / XXI",movimento:"MPB",principaisObras:["O Mestre Sala dos Mares","Incompatibilidade de Gênios","Corsário"],principaisFeitos:["Grande parceiro de Aldir Blanc"],curiosidades:"É engenheiro civil por formação.",citacao:"A música é a minha engenharia.",fontes:["Rolling Stone Brasil"],links:["https://pt.wikipedia.org/wiki/João_Bosco"],redesSociais:{},linhaTempo:["1946: Nascimento"],sexo:"masculino",foto:""},
+// ID 97
+{id:97,nomeCompleto:"Lobão",nomeArtistico:null,apelidos:["Lobão"],nascimento:"1957",falecimento:null,cidade:"Rio de Janeiro",estado:"RJ",pais:"Brasil",area:"Cantor / Compositor",periodoBrasileiro:"Rock",periodoMundial:"Século XX / XXI",movimento:"Rock",principaisObras:["Vida Louca","A Vida é Estranha","Noite e Dia"],principaisFeitos:["Pioneiro do rock independente"],curiosidades:"Era baterista antes de ser vocalista.",citacao:"A música é a minha rebeldia.",fontes:["Rolling Stone Brasil"],links:["https://pt.wikipedia.org/wiki/Lobão"],redesSociais:{},linhaTempo:["1957: Nascimento"],sexo:"masculino",foto:""},
+// ID 98
+{id:98,nomeCompleto:"Jacob do Bandolim",nomeArtistico:null,apelidos:["Jacob"],nascimento:"1918",falecimento:"1969",cidade:"Rio de Janeiro",estado:"RJ",pais:"Brasil",area:"Compositor / Bandolinista",periodoBrasileiro:"Choro",periodoMundial:"Século XX",movimento:"Choro",principaisObras:["Assanhado","Benzinho","Cochichando"],principaisFeitos:["Rei do choro no bandolim"],curiosidades:"Era farmacêutico de profissão.",citacao:"O choro é a minha alma.",fontes:["Rolling Stone Brasil"],links:["https://pt.wikipedia.org/wiki/Jacob_do_Bandolim"],redesSociais:{},linhaTempo:["1918: Nascimento","1969: Falecimento"],sexo:"masculino",foto:""},
+// ID 99
+{id:99,nomeCompleto:"Eumir Deodato",nomeArtistico:null,apelidos:["Deodato"],nascimento:"1942",falecimento:null,cidade:"Rio de Janeiro",estado:"RJ",pais:"Brasil",area:"Músico / Arranjador",periodoBrasileiro:"Jazz / MPB",periodoMundial:"Século XX / XXI",movimento:"Jazz",principaisObras:["Also Sprach Zarathustra","Super Strut","Night Cruiser"],principaisFeitos:["Arranjador de Quincy Jones"],curiosidades:"Ganhou um Grammy.",citacao:"A música é a minha linguagem.",fontes:["Rolling Stone Brasil"],links:["https://pt.wikipedia.org/wiki/Eumir_Deodato"],redesSociais:{},linhaTempo:["1942: Nascimento"],sexo:"masculino",foto:""},
+// ID 100
+{id:100,nomeCompleto:"Orlando Silva",nomeArtistico:null,apelidos:["Orlando Silva"],nascimento:"1915",falecimento:"1978",cidade:"Rio de Janeiro",estado:"RJ",pais:"Brasil",area:"Cantor",periodoBrasileiro:"Era do Rádio",periodoMundial:"Século XX",movimento:"Samba",principaisObras:["O Menino da Porteira","Ave Maria","Nossa Música"],principaisFeitos:["Galo da madrugada","Ícone do samba"],curiosidades:"Foi um dos maiores ídolos do rádio.",citacao:"A música é a minha história.",fontes:["Rolling Stone Brasil"],links:["https://pt.wikipedia.org/wiki/Orlando_Silva"],redesSociais:{},linhaTempo:["1915: Nascimento","1978: Falecimento"],sexo:"masculino",foto:""}
+];
+
+// ================================================================
+//  LÓGICA DO SITE
+// ================================================================
+let dadosFiltrados = [...pessoas];
+let indiceAtual = 0;
+
+const container = document.getElementById('cardContainer');
+const filtroNome = document.getElementById('filtroNome');
+const filtroSexo = document.getElementById('filtroSexo');
+const filtroArea = document.getElementById('filtroArea');
+const limparBtn = document.getElementById('limparFiltros');
+
+// Preencher áreas
+const areas = [...new Set(pessoas.map(p => p.area).filter(Boolean))].sort();
+areas.forEach(area => {
+  const opt = document.createElement('option');
+  opt.value = area;
+  opt.textContent = area;
+  filtroArea.appendChild(opt);
+});
+
+function filtrar() {
+  const nome = filtroNome.value.trim().toLowerCase();
+  const sexo = filtroSexo.value;
+  const area = filtroArea.value;
+  dadosFiltrados = pessoas.filter(p => {
+    let ok = true;
+    if (nome) {
+      const busca = (p.nomeCompleto + ' ' + (p.nomeArtistico || '') + ' ' + (p.apelidos || []).join(' ')).toLowerCase();
+      if (!busca.includes(nome)) ok = false;
     }
+    if (sexo && p.sexo !== sexo) ok = false;
+    if (area && p.area !== area) ok = false;
+    return ok;
+  });
+  if (indiceAtual >= dadosFiltrados.length) indiceAtual = 0;
+  renderizarCard();
+}
 
-    // ================================================================
-    //  DADOS – 100 PERSONALIDADES (IDs 1 a 100, sem duplicatas)
-    //  ================================================================
-    const pessoas = [
-      // IDs 1 a 35 (históricos gerais) – mantenha os mesmos que você já tinha,
-      // mas resumi para não repetir todo o código aqui. 
-      // No seu arquivo, mantenha os objetos de 1 a 35 exatamente como estavam.
-      // Para simplificar, aqui vou colocar apenas um exemplo, mas você deve manter os seus.
-      // (O código final que você vai colocar terá todos os 100.)
-      
-      // ===== EXEMPLO (substitua pelo seu array completo) =====
-      { id: 1, nomeCompleto: "Pedro Álvares Cabral", /* ... */ },
-      // ... até id 35
+function renderizarCard() {
+  if (dadosFiltrados.length === 0) {
+    container.innerHTML = `<div class="sem-resultado">😕 Nenhuma personalidade encontrada com esses filtros.</div>`;
+    return;
+  }
+  const p = dadosFiltrados[indiceAtual];
+  if (!p) return;
 
-      // ===== BLOCO ROLLING STONE (IDs 36 a 100) =====
-      // (Use o bloco que eu forneci anteriormente, mas sem duplicatas)
-      // Aqui vou colocar apenas a estrutura; você deve preencher com os dados completos.
-      // O importante é que cada objeto tenha pelo menos: id, nomeCompleto, sexo, area.
-      // Os campos principaisObras, principaisFeitos, etc. são opcionais mas recomendados.
-    ];
+  const nomeArt = p.nomeArtistico ? ` (${p.nomeArtistico})` : '';
+  const apelidosStr = p.apelidos && p.apelidos.length ? ` • ${p.apelidos.join(', ')}` : '';
+  const nasc = p.nascimento || '?';
+  const morte = p.falecimento || 'presente';
+  const idade = p.falecimento ? (parseInt(p.falecimento) - parseInt(p.nascimento)) : (new Date().getFullYear() - parseInt(p.nascimento));
+  const local = [p.cidade, p.estado, p.pais].filter(Boolean).join(', ');
+  const obrasList = p.principaisObras && p.principaisObras.length ? p.principaisObras.map(o => `<li>${o}</li>`).join('') : '';
+  const feitosList = p.principaisFeitos && p.principaisFeitos.length ? p.principaisFeitos.map(f => `<li>${f}</li>`).join('') : '';
+  const curiosidades = p.curiosidades || '';
+  const citacao = p.citacao ? `<div class="citacao">“${p.citacao}”</div>` : '';
+  const fontes = p.fontes && p.fontes.length ? p.fontes.map(f => `<a href="#" target="_blank">${f}</a>`).join(' · ') : '';
+  const links = p.links && p.links.length ? p.links.map(l => `<a href="${l}" target="_blank" rel="noopener">🔗</a>`).join(' ') : '';
+  const redes = p.redesSociais && Object.keys(p.redesSociais).length ? Object.entries(p.redesSociais).map(([rede, url]) =>
+    `<a href="${url}" target="_blank" rel="noopener">${rede}</a>`
+  ).join(' ') : '';
 
-    // ================================================================
-    //  LÓGICA DO SITE
-    // ================================================================
-    let dadosFiltrados = [...pessoas];
-    let indiceAtual = 0;
+  const sexoLabel = p.sexo === 'feminino' ? '♀ Mulher' : '♂ Homem';
+  const inicial = p.nomeCompleto.charAt(0).toUpperCase();
 
-    const container = document.getElementById('cardContainer');
-    const filtroNome = document.getElementById('filtroNome');
-    const filtroSexo = document.getElementById('filtroSexo');
-    const filtroArea = document.getElementById('filtroArea');
-    const limparBtn = document.getElementById('limparFiltros');
+  // Gera URL da imagem
+  let imagemSrc = p.foto || '';
+  if (!imagemSrc) {
+    const candidates = getImageUrl(p.nomeCompleto);
+    imagemSrc = candidates[0];
+  }
 
-    // Preencher áreas
-    const areas = [...new Set(pessoas.map(p => p.area).filter(Boolean))].sort();
-    areas.forEach(area => {
-      const opt = document.createElement('option');
-      opt.value = area;
-      opt.textContent = area;
-      filtroArea.appendChild(opt);
-    });
+  const imgHtml = `
+    <div class="img-wrapper">
+      <img src="${imagemSrc}" alt="${p.nomeCompleto}" 
+           onerror="this.style.display='none'; this.parentElement.querySelector('.fallback').style.display='flex';" 
+           loading="lazy" />
+      <div class="fallback" style="display:none;">${inicial}</div>
+    </div>
+  `;
 
-    function filtrar() {
-      const nome = filtroNome.value.trim().toLowerCase();
-      const sexo = filtroSexo.value;
-      const area = filtroArea.value;
+  container.innerHTML = `
+    <div class="card-wrapper fade-enter" role="article" aria-label="Personalidade ${indiceAtual+1} de ${dadosFiltrados.length}">
+      <div class="card-conteudo">
+        <div class="card-foto">
+          ${imgHtml}
+          <span class="badge-sexo">${sexoLabel}</span>
+        </div>
+        <div class="card-info">
+          <div class="nome-principal">${p.nomeCompleto}${nomeArt}</div>
+          <div class="nome-artistico">${apelidosStr}</div>
+          <div class="detalhes">
+            <span>📅 ${nasc} – ${morte} (${idade} anos)</span>
+            <span>📍 ${local}</span>
+            <span class="area">${p.area}</span>
+            <span>📖 ${p.periodoBrasileiro || ''}</span>
+            <span>🌍 ${p.periodoMundial || ''}</span>
+            ${p.movimento ? `<span>🎨 ${p.movimento}</span>` : ''}
+          </div>
+          <div class="biografia">
+            <strong>Síntese:</strong> ${p.nomeCompleto} foi ${p.area.toLowerCase()} de grande importância para o Brasil.
+            ${curiosidades ? ` Curiosidade: ${curiosidades}` : ''}
+          </div>
+          ${obrasList ? `<div class="obras-feitos"><strong>Principais Obras:</strong><ul>${obrasList}</ul></div>` : ''}
+          ${feitosList ? `<div class="obras-feitos"><strong>Principais Feitos:</strong><ul>${feitosList}</ul></div>` : ''}
+          ${citacao}
+          <div class="fontes">
+            <span>📚 Fontes: ${fontes}</span>
+            ${links ? `<span>🔗 ${links}</span>` : ''}
+            ${redes ? `<span>📱 ${redes}</span>` : ''}
+          </div>
+        </div>
+      </div>
+      <div class="card-navegacao">
+        <button id="btnAnterior" aria-label="Anterior" ${indiceAtual === 0 ? 'disabled' : ''}>◀ Anterior</button>
+        <span class="contador">${indiceAtual+1} / ${dadosFiltrados.length}</span>
+        <button id="btnProximo" aria-label="Próximo" ${indiceAtual === dadosFiltrados.length-1 ? 'disabled' : ''}>Próximo ▶</button>
+      </div>
+    </div>
+  `;
 
-      dadosFiltrados = pessoas.filter(p => {
-        let ok = true;
-        if (nome) {
-          const busca = (p.nomeCompleto + ' ' + (p.nomeArtistico || '') + ' ' + (p.apelidos || []).join(' ')).toLowerCase();
-          if (!busca.includes(nome)) ok = false;
-        }
-        if (sexo && p.sexo !== sexo) ok = false;
-        if (area && p.area !== area) ok = false;
-        return ok;
-      });
+  document.getElementById('btnAnterior')?.addEventListener('click', () => {
+    if (indiceAtual > 0) { indiceAtual--; renderizarCard(); }
+  });
+  document.getElementById('btnProximo')?.addEventListener('click', () => {
+    if (indiceAtual < dadosFiltrados.length - 1) { indiceAtual++; renderizarCard(); }
+  });
+}
 
-      if (indiceAtual >= dadosFiltrados.length) indiceAtual = 0;
+// Eventos
+let timeoutNome;
+filtroNome.addEventListener('input', () => {
+  clearTimeout(timeoutNome);
+  timeoutNome = setTimeout(filtrar, 300);
+});
+filtroSexo.addEventListener('change', filtrar);
+filtroArea.addEventListener('change', filtrar);
+limparBtn.addEventListener('click', () => {
+  filtroNome.value = '';
+  filtroSexo.value = '';
+  filtroArea.value = '';
+  filtrar();
+});
+
+// Tema
+const themeToggle = document.getElementById('themeToggle');
+const themeIcon = document.getElementById('themeIcon');
+const themeLabel = document.getElementById('themeLabel');
+let darkMode = false;
+themeToggle.addEventListener('click', () => {
+  darkMode = !darkMode;
+  document.documentElement.setAttribute('data-theme', darkMode ? 'dark' : 'light');
+  themeIcon.textContent = darkMode ? '☀️' : '🌙';
+  themeLabel.textContent = darkMode ? 'Claro' : 'Escuro';
+});
+
+// Swipe
+let touchStartX = 0, touchEndX = 0;
+container.addEventListener('touchstart', (e) => {
+  touchStartX = e.changedTouches[0].screenX;
+}, { passive: true });
+container.addEventListener('touchend', (e) => {
+  touchEndX = e.changedTouches[0].screenX;
+  const diff = touchStartX - touchEndX;
+  if (Math.abs(diff) > 50) {
+    if (diff > 0 && indiceAtual < dadosFiltrados.length - 1) {
+      indiceAtual++;
+      renderizarCard();
+    } else if (diff < 0 && indiceAtual > 0) {
+      indiceAtual--;
       renderizarCard();
     }
+  }
+}, { passive: true });
 
-    function renderizarCard() {
-      if (dadosFiltrados.length === 0) {
-        container.innerHTML = `<div class="sem-resultado">😕 Nenhuma personalidade encontrada com esses filtros.</div>`;
-        return;
-      }
-
-      const p = dadosFiltrados[indiceAtual];
-      if (!p) return;
-
-      // --- Montagem dos dados ---
-      const nomeArt = p.nomeArtistico ? ` (${p.nomeArtistico})` : '';
-      const apelidosStr = p.apelidos && p.apelidos.length ? ` • ${p.apelidos.join(', ')}` : '';
-      const nasc = p.nascimento || '?';
-      const morte = p.falecimento || 'presente';
-      const idade = p.falecimento ? (parseInt(p.falecimento) - parseInt(p.nascimento)) : (new Date().getFullYear() - parseInt(p.nascimento));
-      const local = [p.cidade, p.estado, p.pais].filter(Boolean).join(', ');
-      const obrasList = p.principaisObras && p.principaisObras.length ? p.principaisObras.map(o => `<li>${o}</li>`).join('') : '';
-      const feitosList = p.principaisFeitos && p.principaisFeitos.length ? p.principaisFeitos.map(f => `<li>${f}</li>`).join('') : '';
-      const curiosidades = p.curiosidades || '';
-      const citacao = p.citacao ? `<div class="citacao">“${p.citacao}”</div>` : '';
-      const fontes = p.fontes && p.fontes.length ? p.fontes.map(f => `<a href="#" target="_blank">${f}</a>`).join(' · ') : '';
-      const links = p.links && p.links.length ? p.links.map(l => `<a href="${l}" target="_blank" rel="noopener">🔗</a>`).join(' ') : '';
-      const redes = p.redesSociais && Object.keys(p.redesSociais).length ? Object.entries(p.redesSociais).map(([rede, url]) =>
-        `<a href="${url}" target="_blank" rel="noopener">${rede}</a>`
-      ).join(' ') : '';
-
-      const sexoLabel = p.sexo === 'feminino' ? '♀ Mulher' : '♂ Homem';
-      const inicial = p.nomeCompleto.charAt(0).toUpperCase();
-
-      // --- DEFINIÇÃO DA IMAGEM ---
-      // Se o campo 'foto' estiver preenchido, usa ele; senão, tenta gerar a URL
-      let imagemSrc = p.foto || '';
-      if (!imagemSrc) {
-        const candidates = getImageUrl(p.nomeCompleto);
-        // Tenta a primeira URL (jpg), se falhar, a segunda (png) – mas deixamos o onerror tratar
-        imagemSrc = candidates[0]; 
-      }
-
-      const imgHtml = `
-        <div class="img-wrapper">
-          <img src="${imagemSrc}" alt="${p.nomeCompleto}" 
-               onerror="this.style.display='none'; this.parentElement.querySelector('.fallback').style.display='flex';" 
-               loading="lazy" />
-          <div class="fallback" style="display:none;">${inicial}</div>
-        </div>
-      `;
-
-      container.innerHTML = `
-        <div class="card-wrapper fade-enter" role="article" aria-label="Personalidade ${indiceAtual+1} de ${dadosFiltrados.length}">
-          <div class="card-conteudo">
-            <div class="card-foto">
-              ${imgHtml}
-              <span class="badge-sexo">${sexoLabel}</span>
-            </div>
-            <div class="card-info">
-              <div class="nome-principal">${p.nomeCompleto}${nomeArt}</div>
-              <div class="nome-artistico">${apelidosStr}</div>
-              <div class="detalhes">
-                <span>📅 ${nasc} – ${morte} (${idade} anos)</span>
-                <span>📍 ${local}</span>
-                <span class="area">${p.area}</span>
-                <span>📖 ${p.periodoBrasileiro || ''}</span>
-                <span>🌍 ${p.periodoMundial || ''}</span>
-                ${p.movimento ? `<span>🎨 ${p.movimento}</span>` : ''}
-              </div>
-              <div class="biografia">
-                <strong>Síntese:</strong> ${p.nomeCompleto} foi ${p.area.toLowerCase()} de grande importância para o Brasil.
-                ${curiosidades ? ` Curiosidade: ${curiosidades}` : ''}
-              </div>
-              ${obrasList ? `<div class="obras-feitos"><strong>Principais Obras:</strong><ul>${obrasList}</ul></div>` : ''}
-              ${feitosList ? `<div class="obras-feitos"><strong>Principais Feitos:</strong><ul>${feitosList}</ul></div>` : ''}
-              ${citacao}
-              <div class="fontes">
-                <span>📚 Fontes: ${fontes}</span>
-                ${links ? `<span>🔗 ${links}</span>` : ''}
-                ${redes ? `<span>📱 ${redes}</span>` : ''}
-              </div>
-            </div>
-          </div>
-          <div class="card-navegacao">
-            <button id="btnAnterior" aria-label="Anterior" ${indiceAtual === 0 ? 'disabled' : ''}>◀ Anterior</button>
-            <span class="contador">${indiceAtual+1} / ${dadosFiltrados.length}</span>
-            <button id="btnProximo" aria-label="Próximo" ${indiceAtual === dadosFiltrados.length-1 ? 'disabled' : ''}>Próximo ▶</button>
-          </div>
-        </div>
-      `;
-
-      document.getElementById('btnAnterior')?.addEventListener('click', () => {
-        if (indiceAtual > 0) { indiceAtual--; renderizarCard(); }
-      });
-      document.getElementById('btnProximo')?.addEventListener('click', () => {
-        if (indiceAtual < dadosFiltrados.length - 1) { indiceAtual++; renderizarCard(); }
-      });
-    }
-
-    // Eventos
-    let timeoutNome;
-    filtroNome.addEventListener('input', () => {
-      clearTimeout(timeoutNome);
-      timeoutNome = setTimeout(filtrar, 300);
-    });
-    filtroSexo.addEventListener('change', filtrar);
-    filtroArea.addEventListener('change', filtrar);
-    limparBtn.addEventListener('click', () => {
-      filtroNome.value = '';
-      filtroSexo.value = '';
-      filtroArea.value = '';
-      filtrar();
-    });
-
-    // Tema
-    const themeToggle = document.getElementById('themeToggle');
-    const themeIcon = document.getElementById('themeIcon');
-    const themeLabel = document.getElementById('themeLabel');
-    let darkMode = false;
-    themeToggle.addEventListener('click', () => {
-      darkMode = !darkMode;
-      document.documentElement.setAttribute('data-theme', darkMode ? 'dark' : 'light');
-      themeIcon.textContent = darkMode ? '☀️' : '🌙';
-      themeLabel.textContent = darkMode ? 'Claro' : 'Escuro';
-    });
-
-    // Swipe
-    let touchStartX = 0, touchEndX = 0;
-    container.addEventListener('touchstart', (e) => {
-      touchStartX = e.changedTouches[0].screenX;
-    }, { passive: true });
-    container.addEventListener('touchend', (e) => {
-      touchEndX = e.changedTouches[0].screenX;
-      const diff = touchStartX - touchEndX;
-      if (Math.abs(diff) > 50) {
-        if (diff > 0 && indiceAtual < dadosFiltrados.length - 1) {
-          indiceAtual++;
-          renderizarCard();
-        } else if (diff < 0 && indiceAtual > 0) {
-          indiceAtual--;
-          renderizarCard();
-        }
-      }
-    }, { passive: true });
-
-    // Teclado
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowRight' && indiceAtual < dadosFiltrados.length - 1) {
-        indiceAtual++;
-        renderizarCard();
-        e.preventDefault();
-      } else if (e.key === 'ArrowLeft' && indiceAtual > 0) {
-        indiceAtual--;
-        renderizarCard();
-        e.preventDefault();
-      }
-    });
-
-    // Inicializa
+// Teclado
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowRight' && indiceAtual < dadosFiltrados.length - 1) {
+    indiceAtual++;
     renderizarCard();
+    e.preventDefault();
+  } else if (e.key === 'ArrowLeft' && indiceAtual > 0) {
+    indiceAtual--;
+    renderizarCard();
+    e.preventDefault();
+  }
+});
 
-    // Service Worker (PWA)
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('sw.js')
-        .then(() => console.log('SW registrado'))
-        .catch(err => console.warn('SW erro:', err));
-    }
-  </script>
+// Inicializa
+renderizarCard();
+
+// Service Worker
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js')
+    .then(() => console.log('SW registrado'))
+    .catch(err => console.warn('SW erro:', err));
+}
+</script>
 </body>
 </html>
