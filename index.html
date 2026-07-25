@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pioneiros & Histórias do Brasil</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-theme="light">
+  <header class="clay-nav">
+    <h1>🇧🇷 Memória Viva do Brasil</h1>
+    <div class="header-actions">
+      <button id="btnGridModal" class="clay-btn">📱 Ver Lista / Grade</button>
+      <button id="themeToggle" class="clay-btn">🌓 Tema</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Painel de Filtros e Busca -->
+    <section class="clay-card filter-box">
+      <input type="text" id="searchInput" placeholder="Pesquisar por qualquer nome..." class="clay-input" />
+      
+      <div class="filter-controls">
+        <select id="genderFilter" class="clay-select">
+          <option value="">Todos os Gêneros</option>
+          <option value="homem">Homem</option>
+          <option value="mulher">Mulher</option>
+        </select>
+
+        <select id="areaFilter" class="clay-select">
+          <option value="">Todas as Áreas</option>
+          <option value="Exploradores">Exploradores</option>
+          <option value="Escritores">Escritores</option>
+          <option value="Pintores">Pintores</option>
+          <option value="Músicos">Músicos</option>
+          <option value="Cientistas">Cientistas</option>
+          <option value="Líderes indígenas">Líderes Indígenas</option>
+          <option value="Políticos">Políticos</option>
+          <option value="Outros">Outros</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- Exibição do Card Único -->
+    <section id="cardContainer">
+      <!-- O conteúdo é renderizado via JS -->
+    </section>
+
+    <!-- Navegação -->
+    <nav class="pagination-controls">
+      <button id="btnPrev" class="clay-btn">⬅️ Anterior</button>
+      <span id="counter" class="counter-badge">0 / 0</span>
+      <button id="btnNext" class="clay-btn">Próximo ➡️</button>
+    </nav>
+  </main>
+
+  <!-- Modal da Galeria/Grade -->
+  <div id="gridModal" class="modal-overlay hidden">
+    <div class="modal-content clay-card">
+      <div class="modal-header">
+        <h2>Acervo Completo</h2>
+        <button id="btnCloseModal" class="clay-btn small-btn">✖ Fechar</button>
+      </div>
+      <div id="gridContainer" class="grid-layout">
+        <!-- Itens da grade inseridos via JS -->
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

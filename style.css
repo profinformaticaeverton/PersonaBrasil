@@ -1,0 +1,251 @@
+:root {
+  /* Paleta Claymorphism Inspirada na Bandeira do Brasil */
+  --bg-color: #f4f8f3;
+  --surface-color: #e2f0d9;
+  --surface-secondary: #fef3d6;
+  --text-color: #1b382b;
+  --accent-yellow: #fcd05d;
+  --accent-blue: #72a1e5;
+  
+  /* Sombras Claymorphism */
+  --clay-radius: 28px;
+  --clay-shadow-outset: 8px 12px 20px rgba(27, 56, 43, 0.12);
+  --clay-shadow-inset: inset -6px -6px 12px rgba(0, 0, 0, 0.08), inset 6px 6px 12px rgba(255, 255, 255, 0.8);
+}
+
+[data-theme="dark"] {
+  --bg-color: #121d17;
+  --surface-color: #1a2e24;
+  --surface-secondary: #24382c;
+  --text-color: #e4efe9;
+  --accent-yellow: #d4a328;
+  --accent-blue: #3d69a8;
+  --clay-shadow-outset: 8px 12px 24px rgba(0, 0, 0, 0.4);
+  --clay-shadow-inset: inset -6px -6px 12px rgba(0, 0, 0, 0.5), inset 6px 6px 12px rgba(255, 255, 255, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Claymorphism Classes */
+.clay-card {
+  background-color: var(--surface-color);
+  border-radius: var(--clay-radius);
+  box-shadow: var(--clay-shadow-outset), var(--clay-shadow-inset);
+  padding: 24px;
+  margin-bottom: 20px;
+}
+
+.clay-btn {
+  background-color: var(--accent-yellow);
+  color: #1b382b;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 4px 6px 12px rgba(0, 0, 0, 0.1), inset -3px -3px 6px rgba(0,0,0,0.15), inset 3px 3px 6px rgba(255,255,255,0.7);
+  transition: transform 0.1s ease;
+}
+
+.clay-btn:active {
+  transform: scale(0.95);
+}
+
+.clay-btn.small-btn {
+  padding: 6px 14px;
+  font-size: 0.85rem;
+}
+
+.clay-input, .clay-select {
+  width: 100%;
+  padding: 12px 18px;
+  border: none;
+  border-radius: 18px;
+  background-color: var(--surface-secondary);
+  color: var(--text-color);
+  outline: none;
+  box-shadow: inset 3px 3px 6px rgba(0,0,0,0.1), inset -3px -3px 6px rgba(255,255,255,0.5);
+  margin-bottom: 10px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.header-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.filter-controls {
+  display: flex;
+  gap: 10px;
+}
+
+/* Card Principal */
+.profile-card {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+@media (min-width: 768px) {
+  .profile-card {
+    grid-template-columns: 260px 1fr;
+  }
+}
+
+.profile-img-box {
+  text-align: center;
+}
+
+.profile-img {
+  width: 100%;
+  max-width: 240px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 22px;
+  box-shadow: var(--clay-shadow-outset);
+}
+
+.badge {
+  display: inline-block;
+  background: var(--accent-blue);
+  color: white;
+  padding: 6px 14px;
+  border-radius: 14px;
+  font-size: 0.85rem;
+  margin-top: 10px;
+}
+
+.info-section h2 {
+  font-size: 1.8rem;
+  margin-bottom: 4px;
+}
+
+.info-section h4 {
+  font-weight: 500;
+  opacity: 0.8;
+  margin-bottom: 16px;
+}
+
+.meta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+  margin-bottom: 16px;
+  font-size: 0.9rem;
+}
+
+.feats-list {
+  margin-left: 20px;
+  margin-bottom: 16px;
+}
+
+.sources-box {
+  font-size: 0.8rem;
+  opacity: 0.7;
+  border-top: 1px solid rgba(0,0,0,0.1);
+  padding-top: 10px;
+}
+
+/* Paginação */
+.pagination-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.counter-badge {
+  font-weight: bold;
+}
+
+/* Modal e Grade */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.modal-overlay.hidden {
+  display: none;
+}
+
+.modal-content {
+  width: 100%;
+  max-width: 900px;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.grid-layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px;
+}
+
+.grid-item {
+  background: var(--surface-secondary);
+  border-radius: 18px;
+  padding: 12px;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: var(--clay-shadow-outset);
+  transition: transform 0.2s;
+}
+
+.grid-item:hover {
+  transform: translateY(-4px);
+}
+
+.grid-item img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 8px;
+}
+
+.grid-item p {
+  font-size: 0.85rem;
+  font-weight: bold;
+}

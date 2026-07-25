@@ -1,0 +1,80 @@
+[
+  {
+    "id": "cabral-001",
+    "nomeCompleto": "Pedro Álvares Cabral",
+    "nomePopular": "Pedro Álvares Cabral",
+    "apelidos": ["Navegador do Achamento"],
+    "genero": "homem",
+    "fotografia": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Pedro_%C3%81lvares_Cabral.jpg/440px-Pedro_%C3%81lvares_Cabral.jpg",
+    "nascimento": "1467",
+    "falecimento": "1520",
+    "idade": 53,
+    "cidade": "Belmonte",
+    "estado": "Castelo Branco",
+    "pais": "Portugal",
+    "areaAtuacao": "Exploradores",
+    "periodoHistoricoBR": "Brasil Colônia",
+    "periodoHistoricoMundial": "Grandes Navegações e Renascimento",
+    "movimentoArtistico": "N/A",
+    "principaisObrasOuFeitos": [
+      "Comandou a expedição europeia que chegou ao Brasil em 22 de abril de 1500.",
+      "Estabeleceu rotas comerciais na Índia após a passagem pelo Atlântico Sul.",
+      "Integrou o Brasil de forma definitiva à expansão marítima portuguesa."
+    ],
+    "curiosidades": "Sua expedição contava com 13 navios e cerca de 1.500 homens.",
+    "citacaoFamosa": "N/A",
+    "fontes": ["Biblioteca Nacional", "Arquivo Nacional"]
+  },
+  {
+    "id": "machado-002",
+    "nomeCompleto": "Joaquim Maria Machado de Assis",
+    "nomePopular": "Machado de Assis",
+    "apelidos": ["Bruxo do Cosme Velho"],
+    "genero": "homem",
+    "fotografia": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Machado_de_Assis_real.jpg/440px-Machado_de_Assis_real.jpg",
+    "nascimento": "1839-06-21",
+    "falecimento": "1908-09-29",
+    "idade": 69,
+    "cidade": "Rio de Janeiro",
+    "estado": "RJ",
+    "pais": "Brasil",
+    "areaAtuacao": "Escritores",
+    "periodoHistoricoBR": "Segundo Reinado e Primeira República",
+    "periodoHistoricoMundial": "Realismo e Segunda Revolução Industrial",
+    "movimentoArtistico": "Realismo",
+    "principaisObrasOuFeitos": [
+      "Escreveu 'Memórias Póstumas de Brás Cubas' (1881).",
+      "Escreveu 'Dom Casmurro' (1899).",
+      "Fundou e foi o primeiro presidente da Academia Brasileira de Letras (ABL)."
+    ],
+    "curiosidades": "Era autodidata, gago e enfrentava crises de epilepsia.",
+    "citacaoFamosa": "A melhor definição da vida é que ela é a arte de furtar o tempo.",
+    "fontes": ["Academia Brasileira de Letras (ABL)", "Enciclopédia Itaú Cultural"]
+  },
+  {
+    "id": "dandara-003",
+    "nomeCompleto": "Dandara dos Palmares",
+    "nomePopular": "Dandara dos Palmares",
+    "apelidos": ["Guerreira de Palmares"],
+    "genero": "mulher",
+    "fotografia": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Dandara_dos_Palmares.jpg/440px-Dandara_dos_Palmares.jpg",
+    "nascimento": "Desconhecido",
+    "falecimento": "1694-02-06",
+    "idade": "N/A",
+    "cidade": "Quilombo dos Palmares",
+    "estado": "AL",
+    "pais": "Brasil",
+    "areaAtuacao": "Outros",
+    "periodoHistoricoBR": "Brasil Colônia",
+    "periodoHistoricoMundial": "Expansão Colonial e Resistência Humana",
+    "movimentoArtistico": "N/A",
+    "principaisObrasOuFeitos": [
+      "Liderou estratégias de defesa e combate no Quilombo dos Palmares.",
+      "Dominava técnicas de capoeira e artes de guerra.",
+      "Símbolo histórico da luta contra a escravidão e pelo empoderamento negro."
+    ],
+    "curiosidades": "Preferiu a morte à captura pelas tropas coloniais portuguesas.",
+    "citacaoFamosa": "N/A",
+    "fontes": ["Arquivo Nacional", "Fundação Cultural Palmares"]
+  }
+]
