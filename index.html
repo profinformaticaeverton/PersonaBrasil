@@ -245,20 +245,43 @@
       align-items: center;
     }
 
-    .card-foto img {
+    .card-foto .img-wrapper {
       width: 100%;
       max-width: 260px;
       aspect-ratio: 1 / 1;
-      object-fit: cover;
       border-radius: 50%;
       border: 4px solid var(--amarelo);
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-      transition: transform 0.3s;
+      overflow: hidden;
       background: #ddd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s;
     }
 
-    .card-foto img:hover {
+    .card-foto .img-wrapper:hover {
       transform: scale(1.02);
+    }
+
+    .card-foto .img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-foto .img-wrapper .fallback {
+      font-size: 4rem;
+      font-weight: 700;
+      color: var(--azul);
+      background: var(--amarelo);
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-transform: uppercase;
     }
 
     .card-foto .badge-sexo {
@@ -547,7 +570,7 @@
 
   <script>
     // ================================================================
-    //  DADOS – 30 PERSONALIDADES (expanda à vontade)
+    //  DADOS – 35 PERSONALIDADES (expandido com as solicitadas)
     //  Fontes: ABL, Itaú Cultural, Arquivo Nacional, Wikimedia, etc.
     // ================================================================
     const pessoas = [{
@@ -1270,10 +1293,132 @@
       linhaTempo: ["1882: Nascimento", "1954: Falecimento"],
       sexo: "masculino",
       foto: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Getulio_Vargas_%281930%29.jpg/220px-Getulio_Vargas_%281930%29.jpg"
+    },
+    // ===== NOVAS PERSONALIDADES SOLICITADAS =====
+    {
+      id: 31,
+      nomeCompleto: "Cícero Romão Batista",
+      nomeArtistico: "Padre Cícero",
+      apelidos: ["Padre Cícero", "Milagreiro do Nordeste"],
+      nascimento: "1844",
+      falecimento: "1934",
+      cidade: "Crato",
+      estado: "CE",
+      pais: "Brasil",
+      area: "Religioso / Político",
+      periodoBrasileiro: "República Velha",
+      periodoMundial: "Século XIX / XX",
+      movimento: "Messianismo",
+      principaisObras: ["Milagre da hóstia", "Construção da Basílica de Juazeiro"],
+      principaisFeitos: ["Liderança religiosa no Nordeste", "Desenvolvimento de Juazeiro do Norte"],
+      curiosidades: "É considerado santo popular, embora não canonizado.",
+      citacao: "A fé move montanhas.",
+      fontes: ["Arquivo Nacional", "IPHAN"],
+      links: ["https://pt.wikipedia.org/wiki/Padre_Cícero"],
+      redesSociais: {},
+      linhaTempo: ["1844: Nascimento", "1934: Falecimento"],
+      sexo: "masculino",
+      foto: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Padre_Cícero_Romão_Batista.jpg/220px-Padre_Cícero_Romão_Batista.jpg"
+    }, {
+      id: 32,
+      nomeCompleto: "Dulce Lopes Pontes",
+      nomeArtistico: "Irmã Dulce",
+      apelidos: ["Anjo Bom da Bahia"],
+      nascimento: "1914",
+      falecimento: "1992",
+      cidade: "Salvador",
+      estado: "BA",
+      pais: "Brasil",
+      area: "Religiosa / Assistente Social",
+      periodoBrasileiro: "Contemporâneo",
+      periodoMundial: "Século XX",
+      movimento: "Ação social",
+      principaisObras: ["Fundação das Obras Sociais Irmã Dulce", "Criação do Hospital Santo Antônio"],
+      principaisFeitos: ["Atendimento a mais de 3 milhões de pessoas", "Canonizada em 2019"],
+      curiosidades: "Primeira santa brasileira (Santa Dulce dos Pobres).",
+      citacao: "A maior caridade é a justiça.",
+      fontes: ["Arquivo Nacional", "Vaticano"],
+      links: ["https://pt.wikipedia.org/wiki/Irmã_Dulce"],
+      redesSociais: {},
+      linhaTempo: ["1914: Nascimento", "1992: Falecimento", "2019: Canonização"],
+      sexo: "feminino",
+      foto: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Irmã_Dulce.jpg/220px-Irmã_Dulce.jpg"
+    }, {
+      id: 33,
+      nomeCompleto: "Renato Manfredini Júnior",
+      nomeArtistico: "Renato Russo",
+      apelidos: ["Renato Russo"],
+      nascimento: "1960",
+      falecimento: "1996",
+      cidade: "Rio de Janeiro",
+      estado: "RJ",
+      pais: "Brasil",
+      area: "Músico / Compositor / Poeta",
+      periodoBrasileiro: "Contemporâneo",
+      periodoMundial: "Século XX",
+      movimento: "Rock brasileiro / Pós-punk",
+      principaisObras: ["Que País É Este", "Tempo Perdido", "Faroeste Caboclo"],
+      principaisFeitos: ["Líder da Legião Urbana", "Ícone do rock nacional"],
+      curiosidades: "Escreveu a maioria das letras da banda.",
+      citacao: "Somos jovens, não temos nada além do nosso sonho.",
+      fontes: ["Itaú Cultural", "Museu da Música"],
+      links: ["https://pt.wikipedia.org/wiki/Renato_Russo"],
+      redesSociais: {},
+      linhaTempo: ["1960: Nascimento", "1996: Falecimento"],
+      sexo: "masculino",
+      foto: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Renato_Russo.jpg/220px-Renato_Russo.jpg"
+    }, {
+      id: 34,
+      nomeCompleto: "Sebastião Rodrigues Maia",
+      nomeArtistico: "Tim Maia",
+      apelidos: ["Tim Maia", "Síndico do Samba"],
+      nascimento: "1942",
+      falecimento: "1998",
+      cidade: "Rio de Janeiro",
+      estado: "RJ",
+      pais: "Brasil",
+      area: "Cantor / Compositor",
+      periodoBrasileiro: "Contemporâneo",
+      periodoMundial: "Século XX",
+      movimento: "Soul / Funk / Samba",
+      principaisObras: ["Não Quero Dinheiro", "Gostava Tanto de Você", "Sossego"],
+      principaisFeitos: ["Pioneiro do soul no Brasil", "Ícone da música popular"],
+      curiosidades: "Tinha uma voz potente e presença de palco marcante.",
+      citacao: "O importante é ser feliz.",
+      fontes: ["Itaú Cultural"],
+      links: ["https://pt.wikipedia.org/wiki/Tim_Maia"],
+      redesSociais: {},
+      linhaTempo: ["1942: Nascimento", "1998: Falecimento"],
+      sexo: "masculino",
+      foto: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Tim_Maia.jpg/220px-Tim_Maia.jpg"
+    }, {
+      id: 35,
+      nomeCompleto: "Zilda Arns Neumann",
+      nomeArtistico: null,
+      apelidos: ["Zilda Arns"],
+      nascimento: "1934",
+      falecimento: "2010",
+      cidade: "Forquilhinha",
+      estado: "SC",
+      pais: "Brasil",
+      area: "Médica / Sanitarista",
+      periodoBrasileiro: "Contemporâneo",
+      periodoMundial: "Século XX / XXI",
+      movimento: "Saúde comunitária",
+      principaisObras: ["Fundação da Pastoral da Criança", "Criação da Pastoral da Pessoa Idosa"],
+      principaisFeitos: ["Redução da mortalidade infantil no Brasil", "Atuação no Haiti"],
+      curiosidades: "Faleceu no terremoto do Haiti, em missão humanitária.",
+      citacao: "O amor transforma o mundo.",
+      fontes: ["Arquivo Nacional", "Fiocruz"],
+      links: ["https://pt.wikipedia.org/wiki/Zilda_Arns"],
+      redesSociais: {},
+      linhaTempo: ["1934: Nascimento", "2010: Falecimento"],
+      sexo: "feminino",
+      foto: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Zilda_Arns_%28cropped%29.jpg/220px-Zilda_Arns_%28cropped%29.jpg"
     }];
 
     // ================================================================
-    //  LÓGICA DO SITE
+    //  LÓGICA DO SITE (mesmo código de antes, com fallback de imagem)
     // ================================================================
     let dadosFiltrados = [...pessoas];
     let indiceAtual = 0;
@@ -1339,12 +1484,23 @@
       ).join(' ') : '';
 
       const sexoLabel = p.sexo === 'feminino' ? '♀ Mulher' : '♂ Homem';
+      const inicial = p.nomeCompleto.charAt(0).toUpperCase();
+
+      // Fallback para imagem: se a URL falhar, exibe a inicial
+      const imgHtml = `
+        <div class="img-wrapper">
+          <img src="${p.foto || ''}" alt="${p.nomeCompleto}" 
+               onerror="this.style.display='none'; this.parentElement.querySelector('.fallback').style.display='flex';" 
+               loading="lazy" />
+          <div class="fallback" style="display:none;">${inicial}</div>
+        </div>
+      `;
 
       container.innerHTML = `
         <div class="card-wrapper fade-enter" role="article" aria-label="Personalidade ${indiceAtual+1} de ${dadosFiltrados.length}">
           <div class="card-conteudo">
             <div class="card-foto">
-              <img src="${p.foto || 'https://via.placeholder.com/260/cccccc/ffffff?text=Sem+Imagem'}" alt="${p.nomeCompleto}" loading="lazy" />
+              ${imgHtml}
               <span class="badge-sexo">${sexoLabel}</span>
             </div>
             <div class="card-info">
@@ -1387,11 +1543,9 @@
       document.getElementById('btnProximo')?.addEventListener('click', () => {
         if (indiceAtual < dadosFiltrados.length - 1) { indiceAtual++; renderizarCard(); }
       });
-
-      // Atualiza contador e estado dos botões
     }
 
-    // Eventos dos filtros (com debounce para nome)
+    // Eventos dos filtros
     let timeoutNome;
     filtroNome.addEventListener('input', () => {
       clearTimeout(timeoutNome);
@@ -1422,7 +1576,7 @@
     });
 
     // ================================================================
-    //  SWIPE (mobile)
+    //  SWIPE
     // ================================================================
     let touchStartX = 0;
     let touchEndX = 0;
@@ -1446,7 +1600,7 @@
     }, { passive: true });
 
     // ================================================================
-    //  TECLADO (setas)
+    //  TECLADO
     // ================================================================
     document.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowRight' && indiceAtual < dadosFiltrados.length - 1) {
@@ -1466,7 +1620,7 @@
     renderizarCard();
 
     // ================================================================
-    //  SERVICE WORKER (PWA)
+    //  SERVICE WORKER
     // ================================================================
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('sw.js')
