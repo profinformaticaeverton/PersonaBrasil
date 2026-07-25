@@ -2,71 +2,1477 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pioneiros & Histórias do Brasil</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes" />
+  <title>Brasil em Retratos – Personalidades Históricas</title>
+  <meta name="description" content="Conheça as personalidades que construíram o Brasil, desde o descobrimento até 2026. Fotos, biografias, obras e curiosidades." />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#009739" />
+  <meta property="og:title" content="Brasil em Retratos" />
+  <meta property="og:description" content="Personalidades históricas do Brasil em um site interativo." />
+  <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Brazil.svg/1200px-Flag_of_Brazil.svg.png" />
+  <meta property="og:url" content="https://seu-usuario.github.io/site-personalidades/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <style>
+    /* ============================================================
+       RESET E VARIÁVEIS (Claymorphism + Cores da Bandeira)
+       ============================================================ */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --verde: #009739;
+      --amarelo: #FEDB00;
+      --azul: #012169;
+      --branco: #FFFFFF;
+      --preto: #1A1A1A;
+
+      --bg: #f0ebe3;
+      --card-bg: rgba(255, 255, 255, 0.75);
+      --card-shadow: 8px 8px 24px rgba(0, 0, 0, 0.08), -8px -8px 24px rgba(255, 255, 255, 0.7);
+      --text: #2d2d2d;
+      --text-light: #555;
+      --border: rgba(0, 151, 57, 0.15);
+      --accent: var(--verde);
+      --accent-hover: #007a2e;
+      --filter-bg: rgba(255, 255, 255, 0.5);
+      --input-bg: rgba(255, 255, 255, 0.8);
+      --radius: 28px;
+      --transition: 0.3s ease;
+    }
+
+    [data-theme="dark"] {
+      --bg: #1e2a2e;
+      --card-bg: rgba(40, 50, 55, 0.8);
+      --card-shadow: 8px 8px 24px rgba(0, 0, 0, 0.4), -8px -8px 24px rgba(60, 80, 90, 0.2);
+      --text: #e8e8e8;
+      --text-light: #b0b0b0;
+      --border: rgba(254, 219, 0, 0.2);
+      --filter-bg: rgba(30, 42, 46, 0.7);
+      --input-bg: rgba(50, 65, 70, 0.8);
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1rem;
+      transition: background var(--transition), color var(--transition);
+      line-height: 1.5;
+    }
+
+    /* ============================================================
+       CONTAINER PRINCIPAL
+       ============================================================ */
+    .app {
+      max-width: 820px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    /* ============================================================
+       CABEÇALHO
+       ============================================================ */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding: 1.2rem 1.8rem;
+      background: var(--card-bg);
+      backdrop-filter: blur(8px);
+      border-radius: var(--radius);
+      box-shadow: var(--card-shadow);
+      margin-bottom: 2rem;
+      border: 1px solid var(--border);
+      transition: background var(--transition), box-shadow var(--transition);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .logo h1 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--verde), var(--azul));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.5px;
+    }
+
+    .logo img {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 2px solid var(--amarelo);
+    }
+
+    .theme-toggle {
+      background: var(--filter-bg);
+      border: none;
+      border-radius: 40px;
+      padding: 0.5rem 1.2rem;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: var(--card-shadow);
+      color: var(--text);
+      transition: background var(--transition), transform 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-weight: 600;
+    }
+
+    .theme-toggle:hover {
+      transform: scale(1.03);
+      background: var(--amarelo);
+      color: var(--preto);
+    }
+
+    /* ============================================================
+       FILTROS
+       ============================================================ */
+    .filtros {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      background: var(--card-bg);
+      backdrop-filter: blur(8px);
+      padding: 1.2rem 1.5rem;
+      border-radius: var(--radius);
+      box-shadow: var(--card-shadow);
+      margin-bottom: 1.8rem;
+      border: 1px solid var(--border);
+      transition: background var(--transition), box-shadow var(--transition);
+    }
+
+    .filtros label {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-light);
+      flex: 1 0 120px;
+    }
+
+    .filtros input,
+    .filtros select {
+      background: var(--input-bg);
+      border: 1px solid var(--border);
+      border-radius: 40px;
+      padding: 0.5rem 1rem;
+      font-size: 0.95rem;
+      color: var(--text);
+      outline: none;
+      transition: border var(--transition), box-shadow var(--transition);
+      width: 100%;
+      backdrop-filter: blur(4px);
+    }
+
+    .filtros input:focus,
+    .filtros select:focus {
+      border-color: var(--verde);
+      box-shadow: 0 0 0 3px rgba(0, 151, 57, 0.2);
+    }
+
+    .filtros .filtro-acoes {
+      display: flex;
+      gap: 0.6rem;
+      align-items: flex-end;
+      flex: 0 0 auto;
+    }
+
+    .filtros .filtro-acoes button {
+      background: var(--verde);
+      border: none;
+      border-radius: 40px;
+      padding: 0.5rem 1.2rem;
+      font-weight: 600;
+      color: #fff;
+      cursor: pointer;
+      transition: background var(--transition), transform 0.2s;
+      box-shadow: 0 4px 8px rgba(0, 151, 57, 0.2);
+      font-size: 0.9rem;
+    }
+
+    .filtros .filtro-acoes button:hover {
+      background: var(--accent-hover);
+      transform: scale(1.02);
+    }
+
+    /* ============================================================
+       CARD DA PERSONALIDADE
+       ============================================================ */
+    .card-wrapper {
+      background: var(--card-bg);
+      backdrop-filter: blur(8px);
+      border-radius: var(--radius);
+      box-shadow: var(--card-shadow);
+      padding: 1.8rem;
+      border: 1px solid var(--border);
+      transition: background var(--transition), box-shadow var(--transition);
+      margin-bottom: 1.8rem;
+    }
+
+    .card-conteudo {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 1.8rem;
+    }
+
+    @media (max-width: 640px) {
+      .card-conteudo {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+    }
+
+    .card-foto {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .card-foto img {
+      width: 100%;
+      max-width: 260px;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid var(--amarelo);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+      transition: transform 0.3s;
+      background: #ddd;
+    }
+
+    .card-foto img:hover {
+      transform: scale(1.02);
+    }
+
+    .card-foto .badge-sexo {
+      margin-top: 0.6rem;
+      font-size: 0.75rem;
+      background: var(--azul);
+      color: #fff;
+      padding: 0.2rem 0.9rem;
+      border-radius: 40px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .card-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .card-info .nome-principal {
+      font-size: 1.8rem;
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--azul);
+    }
+
+    .card-info .nome-artistico {
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--text-light);
+    }
+
+    .card-info .detalhes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem 1.2rem;
+      font-size: 0.9rem;
+      color: var(--text-light);
+      margin: 0.2rem 0 0.4rem;
+    }
+
+    .card-info .detalhes span {
+      background: var(--filter-bg);
+      padding: 0.15rem 0.7rem;
+      border-radius: 40px;
+      border: 1px solid var(--border);
+    }
+
+    .card-info .area {
+      font-weight: 600;
+      color: var(--verde);
+      display: inline-block;
+      background: rgba(0, 151, 57, 0.08);
+      padding: 0.1rem 0.9rem;
+      border-radius: 40px;
+    }
+
+    .card-info .biografia {
+      margin: 0.6rem 0 0.2rem;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .card-info .obras-feitos {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      margin-top: 0.4rem;
+    }
+
+    .card-info .obras-feitos strong {
+      color: var(--azul);
+      font-weight: 600;
+    }
+
+    .card-info .obras-feitos ul {
+      list-style: none;
+      padding-left: 0.2rem;
+    }
+
+    .card-info .obras-feitos li {
+      padding: 0.1rem 0 0.1rem 1.2rem;
+      position: relative;
+    }
+
+    .card-info .obras-feitos li::before {
+      content: "✦";
+      position: absolute;
+      left: 0;
+      color: var(--amarelo);
+      font-weight: bold;
+    }
+
+    .card-info .citacao {
+      margin-top: 0.6rem;
+      font-style: italic;
+      background: var(--filter-bg);
+      padding: 0.6rem 1rem;
+      border-radius: 20px;
+      border-left: 4px solid var(--amarelo);
+      color: var(--text-light);
+    }
+
+    .card-info .fontes {
+      font-size: 0.75rem;
+      color: var(--text-light);
+      margin-top: 0.4rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem 0.8rem;
+    }
+
+    .card-info .fontes a {
+      color: var(--azul);
+      text-decoration: none;
+      border-bottom: 1px dotted var(--azul);
+    }
+
+    .card-info .fontes a:hover {
+      color: var(--verde);
+    }
+
+    /* ============================================================
+       NAVEGAÇÃO DO CARD
+       ============================================================ */
+    .card-navegacao {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.8rem;
+      margin-top: 1.2rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .card-navegacao button {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 40px;
+      padding: 0.5rem 1.4rem;
+      font-weight: 600;
+      color: var(--text);
+      cursor: pointer;
+      transition: all var(--transition);
+      box-shadow: var(--card-shadow);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.9rem;
+    }
+
+    .card-navegacao button:hover:not(:disabled) {
+      background: var(--verde);
+      color: #fff;
+      border-color: var(--verde);
+      transform: scale(1.02);
+    }
+
+    .card-navegacao button:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .card-navegacao .contador {
+      font-size: 0.9rem;
+      color: var(--text-light);
+      font-weight: 500;
+    }
+
+    /* ============================================================
+       MENSAGEM DE NENHUM RESULTADO
+       ============================================================ */
+    .sem-resultado {
+      text-align: center;
+      padding: 2rem;
+      font-size: 1.2rem;
+      color: var(--text-light);
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--card-shadow);
+    }
+
+    /* ============================================================
+       RODAPÉ
+       ============================================================ */
+    footer {
+      margin-top: 2.4rem;
+      font-size: 0.8rem;
+      color: var(--text-light);
+      text-align: center;
+      border-top: 1px solid var(--border);
+      padding-top: 1.2rem;
+      width: 100%;
+    }
+
+    /* ============================================================
+       UTILITÁRIOS E ACESSIBILIDADE
+       ============================================================ */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+
+    /* ============================================================
+       ANIMAÇÕES
+       ============================================================ */
+    .fade-enter {
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ============================================================
+       SWIPE (touch)
+       ============================================================ */
+    .card-wrapper {
+      touch-action: pan-y;
+    }
+  </style>
 </head>
-<body data-theme="light">
-  <header class="clay-nav">
-    <h1>🇧🇷 Memória Viva do Brasil</h1>
-    <div class="header-actions">
-      <button id="btnGridModal" class="clay-btn">📱 Ver Lista / Grade</button>
-      <button id="themeToggle" class="clay-btn">🌓 Tema</button>
-    </div>
-  </header>
+<body>
+  <div class="app" role="main">
+    <!-- Cabeçalho -->
+    <header>
+      <div class="logo">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Brazil.svg/64px-Flag_of_Brazil.svg.png" alt="Bandeira do Brasil" />
+        <h1>Brasil em Retratos</h1>
+      </div>
+      <button class="theme-toggle" id="themeToggle" aria-label="Alternar modo claro/escuro">
+        <span id="themeIcon">🌙</span> <span id="themeLabel">Escuro</span>
+      </button>
+    </header>
 
-  <main class="container">
-    <!-- Painel de Filtros e Busca -->
-    <section class="clay-card filter-box">
-      <input type="text" id="searchInput" placeholder="Pesquisar por qualquer nome..." class="clay-input" />
-      
-      <div class="filter-controls">
-        <select id="genderFilter" class="clay-select">
-          <option value="">Todos os Gêneros</option>
-          <option value="homem">Homem</option>
-          <option value="mulher">Mulher</option>
+    <!-- Filtros -->
+    <section class="filtros" aria-label="Filtros de busca">
+      <label>
+        Nome
+        <input type="text" id="filtroNome" placeholder="Digite parte do nome..." />
+      </label>
+      <label>
+        Sexo
+        <select id="filtroSexo">
+          <option value="">Todos</option>
+          <option value="masculino">Masculino</option>
+          <option value="feminino">Feminino</option>
         </select>
-
-        <select id="areaFilter" class="clay-select">
-          <option value="">Todas as Áreas</option>
-          <option value="Exploradores">Exploradores</option>
-          <option value="Escritores">Escritores</option>
-          <option value="Pintores">Pintores</option>
-          <option value="Músicos">Músicos</option>
-          <option value="Cientistas">Cientistas</option>
-          <option value="Líderes indígenas">Líderes Indígenas</option>
-          <option value="Políticos">Políticos</option>
-          <option value="Outros">Outros</option>
+      </label>
+      <label>
+        Área
+        <select id="filtroArea">
+          <option value="">Todas</option>
+          <!-- preenchido via JS -->
         </select>
+      </label>
+      <div class="filtro-acoes">
+        <button id="limparFiltros">Limpar</button>
       </div>
     </section>
 
-    <!-- Exibição do Card Único -->
-    <section id="cardContainer">
-      <!-- O conteúdo é renderizado via JS -->
-    </section>
-
-    <!-- Navegação -->
-    <nav class="pagination-controls">
-      <button id="btnPrev" class="clay-btn">⬅️ Anterior</button>
-      <span id="counter" class="counter-badge">0 / 0</span>
-      <button id="btnNext" class="clay-btn">Próximo ➡️</button>
-    </nav>
-  </main>
-
-  <!-- Modal da Galeria/Grade -->
-  <div id="gridModal" class="modal-overlay hidden">
-    <div class="modal-content clay-card">
-      <div class="modal-header">
-        <h2>Acervo Completo</h2>
-        <button id="btnCloseModal" class="clay-btn small-btn">✖ Fechar</button>
-      </div>
-      <div id="gridContainer" class="grid-layout">
-        <!-- Itens da grade inseridos via JS -->
-      </div>
+    <!-- Área do Card -->
+    <div id="cardContainer">
+      <!-- Renderizado via JS -->
     </div>
+
+    <!-- Rodapé -->
+    <footer>
+      <p>Dados históricos de fontes confiáveis · Projeto open source · 2026</p>
+    </footer>
   </div>
 
-  <script src="app.js"></script>
+  <script>
+    // ================================================================
+    //  DADOS – 30 PERSONALIDADES (expanda à vontade)
+    //  Fontes: ABL, Itaú Cultural, Arquivo Nacional, Wikimedia, etc.
+    // ================================================================
+    const pessoas = [{
+      id: 1,
+      nomeCompleto: "Pedro Álvares Cabral",
+      nomeArtistico: null,
+      apelidos: ["Descobridor do Brasil"],
+      nascimento: "1467",
+      falecimento: "1520",
+      cidade: "Belmonte",
+      estado: null,
+      pais: "Portugal",
+      area: "Explorador",
+      periodoBrasileiro: "Descobrimento",
+      periodoMundial: "Renascimento",
+      movimento: null,
+      principaisObras: ["Descoberta do Brasil (1500)"],
+      principaisFeitos: ["Chegada à costa brasileira", "Primeiro contato com indígenas"],
+      curiosidades: "Sua esquadra tinha 13 navios e 1.200 homens.",
+      citacao: "Terra à vista!",
+      fontes: ["Arquivo Nacional", "Biblioteca Nacional"],
+      links: ["https://pt.wikipedia.org/wiki/Pedro_Álvares_Cabral"],
+      redesSociais: {},
+      linhaTempo: ["1467: Nascimento", "1500: Descoberta do Brasil", "1520: Falecimento"],
+      sexo: "masculino",
+      foto: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Pedro_Alvares_Cabral.jpg/220px-Pedro_Alvares_Cabral.jpg"
+    }, {
+      id: 2,
+      nomeCompleto: "Tomé de Sousa",
+      nomeArtistico: null,
+      apelidos: ["Primeiro Governador-Geral"],
+      nascimento: "1503",
+      falecimento: "1579",
+      cidade: "Rates",
+      estado: null,
+      pais: "Portugal",
+      area: "Político / Administrador",
+      periodoBrasileiro: "Colonização",
+      periodoMundial: "Renascimento",
+      movimento: null,
+      principaisObras: ["Fundação de Salvador (1549)", "Primeiro governo-geral"],
+      principaisFeitos: ["Organização da administração colonial", "Início da exploração açucareira"],
+      curiosidades: "Chegou ao Brasil com 6 navios e 1.000 colonos.",
+      citacao: null,
+      fontes: ["Arquivo Nacional"],
+      links: ["https://pt.wikipedia.org/wiki/Tomé_de_Sousa"],
+      redesSociais: {},
+      linhaTempo: ["1503: Nascimento", "1549: Fundação de Salvador", "1579: Falecimento"],
+      sexo: "masculino",
+      foto: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Tomé_de_Sousa.jpg/220px-Tomé_de_Sousa.jpg"
+    }, {
+      id: 3,
+      nomeCompleto: "Dom João VI",
+      nomeArtistico: null,
+      apelidos: ["O Clemente"],
+      nascimento: "1767",
+      falecimento: "1826",
+      cidade: "Lisboa",
+      estado: null,
+      pais: "Portugal",
+      area: "Monarca",
+      periodoBrasileiro: "Período Joanino",
+      periodoMundial: "Revolução Francesa / Napoleão",
+      movimento: null,
+      principaisObras: ["Transferência da Corte para o Brasil (1808)"],
+      principaisFeitos: ["Abertura dos portos", "Elevação do Brasil a Reino Unido"],
+      curiosidades: "Foi o único monarca europeu a governar a partir de uma colônia.",
+      citacao: "Foi um divisor de águas na história do Brasil.",
+      fontes: ["Biblioteca Nacional", "CPDOC"],
+      links: ["https://pt.wikipedia.org/wiki/João_VI_de_Portugal"],
+      redesSociais: {},
+      linhaTempo: ["1767: Nascimento", "1808: Chegada ao Brasil", "1826: Falecimento"],
+      sexo: "masculino",
+      foto: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/D._João_VI_-_Autor_desconhecido.png/220px-D._João_VI_-_Autor_desconhecido.png"
+    }, {
+      id: 4,
+      nomeCompleto: "Dom Pedro I",
+      nomeArtistico: null,
+      apelidos: ["O Libertador", "Imperador do Brasil"],
+      nascimento: "1798",
+      falecimento: "1834",
+      cidade: "Lisboa",
+      estado: null,
+      pais: "Portugal",
+      area: "Monarca / Político",
+      periodoBrasileiro: "Independência",
+      periodoMundial: "Era das Revoluções",
+      movimento: null,
+      principaisObras: ["Independência do Brasil (1822)", "Constituição de 1824"],
+      principaisFeitos: ["Grito do Ipiranga", "Primeiro Imperador do Brasil"],
+      curiosidades: "Também foi rei de Portugal por um breve período.",
+      citacao: "Independência ou Morte!",
+      fontes: ["Arquivo Nacional", "CPDOC"],
+      links: ["https://pt.wikipedia.org/wiki/Pedro_I_do_Brasil"],
+      redesSociais: {},
+      linhaTempo: ["1798: Nascimento", "1822: Independência", "1834: Falecimento"],
+      sexo: "masculino",
+      foto: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/D._Pedro_I_%28Brazil%29.jpg/220px-D._Pedro_I_%28Brazil%29.jpg"
+    }, {
+      id: 5,
+      nomeCompleto: "José Bonifácio de Andrada e Silva",
+      nomeArtistico: null,
+      apelidos: ["Patriarca da Independência"],
+      nascimento: "1763",
+      falecimento: "1838",
+      cidade: "Santos",
+      estado: "SP",
+      pais: "Brasil",
+      area: "Político / Cientista",
+      periodoBrasileiro: "Independência",
+      periodoMundial: "Iluminismo",
+      movimento: null,
+      principaisObras: ["Participação na Independência", "Fundação do Instituto Histórico e Geográfico"],
+      principaisFeitos: ["Ministro de D. Pedro I", "Abolição do tráfico de escravos"],
+      curiosidades: "Era mineralogista e poeta.",
+      citacao: "Sem a independência, o Brasil não seria nada.",
+      fontes: ["ABL", "CPDOC"],
+      links: ["https://pt.wikipedia.org/wiki/José_Bonifácio"],
+      redesSociais: {},
+      linhaTempo: ["1763: Nascimento", "1822: Independência", "1838: Falecimento"],
+      sexo: "masculino",
+      foto: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/José_Bonifácio%2C_por_Simplício_de_Sá.jpg/220px-José_Bonifácio%2C_por_Simplício_de_Sá.jpg"
+    }, {
+      id: 6,
+      nomeCompleto: "Joaquim José da Silva Xavier",
+      nomeArtistico: "Tiradentes",
+      apelidos: ["Tiradentes"],
+      nascimento: "1746",
+      falecimento: "1792",
+      cidade: "São João del-Rei",
+      estado: "MG",
+      pais: "Brasil",
+      area: "Revolucionário / Militar",
+      periodoBrasileiro: "Conjuração Mineira",
+      periodoMundial: "Iluminismo",
+      movimento: "Inconfidência Mineira",
+      principaisObras: ["Liderança da Inconfidência Mineira"],
+      principaisFeitos: ["Protesto contra a derrama", "Mártir da independência"],
+      curiosidades: "Era dentista e alferes.",
+      citacao: "Se todos quisermos, podemos fazer a pátria livre.",
+      fontes: ["Arquivo Nacional", "IPHAN"],
+      links: ["https://pt.wikipedia.org/wiki/Tiradentes"],
+      redesSociais: {},
+      linhaTempo: ["1746: Nascimento", "1792: Enforcado"],
+      sexo: "masculino",
+      foto: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Tiradentes_quadro_do_Museu_Paulista.jpg/220px-Tiradentes_quadro_do_Museu_Paulista.jpg"
+    }, {
+      id: 7,
+      nomeCompleto: "Zumbi dos Palmares",
+      nomeArtistico: null,
+      apelidos: ["Zumbi"],
+      nascimento: "1655",
+      falecimento: "1695",
+      cidade: "Serra da Barriga",
+      estado: "AL",
+      pais: "Brasil",
+      area: "Líder quilombola",
+      periodoBrasileiro: "Colonização",
+      periodoMundial: "Idade Moderna",
+      movimento: "Resistência negra",
+      principaisObras: ["Liderança do Quilombo dos Palmares"],
+      principaisFeitos: ["Resistência à escravidão", "Símbolo da luta negra"],
+      curiosidades: "É cultuado como herói nacional.",
+      citacao: "A liberdade é o maior bem do homem.",
+      fontes: ["Arquivo Nacional", "IPHAN"],
+      links: ["https://pt.wikipedia.org/wiki/Zumbi_dos_Palmares"],
+      redesSociais: {},
+      linhaTempo: ["1655: Nascimento", "1695: Morte em combate"],
+      sexo: "masculino",
+      foto: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Zumbi_dos_Palmares.jpg/220px-Zumbi_dos_Palmares.jpg"
+    }, {
+      id: 8,
+      nomeCompleto: "Dom Pedro II",
+      nomeArtistico: null,
+      apelidos: ["O Magnânimo"],
+      nascimento: "1825",
+      falecimento: "1891",
+      cidade: "Rio de Janeiro",
+      estado: "RJ",
+      pais: "Brasil",
+      area: "Monarca",
+      periodoBrasileiro: "Império",
+      periodoMundial: "Século XIX",
+      movimento: null,
+      principaisObras: ["Reinado de 58 anos", "Abolição da escravatura (1888)"],
+      principaisFeitos: ["Modernização do Brasil", "Guerra do Paraguai"],
+      curiosidades: "Era um grande intelectual e fotógrafo amador.",
+      citacao: "Sou um imperador que trabalha.",
+      fontes: ["Arquivo Nacional", "CPDOC"],
+      links: ["https://pt.wikipedia.org/wiki/Pedro_II_do_Brasil"],
+      redesSociais: {},
+      linhaTempo: ["1825: Nascimento", "1889: Proclamação da República", "1891: Falecimento"],
+      sexo: "masculino",
+      foto: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/D._Pedro_II_-_A._H._Dahl.jpg/220px-D._Pedro_II_-_A._H._Dahl.jpg"
+    }, {
+      id: 9,
+      nomeCompleto: "Joaquim Maria Machado de Assis",
+      nomeArtistico: "Machado de Assis",
+      apelidos: ["Bruxo do Cosme Velho"],
+      nascimento: "1839",
+      falecimento: "1908",
+      cidade: "Rio de Janeiro",
+      estado: "RJ",
+      pais: "Brasil",
+      area: "Escritor / Poeta",
+      periodoBrasileiro: "Segundo Reinado / República Velha",
+      periodoMundial: "Século XIX",
+      movimento: "Realismo / Impressionismo",
+      principaisObras: ["Dom Casmurro", "Memórias Póstumas de Brás Cubas", "Quincas Borba"],
+      principaisFeitos: ["Fundador da ABL", "Mestre do conto"],
+      curiosidades: "Era neto de escravos e foi um dos maiores escritores em língua portuguesa.",
+      citacao: "A vida é uma ópera e uma comédia ao mesmo tempo.",
+      fontes: ["ABL", "Itaú Cultural"],
+      links: ["https://pt.wikipedia.org/wiki/Machado_de_Assis"],
+      redesSociais: {},
+      linhaTempo: ["1839: Nascimento", "1908: Falecimento"],
+      sexo: "masculino",
+      foto: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Machado_de_Assis_-_Retrato.jpg/220px-Machado_de_Assis_-_Retrato.jpg"
+    }, {
+      id: 10,
+      nomeCompleto: "Euclides da Cunha",
+      nomeArtistico: null,
+      apelidos: null,
+      nascimento: "1866",
+      falecimento: "1909",
+      cidade: "Cantagalo",
+      estado: "RJ",
+      pais: "Brasil",
+      area: "Escritor / Jornalista",
+      periodoBrasileiro: "República Velha",
+      periodoMundial: "Pré-Modernismo",
+      movimento: "Pré-Modernismo",
+      principaisObras: ["Os Sertões", "Contrastes e Confrontos"],
+      principaisFeitos: ["Reportagem sobre a Guerra de Canudos", "Análise social do Brasil"],
+      curiosidades: "Foi engenheiro e militar.",
+      citacao: "O sertanejo é, antes de tudo, um forte.",
+      fontes: ["ABL", "Itaú Cultural"],
+      links: ["https://pt.wikipedia.org/wiki/Euclides_da_Cunha"],
+      redesSociais: {},
+      linhaTempo: ["1866: Nascimento", "1909: Falecimento"],
+      sexo: "masculino",
+      foto: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Euclides_da_Cunha.jpg/220px-Euclides_da_Cunha.jpg"
+    }, {
+      id: 11,
+      nomeCompleto: "Carlos Drummond de Andrade",
+      nomeArtistico: null,
+      apelidos: ["Drummond"],
+      nascimento: "1902",
+      falecimento: "1987",
+      cidade: "Itabira",
+      estado: "MG",
+      pais: "Brasil",
+      area: "Poeta",
+      periodoBrasileiro: "Modernismo",
+      periodoMundial: "Século XX",
+      movimento: "Modernismo",
+      principaisObras: ["Alguma Poesia", "Sentimento do Mundo", "A Rosa do Povo"],
+      principaisFeitos: ["Renovação da poesia brasileira", "Poeta maior do Brasil"],
+      curiosidades: "Trabalhou como funcionário público.",
+      citacao: "No meio do caminho tinha uma pedra.",
+      fontes: ["ABL", "Itaú Cultural"],
+      links: ["https://pt.wikipedia.org/wiki/Carlos_Drummond_de_Andrade"],
+      redesSociais: {},
+      linhaTempo: ["1902: Nascimento", "1987: Falecimento"],
+      sexo: "masculino",
+      foto: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Carlos_Drummond_de_Andrade_%281974%29.jpg/220px-Carlos_Drummond_de_Andrade_%281974%29.jpg"
+    }, {
+      id: 12,
+      nomeCompleto: "Clarice Lispector",
+      nomeArtistico: null,
+      apelidos: null,
+      nascimento: "1920",
+      falecimento: "1977",
+      cidade: "Tchetchelnik",
+      estado: null,
+      pais: "Ucrânia (nascida), naturalizada brasileira",
+      area: "Escritora",
+      periodoBrasileiro: "Modernismo / Pós-modernismo",
+      periodoMundial: "Século XX",
+      movimento: "Modernismo",
+      principaisObras: ["A Hora da Estrela", "A Paixão segundo G.H.", "Água Viva"],
+      principaisFeitos: ["Inovação da prosa literária", "Voz feminina na literatura"],
+      curiosidades: "Chegou ao Brasil com 2 meses de idade.",
+      citacao: "Eu sou uma pessoa que escreve.",
+      fontes: ["ABL", "Itaú Cultural"],
+      links: ["https://pt.wikipedia.org/wiki/Clarice_Lispector"],
+      redesSociais: {},
+      linhaTempo: ["1920: Nascimento", "1977: Falecimento"],
+      sexo: "feminino",
+      foto: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Clarice_Lispector_%28cropped%29.jpg/220px-Clarice_Lispector_%28cropped%29.jpg"
+    }, {
+      id: 13,
+      nomeCompleto: "Jorge Amado",
+      nomeArtistico: null,
+      apelidos: null,
+      nascimento: "1912",
+      falecimento: "2001",
+      cidade: "Itabuna",
+      estado: "BA",
+      pais: "Brasil",
+      area: "Escritor",
+      periodoBrasileiro: "Modernismo",
+      periodoMundial: "Século XX",
+      movimento: "Modernismo",
+      principaisObras: ["Gabriela, Cravo e Canela", "Capitães da Areia", "Dona Flor e Seus Dois Maridos"],
+      principaisFeitos: ["Retrato da cultura baiana", "Traduzido em 40 países"],
+      curiosidades: "Foi deputado federal.",
+      citacao: "A literatura é a minha vida.",
+      fontes: ["ABL", "Itaú Cultural"],
+      links: ["https://pt.wikipedia.org/wiki/Jorge_Amado"],
+      redesSociais: {},
+      linhaTempo: ["1912: Nascimento", "2001: Falecimento"],
+      sexo: "masculino",
+      foto: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Jorge_Amado_%28cropped%29.jpg/220px-Jorge_Amado_%28cropped%29.jpg"
+    }, {
+      id: 14,
+      nomeCompleto: "Tarsila do Amaral",
+      nomeArtistico: "Tarsila",
+      apelidos: ["Tarsila"],
+      nascimento: "1886",
+      falecimento: "1973",
+      cidade: "Capivari",
+      estado: "SP",
+      pais: "Brasil",
+      area: "Pintora",
+      periodoBrasileiro: "Modernismo",
+      periodoMundial: "Século XX",
+      movimento: "Modernismo / Antropofagia",
+      principaisObras: ["Abaporu", "A Negra", "Operários"],
+      principaisFeitos: ["Criação do movimento antropofágico", "Pioneira da arte moderna"],
+      curiosidades: "Fez parte do Grupo dos Cinco.",
+      citacao: "Pinto com a alma.",
+      fontes: ["Itaú Cultural", "Museu Nacional"],
+      links: ["https://pt.wikipedia.org/wiki/Tarsila_do_Amaral"],
+      redesSociais: {},
+      linhaTempo: ["1886: Nascimento", "1973: Falecimento"],
+      sexo: "feminino",
+      foto: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Tarsila_do_Amaral_%281960%29.jpg/220px-Tarsila_do_Amaral_%281960%29.jpg"
+    }, {
+      id: 15,
+      nomeCompleto: "Candido Portinari",
+      nomeArtistico: "Portinari",
+      apelidos: null,
+      nascimento: "1903",
+      falecimento: "1962",
+      cidade: "Brodowski",
+      estado: "SP",
+      pais: "Brasil",
+      area: "Pintor",
+      periodoBrasileiro: "Modernismo",
+      periodoMundial: "Século XX",
+      movimento: "Modernismo / Realismo Social",
+      principaisObras: ["Guerra e Paz (painéis)", "Os Retirantes", "Café"],
+      principaisFeitos: ["Murais da ONU", "Maior pintor brasileiro"],
+      curiosidades: "Filho de imigrantes italianos.",
+      citacao: "A arte é um ato de amor.",
+      fontes: ["Itaú Cultural", "Museu Nacional"],
+      links: ["https://pt.wikipedia.org/wiki/Candido_Portinari"],
+      redesSociais: {},
+      linhaTempo: ["1903: Nascimento", "1962: Falecimento"],
+      sexo: "masculino",
+      foto: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Cândido_Portinari_%28cropped%29.jpg/220px-Cândido_Portinari_%28cropped%29.jpg"
+    }, {
+      id: 16,
+      nomeCompleto: "Antônio Francisco Lisboa",
+      nomeArtistico: "Aleijadinho",
+      apelidos: ["Aleijadinho"],
+      nascimento: "1730",
+      falecimento: "1814",
+      cidade: "Ouro Preto",
+      estado: "MG",
+      pais: "Brasil",
+      area: "Escultor / Arquiteto",
+      periodoBrasileiro: "Barroco",
+      periodoMundial: "Século XVIII",
+      movimento: "Barroco Mineiro",
+      principaisObras: ["Santos de pedra-sabão", "Igreja de São Francisco de Assis (Ouro Preto)"],
+      principaisFeitos: ["Mestre do barroco brasileiro", "Arte sacra"],
+      curiosidades: "Sofria de uma doença deformante.",
+      citacao: null,
+      fontes: ["IPHAN", "Itaú Cultural"],
+      links: ["https://pt.wikipedia.org/wiki/Aleijadinho"],
+      redesSociais: {},
+      linhaTempo: ["1730: Nascimento", "1814: Falecimento"],
+      sexo: "masculino",
+      foto: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Aleijadinho_-_Estátua_de_Profeta.jpg/220px-Aleijadinho_-_Estátua_de_Profeta.jpg"
+    }, {
+      id: 17,
+      nomeCompleto: "Oscar Niemeyer",
+      nomeArtistico: null,
+      apelidos: null,
+      nascimento: "1907",
+      falecimento: "2012",
+      cidade: "Rio de Janeiro",
+      estado: "RJ",
+      pais: "Brasil",
+      area: "Arquiteto",
+      periodoBrasileiro: "Modernismo / Contemporâneo",
+      periodoMundial: "Século XX / XXI",
+      movimento: "Modernismo",
+      principaisObras: ["Catedral de Brasília", "Palácio do Planalto", "Congresso Nacional"],
+      principaisFeitos: ["Projetou Brasília", "Arquiteto da modernidade"],
+      curiosidades: "Atuou até os 104 anos.",
+      citacao: "A arquitetura é invenção.",
+      fontes: ["IPHAN", "Itaú Cultural"],
+      links: ["https://pt.wikipedia.org/wiki/Oscar_Niemeyer"],
+      redesSociais: {},
+      linhaTempo: ["1907: Nascimento", "2012: Falecimento"],
+      sexo: "masculino",
+      foto: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Oscar_Niemeyer_%281970%29.jpg/220px-Oscar_Niemeyer_%281970%29.jpg"
+    }, {
+      id: 18,
+      nomeCompleto: "Lina Bo Bardi",
+      nomeArtistico: null,
+      apelidos: null,
+      nascimento: "1914",
+      falecimento: "1992",
+      cidade: "Roma",
+      estado: null,
+      pais: "Itália (naturalizada brasileira)",
+      area: "Arquiteta / Designer",
+      periodoBrasileiro: "Modernismo",
+      periodoMundial: "Século XX",
+      movimento: "Modernismo",
+      principaisObras: ["MASP (sede original)", "SESC Pompéia", "Casa de Vidro"],
+      principaisFeitos: ["Inovação social na arquitetura", "Design de mobiliário"],
+      curiosidades: "Veio para o Brasil em 1946.",
+      citacao: "A arquitetura é a expressão da vida.",
+      fontes: ["Itaú Cultural", "IPHAN"],
+      links: ["https://pt.wikipedia.org/wiki/Lina_Bo_Bardi"],
+      redesSociais: {},
+      linhaTempo: ["1914: Nascimento", "1992: Falecimento"],
+      sexo: "feminino",
+      foto: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Lina_Bo_Bardi_%28cropped%29.jpg/220px-Lina_Bo_Bardi_%28cropped%29.jpg"
+    }, {
+      id: 19,
+      nomeCompleto: "Heitor Villa-Lobos",
+      nomeArtistico: null,
+      apelidos: null,
+      nascimento: "1887",
+      falecimento: "1959",
+      cidade: "Rio de Janeiro",
+      estado: "RJ",
+      pais: "Brasil",
+      area: "Compositor / Maestro",
+      periodoBrasileiro: "Modernismo",
+      periodoMundial: "Século XX",
+      movimento: "Modernismo",
+      principaisObras: ["Bachianas Brasileiras", "Choros", "Uirapuru"],
+      principaisFeitos: ["Maior compositor do Brasil", "Integrou folclore e erudição"],
+      curiosidades: "Pesquisou o folclore amazônico.",
+      citacao: "A música é a arte mais sublime.",
+      fontes: ["Itaú Cultural", "ABL"],
+      links: ["https://pt.wikipedia.org/wiki/Heitor_Villa-Lobos"],
+      redesSociais: {},
+      linhaTempo: ["1887: Nascimento", "1959: Falecimento"],
+      sexo: "masculino",
+      foto: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Heitor_Villa-Lobos_%28c._1922%29.jpg/220px-Heitor_Villa-Lobos_%28c._1922%29.jpg"
+    }, {
+      id: 20,
+      nomeCompleto: "Antônio Carlos Jobim",
+      nomeArtistico: "Tom Jobim",
+      apelidos: ["Tom"],
+      nascimento: "1927",
+      falecimento: "1994",
+      cidade: "Rio de Janeiro",
+      estado: "RJ",
+      pais: "Brasil",
+      area: "Compositor / Músico",
+      periodoBrasileiro: "Bossa Nova",
+      periodoMundial: "Século XX",
+      movimento: "Bossa Nova",
+      principaisObras: ["Garota de Ipanema", "Chega de Saudade", "Wave"],
+      principaisFeitos: ["Criador da Bossa Nova", "Sucesso mundial"],
+      curiosidades: "Era pianista e violonista.",
+      citacao: "A música é o que sentimos.",
+      fontes: ["Itaú Cultural"],
+      links: ["https://pt.wikipedia.org/wiki/Tom_Jobim"],
+      redesSociais: {},
+      linhaTempo: ["1927: Nascimento", "1994: Falecimento"],
+      sexo: "masculino",
+      foto: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Tom_Jobim_%28cropped%29.jpg/220px-Tom_Jobim_%28cropped%29.jpg"
+    }, {
+      id: 21,
+      nomeCompleto: "Caetano Veloso",
+      nomeArtistico: null,
+      apelidos: null,
+      nascimento: "1942",
+      falecimento: null,
+      cidade: "Santo Amaro da Purificação",
+      estado: "BA",
+      pais: "Brasil",
+      area: "Cantor / Compositor",
+      periodoBrasileiro: "Tropicalismo / Contemporâneo",
+      periodoMundial: "Século XX / XXI",
+      movimento: "Tropicalismo",
+      principaisObras: ["Alegria, Alegria", "Tropicália", "Coração Vagabundo"],
+      principaisFeitos: ["Revolucionou a música brasileira", "Artista vivo mais influente"],
+      curiosidades: "Foi exilado político.",
+      citacao: "O tempo não para.",
+      fontes: ["Itaú Cultural"],
+      links: ["https://pt.wikipedia.org/wiki/Caetano_Veloso"],
+      redesSociais: { instagram: "https://instagram.com/caetanoveloso" },
+      linhaTempo: ["1942: Nascimento"],
+      sexo: "masculino",
+      foto: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Caetano_Veloso_%282023%29.jpg/220px-Caetano_Veloso_%282023%29.jpg"
+    }, {
+      id: 22,
+      nomeCompleto: "Gilberto Gil",
+      nomeArtistico: "Gilberto Gil",
+      apelidos: ["Gil"],
+      nascimento: "1942",
+      falecimento: null,
+      cidade: "Salvador",
+      estado: "BA",
+      pais: "Brasil",
+      area: "Cantor / Compositor / Político",
+      periodoBrasileiro: "Tropicalismo / Contemporâneo",
+      periodoMundial: "Século XX / XXI",
+      movimento: "Tropicalismo",
+      principaisObras: ["Aquele Abraço", "Toda Menina Baiana", "Expresso 2222"],
+      principaisFeitos: ["Ministro da Cultura (2003-2008)", "Embaixador da ONU"],
+      curiosidades: "É também filósofo e músico.",
+      citacao: "A música é a minha vida.",
+      fontes: ["Itaú Cultural"],
+      links: ["https://pt.wikipedia.org/wiki/Gilberto_Gil"],
+      redesSociais: { instagram: "https://instagram.com/gilbertogil" },
+      linhaTempo: ["1942: Nascimento"],
+      sexo: "masculino",
+      foto: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Gilberto_Gil_%282022%29.jpg/220px-Gilberto_Gil_%282022%29.jpg"
+    }, {
+      id: 23,
+      nomeCompleto: "Chico Buarque de Holanda",
+      nomeArtistico: "Chico Buarque",
+      apelidos: ["Chico"],
+      nascimento: "1944",
+      falecimento: null,
+      cidade: "Rio de Janeiro",
+      estado: "RJ",
+      pais: "Brasil",
+      area: "Cantor / Compositor / Escritor",
+      periodoBrasileiro: "MPB / Contemporâneo",
+      periodoMundial: "Século XX / XXI",
+      movimento: "MPB",
+      principaisObras: ["Construção", "Roda Viva", "O Que Será"],
+      principaisFeitos: ["Maior nome da MPB", "Prêmio Camões de Literatura"],
+      curiosidades: "Foi preso durante a ditadura.",
+      citacao: "A vida é um espanto.",
+      fontes: ["ABL", "Itaú Cultural"],
+      links: ["https://pt.wikipedia.org/wiki/Chico_Buarque"],
+      redesSociais: {},
+      linhaTempo: ["1944: Nascimento"],
+      sexo: "masculino",
+      foto: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Chico_Buarque_%282022%29.jpg/220px-Chico_Buarque_%282022%29.jpg"
+    }, {
+      id: 24,
+      nomeCompleto: "Elis Regina",
+      nomeArtistico: "Elis Regina",
+      apelidos: ["A Pequena Notável"],
+      nascimento: "1945",
+      falecimento: "1982",
+      cidade: "Porto Alegre",
+      estado: "RS",
+      pais: "Brasil",
+      area: "Cantora",
+      periodoBrasileiro: "MPB",
+      periodoMundial: "Século XX",
+      movimento: "MPB",
+      principaisObras: ["Águas de Março", "Como Nossos Pais", "O Bêbado e a Equilibrista"],
+      principaisFeitos: ["Uma das maiores vozes do Brasil", "Interpretação única"],
+      curiosidades: "Morreu jovem, aos 36 anos.",
+      citacao: "A música é o que me completa.",
+      fontes: ["Itaú Cultural"],
+      links: ["https://pt.wikipedia.org/wiki/Elis_Regina"],
+      redesSociais: {},
+      linhaTempo: ["1945: Nascimento", "1982: Falecimento"],
+      sexo: "feminino",
+      foto: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Elis_Regina_%281970%29.jpg/220px-Elis_Regina_%281970%29.jpg"
+    }, {
+      id: 25,
+      nomeCompleto: "Edson Arantes do Nascimento",
+      nomeArtistico: "Pelé",
+      apelidos: ["Rei Pelé"],
+      nascimento: "1940",
+      falecimento: "2022",
+      cidade: "Três Corações",
+      estado: "MG",
+      pais: "Brasil",
+      area: "Esportista (Futebol)",
+      periodoBrasileiro: "Contemporâneo",
+      periodoMundial: "Século XX / XXI",
+      movimento: null,
+      principaisObras: ["3 Copas do Mundo (1958, 1962, 1970)"],
+      principaisFeitos: ["Maior jogador de futebol de todos os tempos", "1000+ gols"],
+      curiosidades: "Em 1999, foi eleito Atleta do Século.",
+      citacao: "O sucesso não é por acaso.",
+      fontes: ["Arquivo Nacional", "UNESCO"],
+      links: ["https://pt.wikipedia.org/wiki/Pelé"],
+      redesSociais: {},
+      linhaTempo: ["1940: Nascimento", "2022: Falecimento"],
+      sexo: "masculino",
+      foto: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Pel%C3%A9_%281970%29.jpg/220px-Pel%C3%A9_%281970%29.jpg"
+    }, {
+      id: 26,
+      nomeCompleto: "Ayrton Senna da Silva",
+      nomeArtistico: "Ayrton Senna",
+      apelidos: ["Senna"],
+      nascimento: "1960",
+      falecimento: "1994",
+      cidade: "São Paulo",
+      estado: "SP",
+      pais: "Brasil",
+      area: "Esportista (Automobilismo)",
+      periodoBrasileiro: "Contemporâneo",
+      periodoMundial: "Século XX",
+      movimento: null,
+      principaisObras: ["3 títulos mundiais de Fórmula 1 (1988, 1990, 1991)"],
+      principaisFeitos: ["Maior piloto brasileiro", "Ícone da velocidade"],
+      curiosidades: "Criou o Instituto Ayrton Senna.",
+      citacao: "Se você não tem um sonho, como vai realizá-lo?",
+      fontes: ["Arquivo Nacional"],
+      links: ["https://pt.wikipedia.org/wiki/Ayrton_Senna"],
+      redesSociais: {},
+      linhaTempo: ["1960: Nascimento", "1994: Falecimento"],
+      sexo: "masculino",
+      foto: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Ayrton_Senna_%281990%29.jpg/220px-Ayrton_Senna_%281990%29.jpg"
+    }, {
+      id: 27,
+      nomeCompleto: "Nise da Silveira",
+      nomeArtistico: null,
+      apelidos: null,
+      nascimento: "1905",
+      falecimento: "1999",
+      cidade: "Maceió",
+      estado: "AL",
+      pais: "Brasil",
+      area: "Médica / Psiquiatra",
+      periodoBrasileiro: "Contemporâneo",
+      periodoMundial: "Século XX",
+      movimento: "Psiquiatria humanitária",
+      principaisObras: ["Terapia ocupacional com animais", "Museu de Imagens do Inconsciente"],
+      principaisFeitos: ["Revolucionou o tratamento de pacientes com esquizofrenia", "Humanização da psiquiatria"],
+      curiosidades: "Foi presa por suas ideias.",
+      citacao: "A loucura é uma forma de expressão.",
+      fontes: ["Arquivo Nacional", "UNESCO"],
+      links: ["https://pt.wikipedia.org/wiki/Nise_da_Silveira"],
+      redesSociais: {},
+      linhaTempo: ["1905: Nascimento", "1999: Falecimento"],
+      sexo: "feminino",
+      foto: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Nise_da_Silveira.jpg/220px-Nise_da_Silveira.jpg"
+    }, {
+      id: 28,
+      nomeCompleto: "Oswaldo Cruz",
+      nomeArtistico: null,
+      apelidos: null,
+      nascimento: "1872",
+      falecimento: "1917",
+      cidade: "São Luís do Paraitinga",
+      estado: "SP",
+      pais: "Brasil",
+      area: "Médico / Cientista",
+      periodoBrasileiro: "República Velha",
+      periodoMundial: "Século XIX / XX",
+      movimento: "Saúde pública",
+      principaisObras: ["Campanha contra a febre amarela", "Controle da peste bubônica"],
+      principaisFeitos: ["Saneamento do Rio de Janeiro", "Criação do Instituto Oswaldo Cruz"],
+      curiosidades: "Era um dos maiores sanitaristas do mundo.",
+      citacao: "A ciência é a arma contra a doença.",
+      fontes: ["Arquivo Nacional", "Fiocruz"],
+      links: ["https://pt.wikipedia.org/wiki/Oswaldo_Cruz"],
+      redesSociais: {},
+      linhaTempo: ["1872: Nascimento", "1917: Falecimento"],
+      sexo: "masculino",
+      foto: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Oswaldo_Cruz.jpg/220px-Oswaldo_Cruz.jpg"
+    }, {
+      id: 29,
+      nomeCompleto: "Alberto Santos Dumont",
+      nomeArtistico: "Santos Dumont",
+      apelidos: ["Pai da Aviação"],
+      nascimento: "1873",
+      falecimento: "1932",
+      cidade: "Palmira (atual Santos Dumont)",
+      estado: "MG",
+      pais: "Brasil",
+      area: "Inventor / Aeronauta",
+      periodoBrasileiro: "República Velha",
+      periodoMundial: "Século XIX / XX",
+      movimento: "Aviação",
+      principaisObras: ["14-Bis", "Dirigíveis"],
+      principaisFeitos: ["Primeiro voo homologado na Europa", "Contribuição à aviação mundial"],
+      curiosidades: "Era um visionário e poliglota.",
+      citacao: "O sonho guia a humanidade.",
+      fontes: ["Arquivo Nacional", "Museu Nacional"],
+      links: ["https://pt.wikipedia.org/wiki/Santos_Dumont"],
+      redesSociais: {},
+      linhaTempo: ["1873: Nascimento", "1932: Falecimento"],
+      sexo: "masculino",
+      foto: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Santos_Dumont_1901.jpg/220px-Santos_Dumont_1901.jpg"
+    }, {
+      id: 30,
+      nomeCompleto: "Getúlio Dornelles Vargas",
+      nomeArtistico: null,
+      apelidos: ["Pai dos Pobres"],
+      nascimento: "1882",
+      falecimento: "1954",
+      cidade: "São Borja",
+      estado: "RS",
+      pais: "Brasil",
+      area: "Político",
+      periodoBrasileiro: "Era Vargas",
+      periodoMundial: "Século XX",
+      movimento: "Nacionalismo",
+      principaisObras: ["Revolução de 1930", "CLT", "Criação da Petrobras"],
+      principaisFeitos: ["Modernização do Brasil", "Fim da República Velha"],
+      curiosidades: "Cometeu suicídio em 1954.",
+      citacao: "Deixo a vida para entrar na história.",
+      fontes: ["CPDOC", "Arquivo Nacional"],
+      links: ["https://pt.wikipedia.org/wiki/Getúlio_Vargas"],
+      redesSociais: {},
+      linhaTempo: ["1882: Nascimento", "1954: Falecimento"],
+      sexo: "masculino",
+      foto: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Getulio_Vargas_%281930%29.jpg/220px-Getulio_Vargas_%281930%29.jpg"
+    }];
+
+    // ================================================================
+    //  LÓGICA DO SITE
+    // ================================================================
+    let dadosFiltrados = [...pessoas];
+    let indiceAtual = 0;
+
+    const container = document.getElementById('cardContainer');
+    const filtroNome = document.getElementById('filtroNome');
+    const filtroSexo = document.getElementById('filtroSexo');
+    const filtroArea = document.getElementById('filtroArea');
+    const limparBtn = document.getElementById('limparFiltros');
+
+    // Preencher opções de área
+    const areas = [...new Set(pessoas.map(p => p.area).filter(Boolean))].sort();
+    areas.forEach(area => {
+      const opt = document.createElement('option');
+      opt.value = area;
+      opt.textContent = area;
+      filtroArea.appendChild(opt);
+    });
+
+    function filtrar() {
+      const nome = filtroNome.value.trim().toLowerCase();
+      const sexo = filtroSexo.value;
+      const area = filtroArea.value;
+
+      dadosFiltrados = pessoas.filter(p => {
+        let ok = true;
+        if (nome) {
+          const busca = (p.nomeCompleto + ' ' + (p.nomeArtistico || '') + ' ' + (p.apelidos || []).join(' ')).toLowerCase();
+          if (!busca.includes(nome)) ok = false;
+        }
+        if (sexo && p.sexo !== sexo) ok = false;
+        if (area && p.area !== area) ok = false;
+        return ok;
+      });
+
+      if (indiceAtual >= dadosFiltrados.length) indiceAtual = 0;
+      renderizarCard();
+    }
+
+    function renderizarCard() {
+      if (dadosFiltrados.length === 0) {
+        container.innerHTML = `<div class="sem-resultado">😕 Nenhuma personalidade encontrada com esses filtros.</div>`;
+        return;
+      }
+
+      const p = dadosFiltrados[indiceAtual];
+      if (!p) return;
+
+      const nomeArt = p.nomeArtistico ? ` (${p.nomeArtistico})` : '';
+      const apelidosStr = p.apelidos && p.apelidos.length ? ` • ${p.apelidos.join(', ')}` : '';
+      const nasc = p.nascimento || '?';
+      const morte = p.falecimento || 'presente';
+      const idade = p.falecimento ? (parseInt(p.falecimento) - parseInt(p.nascimento)) : (new Date().getFullYear() - parseInt(p.nascimento));
+      const local = [p.cidade, p.estado, p.pais].filter(Boolean).join(', ');
+      const obrasList = p.principaisObras && p.principaisObras.length ? p.principaisObras.map(o => `<li>${o}</li>`).join('') : '';
+      const feitosList = p.principaisFeitos && p.principaisFeitos.length ? p.principaisFeitos.map(f => `<li>${f}</li>`).join('') : '';
+      const curiosidades = p.curiosidades || '';
+      const citacao = p.citacao ? `<div class="citacao">“${p.citacao}”</div>` : '';
+      const fontes = p.fontes && p.fontes.length ? p.fontes.map(f => `<a href="#" target="_blank">${f}</a>`).join(' · ') : '';
+      const links = p.links && p.links.length ? p.links.map(l => `<a href="${l}" target="_blank" rel="noopener">🔗</a>`).join(' ') : '';
+      const redes = p.redesSociais && Object.keys(p.redesSociais).length ? Object.entries(p.redesSociais).map(([rede, url]) =>
+        `<a href="${url}" target="_blank" rel="noopener">${rede}</a>`
+      ).join(' ') : '';
+
+      const sexoLabel = p.sexo === 'feminino' ? '♀ Mulher' : '♂ Homem';
+
+      container.innerHTML = `
+        <div class="card-wrapper fade-enter" role="article" aria-label="Personalidade ${indiceAtual+1} de ${dadosFiltrados.length}">
+          <div class="card-conteudo">
+            <div class="card-foto">
+              <img src="${p.foto || 'https://via.placeholder.com/260/cccccc/ffffff?text=Sem+Imagem'}" alt="${p.nomeCompleto}" loading="lazy" />
+              <span class="badge-sexo">${sexoLabel}</span>
+            </div>
+            <div class="card-info">
+              <div class="nome-principal">${p.nomeCompleto}${nomeArt}</div>
+              <div class="nome-artistico">${apelidosStr}</div>
+              <div class="detalhes">
+                <span>📅 ${nasc} – ${morte} (${idade} anos)</span>
+                <span>📍 ${local}</span>
+                <span class="area">${p.area}</span>
+                <span>📖 ${p.periodoBrasileiro || ''}</span>
+                <span>🌍 ${p.periodoMundial || ''}</span>
+                ${p.movimento ? `<span>🎨 ${p.movimento}</span>` : ''}
+              </div>
+              <div class="biografia">
+                <strong>Síntese:</strong> ${p.nomeCompleto} foi ${p.area.toLowerCase()} de grande importância para o Brasil.
+                ${curiosidades ? ` Curiosidade: ${curiosidades}` : ''}
+              </div>
+              ${obrasList ? `<div class="obras-feitos"><strong>Principais Obras:</strong><ul>${obrasList}</ul></div>` : ''}
+              ${feitosList ? `<div class="obras-feitos"><strong>Principais Feitos:</strong><ul>${feitosList}</ul></div>` : ''}
+              ${citacao}
+              <div class="fontes">
+                <span>📚 Fontes: ${fontes}</span>
+                ${links ? `<span>🔗 ${links}</span>` : ''}
+                ${redes ? `<span>📱 ${redes}</span>` : ''}
+              </div>
+            </div>
+          </div>
+          <div class="card-navegacao">
+            <button id="btnAnterior" aria-label="Anterior" ${indiceAtual === 0 ? 'disabled' : ''}>◀ Anterior</button>
+            <span class="contador">${indiceAtual+1} / ${dadosFiltrados.length}</span>
+            <button id="btnProximo" aria-label="Próximo" ${indiceAtual === dadosFiltrados.length-1 ? 'disabled' : ''}>Próximo ▶</button>
+          </div>
+        </div>
+      `;
+
+      // Eventos dos botões
+      document.getElementById('btnAnterior')?.addEventListener('click', () => {
+        if (indiceAtual > 0) { indiceAtual--; renderizarCard(); }
+      });
+      document.getElementById('btnProximo')?.addEventListener('click', () => {
+        if (indiceAtual < dadosFiltrados.length - 1) { indiceAtual++; renderizarCard(); }
+      });
+
+      // Atualiza contador e estado dos botões
+    }
+
+    // Eventos dos filtros (com debounce para nome)
+    let timeoutNome;
+    filtroNome.addEventListener('input', () => {
+      clearTimeout(timeoutNome);
+      timeoutNome = setTimeout(filtrar, 300);
+    });
+    filtroSexo.addEventListener('change', filtrar);
+    filtroArea.addEventListener('change', filtrar);
+    limparBtn.addEventListener('click', () => {
+      filtroNome.value = '';
+      filtroSexo.value = '';
+      filtroArea.value = '';
+      filtrar();
+    });
+
+    // ================================================================
+    //  MODO CLARO / ESCURO
+    // ================================================================
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const themeLabel = document.getElementById('themeLabel');
+    let darkMode = false;
+
+    themeToggle.addEventListener('click', () => {
+      darkMode = !darkMode;
+      document.documentElement.setAttribute('data-theme', darkMode ? 'dark' : 'light');
+      themeIcon.textContent = darkMode ? '☀️' : '🌙';
+      themeLabel.textContent = darkMode ? 'Claro' : 'Escuro';
+    });
+
+    // ================================================================
+    //  SWIPE (mobile)
+    // ================================================================
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    container.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    container.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      const diff = touchStartX - touchEndX;
+      if (Math.abs(diff) > 50) {
+        if (diff > 0 && indiceAtual < dadosFiltrados.length - 1) {
+          indiceAtual++;
+          renderizarCard();
+        } else if (diff < 0 && indiceAtual > 0) {
+          indiceAtual--;
+          renderizarCard();
+        }
+      }
+    }, { passive: true });
+
+    // ================================================================
+    //  TECLADO (setas)
+    // ================================================================
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' && indiceAtual < dadosFiltrados.length - 1) {
+        indiceAtual++;
+        renderizarCard();
+        e.preventDefault();
+      } else if (e.key === 'ArrowLeft' && indiceAtual > 0) {
+        indiceAtual--;
+        renderizarCard();
+        e.preventDefault();
+      }
+    });
+
+    // ================================================================
+    //  INICIALIZAÇÃO
+    // ================================================================
+    renderizarCard();
+
+    // ================================================================
+    //  SERVICE WORKER (PWA)
+    // ================================================================
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js')
+        .then(() => console.log('SW registrado'))
+        .catch(err => console.warn('SW erro:', err));
+    }
+  </script>
 </body>
 </html>

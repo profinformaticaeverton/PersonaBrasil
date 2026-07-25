@@ -1,0 +1,21 @@
+{
+  "name": "Brasil em Retratos",
+  "short_name": "BrasilRetratos",
+  "description": "Personalidades históricas do Brasil",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f0ebe3",
+  "theme_color": "#009739",
+  "icons": [
+    {
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Brazil.svg/192px-Flag_of_Brazil.svg.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Brazil.svg/512px-Flag_of_Brazil.svg.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
